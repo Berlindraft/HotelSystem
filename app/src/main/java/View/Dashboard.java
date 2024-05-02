@@ -4,6 +4,8 @@
  */
 package View;
 
+import Model.DashboardModel;
+import java.sql.SQLException;
 import java.util.Map;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -21,7 +23,43 @@ public class Dashboard extends javax.swing.JPanel {
         initComponents();
         
     }
+public void loadData() {
+        DashboardModel dashboardModel = new DashboardModel(); // Assuming DashboardModel is your model class
 
+        try {
+            // Fetch data from the database using DashboardModel methods
+            int totalCheckIns = dashboardModel.getTotalCheckInsToday();
+            int totalCheckOuts = dashboardModel.getTotalCheckOutsToday();
+            int totalOccupied = dashboardModel.getTotalOccupiedRooms();
+            int totalAvailable = dashboardModel.getTotalAvailableRooms();
+            int weekTotal = dashboardModel.getCheckinTotal();
+            Map<String, Integer> occupiedRoomStatusCounts = dashboardModel.getOccupiedRoomCounts();
+            Map<String, Integer> availableRoomStatusCounts = dashboardModel.getAvailableRoomCounts();
+            String deluxeRoomStatus = dashboardModel.getRoom1Status();
+            String premierRoomStatus = dashboardModel.getRoom2Status();
+            String executiveRoomStatus = dashboardModel.getRoom3Status();
+            String presidentialRoomStatus = dashboardModel.getRoom4Status();
+
+            // Update UI components with fetched data
+            setTotalCheckIns(totalCheckIns);
+            setTotalCheckOuts(totalCheckOuts);
+            setTotalOccupied(totalOccupied);
+            setTotalAvailable(totalAvailable);
+            setTotalCheckinWeek(weekTotal);
+            displayOccupiedRoomStatusCounts(occupiedRoomStatusCounts);
+            displayAvailableRoomStatusCounts(availableRoomStatusCounts);
+            displayRoom1Status(deluxeRoomStatus);
+            displayRoom2Status(premierRoomStatus);
+            displayRoom3Status(executiveRoomStatus);
+            displayRoom4Status(presidentialRoomStatus);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle SQLException
+            displayErrorMessage("Error fetching data");
+        }
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -167,7 +205,7 @@ public class Dashboard extends javax.swing.JPanel {
                                     .addComponent(jLabel26)
                                     .addComponent(jLabel28)
                                     .addComponent(jLabel29))))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 195, Short.MAX_VALUE)
                 .addComponent(jLabel5)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()

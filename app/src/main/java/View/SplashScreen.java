@@ -29,7 +29,7 @@ public class SplashScreen extends javax.swing.JFrame {
         imageScaler = new ImageScaler();
         imageScaler.scaleImage(jLabel1, "src\\main\\resources\\logo1.png");
         
-        Timer timer = new Timer(1000, e -> {
+        Timer timer = new Timer(2000, e -> {
             new Login().setVisible(true);
             this.dispose();
         });
@@ -46,6 +46,7 @@ public class SplashScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -53,6 +54,7 @@ public class SplashScreen extends javax.swing.JFrame {
         setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 0));
+        getContentPane().add(jDateChooser1);
 
         jPanel1.setBackground(new java.awt.Color(101, 28, 50));
         jPanel1.setLayout(new java.awt.BorderLayout());
@@ -102,6 +104,7 @@ public class SplashScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
