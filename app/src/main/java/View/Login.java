@@ -81,6 +81,7 @@ public class Login extends javax.swing.JFrame {
         jPanel4.setPreferredSize(new java.awt.Dimension(300, 200));
 
         userName.setText("Username or Email");
+        userName.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         userName.setPreferredSize(new java.awt.Dimension(100, 22));
         userName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
