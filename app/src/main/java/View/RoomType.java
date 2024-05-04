@@ -78,6 +78,11 @@ public class RoomType extends javax.swing.JPanel {
         });
 
         jButton2.setText("Continue");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -274,6 +279,25 @@ public class RoomType extends javax.swing.JPanel {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+                    // Get the parent container, which is the Management frame
+    Management management = (Management) SwingUtilities.getWindowAncestor(this);
+    
+    // Remove the current Booking panel from the jPanel11
+    management.getjPanel11().removeAll();
+    
+    // Create an instance of the RoomType panel
+    RoomAvailability roomavailability = new RoomAvailability();
+    
+    // Add the RoomType panel to the jPanel11
+    management.getjPanel11().add(roomavailability);
+    
+    // Revalidate and repaint the jPanel11 to reflect the changes
+    management.getjPanel11().revalidate();
+    management.getjPanel11().repaint();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

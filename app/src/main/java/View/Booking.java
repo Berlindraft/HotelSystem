@@ -3,6 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package View;
+import Controller.BookingController;
+import Model.BookingModel;
+import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
@@ -12,7 +15,9 @@ import javax.swing.SwingUtilities;
  */
 
 public class Booking extends javax.swing.JPanel {
-    
+
+    private BookingController controller;
+    private BookingModel model;
     /**
      * Creates new form Booking
      */
@@ -112,22 +117,37 @@ public class Booking extends javax.swing.JPanel {
 
         jLabel4.setText("Children");
 
-        jLabel5.setText("#");
+        jLabel5.setText("0");
 
-        jLabel6.setText("#");
+        jLabel6.setText("0");
 
-        jButton1.setText("-");
+        jButton1.setText("+");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton2.setText("-");
+        jButton2.setText("+");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("+");
+        jButton3.setText("-");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("+");
+        jButton4.setText("-");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Check-in");
 
@@ -163,7 +183,7 @@ public class Booking extends javax.swing.JPanel {
                         .addComponent(jLabel7)
                         .addGap(112, 112, 112)
                         .addComponent(jLabel8)
-                        .addContainerGap(134, Short.MAX_VALUE))
+                        .addContainerGap(135, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -315,9 +335,7 @@ public class Booking extends javax.swing.JPanel {
                             .addGroup(jPanel7Layout.createSequentialGroup()
                                 .addComponent(jLabel13)
                                 .addGap(0, 7, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel15)))
+                            .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addContainerGap())
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -399,7 +417,13 @@ public class Booking extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+int currentValue = Integer.parseInt(jLabel5.getText()); 
+    int newValue = currentValue + 1; 
+    jLabel5.setText(Integer.toString(newValue)); 
+    
+    // Call the method in your model class to add data to the database
+    BookingModel model = new BookingModel();
+    model.addBooking();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -420,7 +444,50 @@ public class Booking extends javax.swing.JPanel {
     management.getjPanel11().repaint();
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    int currentValue = Integer.parseInt(jLabel5.getText()); 
+    int newValue = currentValue - 1; 
+    jLabel5.setText(Integer.toString(newValue)); 
+    
+    // Additionally, you may want to update the model here if needed
+    // For example, if you're adding a booking, you can call:
+    // model.addBooking(1);
+    
+    // If you're subtracting a booking, you can call:
+    // model.subtractBooking(1);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+// Method to add action listener for the add button
+    public void addAddButtonListener(ActionListener listener) {
+        jButton1.addActionListener(listener);
+    }
+
+    // Method to add action listener for the subtract button
+    public void addSubtractButtonListener(ActionListener listener) {
+        jButton2.addActionListener(listener);
+    }
+    public int getAdultCount() {
+        // Assuming you have a label named adultCountLabel to display the adult count
+        String valueStr = jLabel5.getText();
+        // Convert the string value to an integer
+        int value = Integer.parseInt(valueStr);
+        return value;
+    }
+
+    // Setter method to update the value displayed in the view
+    public void setAdultCount(int count) {
+        // Assuming you have a label named adultCountLabel to display the adult count
+        jLabel5.setText(Integer.toString(count));
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -458,4 +525,6 @@ public class Booking extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     // End of variables declaration//GEN-END:variables
+
+
 }

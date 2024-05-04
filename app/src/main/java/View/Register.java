@@ -283,8 +283,16 @@ public class Register extends javax.swing.JFrame {
         String userLast = lastName.getText();
         String email = userEmail.getText();
         String phoneNumber = userPNumber.getText();
+        
+        
+        //MAO NI ANG DEPRECATED NGA CODE!!!
+        //MAO NI ANG DEPRECATED NGA CODE!!!
+        //MAO NI ANG DEPRECATED NGA CODE!!!
         String password = userPass.getText();
         String confirmPassword = userPass2.getText();
+        
+        
+        
         if (!password.equals(confirmPassword)) {
             JOptionPane.showMessageDialog(new JFrame(), "Passwords do not match");
             return;

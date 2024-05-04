@@ -39,7 +39,7 @@ public class AdminDatabaseModel {
             stmt.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(AdminDatabaseModel.class.getName()).log(Level.SEVERE, null, ex);
-            // Handle SQL exception more gracefully
+           
         }
     }
 
@@ -50,11 +50,11 @@ public class AdminDatabaseModel {
             stmt.setString(2, lastName);
             stmt.setString(3, email);
             stmt.setString(4, phoneNumber);
-            stmt.setString(5, password); // Remember to hash the password before storing it
+            stmt.setString(5, password); 
             stmt.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(AdminDatabaseModel.class.getName()).log(Level.SEVERE, null, ex);
-            // Handle SQL exception more gracefully
+           
         }
     }
 

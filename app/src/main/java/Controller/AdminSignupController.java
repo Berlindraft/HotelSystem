@@ -11,7 +11,7 @@ public class AdminSignupController {
     private AdminDatabaseModel model;
 
     public AdminSignupController() {
-        this.model = new AdminDatabaseModel(); // Handle the exception more gracefully
+        this.model = new AdminDatabaseModel(); 
     }
 
     public void signUp(String firstName, String lastName, String email, String phoneNumber, String password) {
