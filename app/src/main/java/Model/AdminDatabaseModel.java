@@ -22,7 +22,6 @@ public class AdminDatabaseModel {
             System.out.println("Connection Successful");
         } catch (SQLException ex) {
             Logger.getLogger(AdminDatabaseModel.class.getName()).log(Level.SEVERE, null, ex);
-            // Handle connection error more gracefully, such as displaying an error message
         }
     }
 
@@ -64,10 +63,9 @@ public class AdminDatabaseModel {
             stmt.setString(1, email);
             stmt.setString(2, password);
             ResultSet rs = stmt.executeQuery();
-            return rs.next(); // Return true if the result set is not empty
+            return rs.next();
         } catch (SQLException ex) {
             Logger.getLogger(AdminDatabaseModel.class.getName()).log(Level.SEVERE, null, ex);
-            // Handle SQL exception more gracefully
             return false;
         }
     }

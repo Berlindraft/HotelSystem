@@ -16,12 +16,9 @@ public class DatabaseConnection {
     public static Connection getConnection() throws SQLException {
         if (connection == null || connection.isClosed()) {
             try {
-                // Load the JDBC driver class
                 Class.forName(DB_DRIVER);
-                // Establish the database connection
                 connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
             } catch (ClassNotFoundException e) {
-                // Handle the ClassNotFoundException properly
                 throw new SQLException("MySQL JDBC Driver not found", e);
             }
         }

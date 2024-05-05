@@ -1,51 +1,72 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Controller;
 
 import Model.BookingModel;
 import View.Booking;
+import com.toedter.calendar.JCalendar;
 import java.awt.event.ActionEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.text.SimpleDateFormat;
 
-/**
- *
- * @author Zyron
- */
 public class BookingController {
     private BookingModel model;
     private Booking view;
-    
-        public BookingController(BookingModel model, Booking view) {
+    private JCalendar jCalendar;
+
+    public BookingController(BookingModel model, Booking view, JCalendar jCalendar) {
         this.model = model;
         this.view = view;
+        this.jCalendar = jCalendar;
 
-        view.addAddButtonListener(this::handleAddButton);
-        view.addSubtractButtonListener(this::handleSubtractButton);
-        view.setAdultCount(model.retrieveAdultCount());
-    }
-        public void handleAddButtonClick(ActionEvent e) {
-        int currentValue = view.getAdultCount(); // Get the current value from the view
-        int newValue = currentValue + 1; // Increment the value
-        view.setAdultCount(newValue); // Update the view with the new value
-//        model.addGuest();
-//        model.addRoom();
-//        model.addPayment(newValue);
-        model.addBooking(); // Update the model
+        view.addAddButtonListener1(this::handleAddButtonClick1);
+        view.addSubtractButtonListener1(this::handleSubtractButtonClick1);
+        view.addAddButtonListener2(this::handleAddButtonClick2);
+        view.addSubtractButtonListener2(this::handleSubtractButtonClick2);
     }
 
-    public void handleSubtractButtonClick(ActionEvent e) {
-        int currentValue = view.getAdultCount(); // Get the current value from the view
-        int newValue = currentValue - 1; // Decrement the value
-        view.setAdultCount(newValue); // Update the view with the new value
-        model.subtractBooking(newValue); // Update the model
+    public void handleAddButtonClick1(ActionEvent e) {
+        int currentValue = view.getAdultCount();
+        int newValue = currentValue + 1;
+        view.setAdultCount(newValue);
+        model.updateAdultCount(newValue);
     }
 
-    private void handleSubtractButton(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public void handleSubtractButtonClick1(ActionEvent e) {
+        int currentValue = view.getAdultCount();
+        if (currentValue > 0) {
+            int newValue = currentValue - 1;
+            view.setAdultCount(newValue);
+            model.updateAdultCount(newValue);
+        }
     }
 
-    private void handleAddButton(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public void handleAddButtonClick2(ActionEvent e) {
+        int currentValue = view.getChildrenCount();
+        int newValue = currentValue + 1;
+        view.setChildrenCount(newValue);
+        model.updateChildrenCount(newValue);
+    }
+
+    public void handleSubtractButtonClick2(ActionEvent e) {
+        int currentValue = view.getChildrenCount();
+        if (currentValue > 0) {
+            int newValue = currentValue - 1;
+            view.setChildrenCount(newValue);
+            model.updateChildrenCount(newValue);
+        }
+    }
+
+    public void addCalendarActionListener() {
+        jCalendar.addPropertyChangeListener(new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                if ("calendar".equals(evt.getPropertyName())) {
+                    java.util.Date selectedDate = jCalendar.getDate();
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                    String formattedDate = dateFormat.format(selectedDate);
+                    view.setSelectedDateLabel(formattedDate);
+                }
+            }
+        });
     }
 }
