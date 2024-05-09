@@ -2,27 +2,33 @@ package Controller;
 
 import Model.BookingModel;
 import View.Booking;
+import View.RoomAvailability;
 import com.toedter.calendar.JCalendar;
 import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.text.SimpleDateFormat;
+import java.awt.Color;
 
 public class BookingController {
     private BookingModel model;
     private Booking view;
     private JCalendar jCalendar;
+    private RoomAvailability roomA;
 
-    public BookingController(BookingModel model, Booking view, JCalendar jCalendar) {
+    public BookingController(BookingModel model, Booking view, JCalendar jCalendar, RoomAvailability roomA) {
         this.model = model;
         this.view = view;
         this.jCalendar = jCalendar;
+        this.roomA = roomA;
 
         view.addAddButtonListener1(this::handleAddButtonClick1);
         view.addSubtractButtonListener1(this::handleSubtractButtonClick1);
         view.addAddButtonListener2(this::handleAddButtonClick2);
         view.addSubtractButtonListener2(this::handleSubtractButtonClick2);
     }
+
+ 
 
     public void handleAddButtonClick1(ActionEvent e) {
         int currentValue = view.getAdultCount();
@@ -69,4 +75,22 @@ public class BookingController {
             }
         });
     }
+    
+     public void updateColor(String roomType) {
+        int roomNumber = 101; // Assuming room number 101 for demo
+        String status = model.retrieveRoomStatus(roomNumber, roomType);
+        String availability = status; // Assuming room status is same as availability for demo
+        roomA.setColor(availability);
+        System.out.println("this has been read");
+    }
+
+
+    
+    
+    
+    //fini
+
+//    public void updateRoomAvailabilityPanelColor(String roomType) {
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+//    }
 }

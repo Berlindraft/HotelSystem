@@ -4,19 +4,32 @@
  */
 package View;
 
+import Controller.BookingController;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import javax.swing.SwingUtilities;
+import Model.BookingModel;
 
 /**
  *
  * @author Zyron
  */
-public class RoomType extends javax.swing.JPanel {
-
+public class RoomType extends javax.swing.JPanel implements ActionListener {
+    private BookingModel model;
+    private BookingController controller;
     /**
      * Creates new form RoomType
      */
-    public RoomType() {
+    public RoomType(BookingModel model) {
         initComponents();
+        this.model = model;
+
+        // Add action listeners to the buttons
+        jButtonDeluxe.addActionListener(this);
+        jButtonExecutive.addActionListener(this);
+        jButtonStandard.addActionListener(this);
+        jButtonSuite.addActionListener(this);
     }
 
     /**
@@ -34,16 +47,16 @@ public class RoomType extends javax.swing.JPanel {
         jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        jButtonDeluxe = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
+        jButtonExecutive = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
+        jButtonStandard = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jButton6 = new javax.swing.JButton();
+        jButtonSuite = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -87,12 +100,12 @@ public class RoomType extends javax.swing.JPanel {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel2.setText("Deluxe");
+        jLabel2.setText("Standard");
 
-        jButton3.setText("Select");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButtonDeluxe.setText("Select");
+        jButtonDeluxe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButtonDeluxeActionPerformed(evt);
             }
         });
 
@@ -107,7 +120,7 @@ public class RoomType extends javax.swing.JPanel {
                         .addComponent(jLabel2))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(65, 65, 65)
-                        .addComponent(jButton3)))
+                        .addComponent(jButtonDeluxe)))
                 .addContainerGap(70, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -116,7 +129,7 @@ public class RoomType extends javax.swing.JPanel {
                 .addGap(27, 27, 27)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
-                .addComponent(jButton3)
+                .addComponent(jButtonDeluxe)
                 .addGap(25, 25, 25))
         );
 
@@ -125,7 +138,12 @@ public class RoomType extends javax.swing.JPanel {
 
         jLabel3.setText("Premier");
 
-        jButton4.setText("Select");
+        jButtonExecutive.setText("Select");
+        jButtonExecutive.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExecutiveActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -138,7 +156,7 @@ public class RoomType extends javax.swing.JPanel {
                         .addComponent(jLabel3))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(68, 68, 68)
-                        .addComponent(jButton4)))
+                        .addComponent(jButtonExecutive)))
                 .addContainerGap(81, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -147,7 +165,7 @@ public class RoomType extends javax.swing.JPanel {
                 .addGap(24, 24, 24)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
-                .addComponent(jButton4)
+                .addComponent(jButtonExecutive)
                 .addGap(23, 23, 23))
         );
 
@@ -156,7 +174,12 @@ public class RoomType extends javax.swing.JPanel {
 
         jLabel4.setText("Executive");
 
-        jButton5.setText("Select");
+        jButtonStandard.setText("Select");
+        jButtonStandard.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonStandardActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -165,7 +188,7 @@ public class RoomType extends javax.swing.JPanel {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(61, 61, 61)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton5)
+                    .addComponent(jButtonStandard)
                     .addComponent(jLabel4))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -175,7 +198,7 @@ public class RoomType extends javax.swing.JPanel {
                 .addGap(23, 23, 23)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
-                .addComponent(jButton5)
+                .addComponent(jButtonStandard)
                 .addGap(19, 19, 19))
         );
 
@@ -184,7 +207,12 @@ public class RoomType extends javax.swing.JPanel {
 
         jLabel5.setText("Presidential");
 
-        jButton6.setText("Select");
+        jButtonSuite.setText("Select");
+        jButtonSuite.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSuiteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -193,7 +221,7 @@ public class RoomType extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton6)
+                    .addComponent(jButtonSuite)
                     .addComponent(jLabel5))
                 .addGap(65, 65, 65))
         );
@@ -203,7 +231,7 @@ public class RoomType extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
-                .addComponent(jButton6)
+                .addComponent(jButtonSuite)
                 .addGap(17, 17, 17))
         );
 
@@ -276,9 +304,9 @@ public class RoomType extends javax.swing.JPanel {
     management.getjPanel11().repaint();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jButtonDeluxeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeluxeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jButtonDeluxeActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
@@ -299,14 +327,37 @@ public class RoomType extends javax.swing.JPanel {
     management.getjPanel11().repaint();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButtonExecutiveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExecutiveActionPerformed
+        // TODO add your handling code here:
+        updateRoomStatus("Standard");
+    }//GEN-LAST:event_jButtonExecutiveActionPerformed
+
+    private void jButtonStandardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStandardActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jButtonStandardActionPerformed
+
+    private void jButtonSuiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSuiteActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jButtonSuiteActionPerformed
+
+@Override
+public void actionPerformed(ActionEvent e) {
+    JButton clickedButton = (JButton)e.getSource();
+    String roomType = clickedButton.getText();
+    //BookingController controller = new BookingController();
+    // Call controller method to update room availability panel color based on the room type
+    controller.updateColor(roomType);
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButtonDeluxe;
+    private javax.swing.JButton jButtonExecutive;
+    private javax.swing.JButton jButtonStandard;
+    private javax.swing.JButton jButtonSuite;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -318,4 +369,8 @@ public class RoomType extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     // End of variables declaration//GEN-END:variables
+
+    private void updateRoomStatus(String standard) {
+        
+    }
 }

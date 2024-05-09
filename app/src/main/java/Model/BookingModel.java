@@ -118,8 +118,8 @@ public class BookingModel {
         String sql = "INSERT INTO testdb (guestId, roomNumber, adults, children, checkinDate, checkoutDate) "
                    + "VALUES (?, ?, ?, ?, ?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            int guestId = 1; 
-            int roomNumber = 101;
+            int guestId = 0; 
+            int roomNumber = 0;
             
             statement.setInt(1, guestId);
             statement.setInt(2, roomNumber);
@@ -177,8 +177,55 @@ public void subtractBooking(int bookingToRemove) {
         
     }
 
+public String retrieveStatus(int roomNumber) {
+    String status = ""; // Initialize with an empty string
+    // Query the database to retrieve the status for the given roomNumber
+    try (Connection connection = DatabaseConnection.getConnection();
+         PreparedStatement statement = connection.prepareStatement("SELECT roomStatus FROM roomdb WHERE roomNumber = ?");
+    ) {
+        statement.setInt(1, roomNumber);
+        try (ResultSet resultSet = statement.executeQuery()) {
+            if (resultSet.next()) {
+                status = resultSet.getString("roomStatus");
+            }
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return status;
+}
+
+public String retrieveRoomStatus(int roomNumber, String roomType) {
+    String status = "";
+    try (Connection connection = DatabaseConnection.getConnection();
+         PreparedStatement statement = connection.prepareStatement("SELECT roomStatus FROM roomdb WHERE roomNumber = ? AND roomType = ?");
+    ) {
+        statement.setInt(1, roomNumber);
+        statement.setString(2, roomType);
+        try (ResultSet resultSet = statement.executeQuery()) {
+            if (resultSet.next()) {
+                status = resultSet.getString("roomStatus");
+            }
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return status;
+}
 
 
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+
+//fini
     }
      
      

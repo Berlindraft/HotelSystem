@@ -4,7 +4,10 @@
  */
 package View;
 
+import Controller.BookingController;
+import Model.BookingModel;
 import Model.DashboardModel;
+import com.toedter.calendar.JCalendar;
 import java.sql.SQLException;
 import java.util.Map;
 import javax.swing.JFrame;
@@ -389,10 +392,15 @@ public class Management extends javax.swing.JFrame {
 
     private void jPanel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseClicked
     jPanel11.removeAll();
-    Rooms rooms = new Rooms();
+    BookingModel model = new BookingModel(); // Instantiate the model
+    Booking view = new Booking(); // Instantiate the view
+    JCalendar jCalendar = new JCalendar(); // Instantiate the JCalendar
+    RoomAvailability roomA = new RoomAvailability();
+    BookingController controller = new BookingController(model, view, jCalendar, roomA); // Instantiate the controller with the model, view, and JCalendar
+    Rooms rooms = new Rooms(controller); // Pass the controller instance to the Rooms constructor
     jPanel11.add(rooms);
     jPanel11.revalidate();
-    jPanel11.repaint();
+    jPanel11.repaint();  
     }//GEN-LAST:event_jPanel7MouseClicked
 
     private void jPanel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel12MouseClicked
