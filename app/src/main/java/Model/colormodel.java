@@ -27,7 +27,7 @@ public class colormodel {
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
                     status = resultSet.getString("roomStatus");
-                    System.out.println(roomNumber + "agoy");
+                    System.out.println(status + " read");
                 }
             }
         } catch (SQLException e) {
@@ -36,20 +36,39 @@ public class colormodel {
         return status;
     }
 
-    public List<Integer> getRoomNumbersFromType(String roomType) {
-        List<Integer> roomNumbers = new ArrayList<>();
-        try (Connection connection = DatabaseConnection.getConnection();
-             PreparedStatement statement = connection.prepareStatement("SELECT roomNumber FROM roomdb WHERE roomType = ?")) {
-            statement.setString(1, roomType);
-            try (ResultSet resultSet = statement.executeQuery()) {
-                while (resultSet.next()) {
-                    roomNumbers.add(resultSet.getInt("roomNumber"));
-                    System.out.println(roomType + "agoy");
-                }
+public List<Integer> getRoomNumbersFromType(String roomType) {
+    List<Integer> roomNumbers = new ArrayList<>();
+    try (Connection connection = DatabaseConnection.getConnection();
+         PreparedStatement statement = connection.prepareStatement("SELECT roomNumber FROM roomdb WHERE roomType = ?")) {
+        statement.setString(1, roomType);
+        try (ResultSet resultSet = statement.executeQuery()) {
+            while (resultSet.next()) {
+                roomNumbers.add(resultSet.getInt("roomNumber"));
+                System.out.println("getting room numbers");
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
-        return roomNumbers;
+    } catch (SQLException e) {
+        e.printStackTrace();
     }
+    return roomNumbers;
+}
+
+    public List<Integer> getRoomNumbersByStatus(String status) {
+    List<Integer> roomNumbers = new ArrayList<>();
+    try (Connection connection = DatabaseConnection.getConnection();
+         PreparedStatement statement = connection.prepareStatement("SELECT roomNumber FROM roomdb WHERE roomStatus = ?")) {
+        statement.setString(1, status);
+        try (ResultSet resultSet = statement.executeQuery()) {
+            while (resultSet.next()) {
+                roomNumbers.add(resultSet.getInt("roomNumber"));
+                System.out.println("getting room numbers");
+            }
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return roomNumbers;
+}
+    
+    
 }

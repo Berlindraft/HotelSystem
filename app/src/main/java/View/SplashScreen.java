@@ -17,20 +17,29 @@ import Utils.ImageScaler;
  * @author noemi
  */
 public class SplashScreen extends javax.swing.JFrame {
-
-    /**
-     * Creates new form SplashScreen
-     */
+//mao ni ang splash screen na class which is a jframe 
     ImageScaler imageScaler;
-
+//ImageScaler mao na ang name sa class katong mo scale sa image kato ako gisend sa inyu
+    //kanang pink kay mao na ang name imo gihatag sa class // mura shag variable name ba
     public SplashScreen() {
+        //kani sha galing same nga name sa class kay mao nay constructor
+        //ang gamit aning contructor kay either naa kay variables nga gi define para gamiton sa rest of the code
+        // but mostly ang gamit ani kay mo create kag instance sa mga code or kung unsa ang naa nga code sa constructor kay 
+        // mao na ang i run una
         initComponents();
+        // initcomponents kay mao na imong GUI nga mga shets
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //this is referring sa imong window or jframe
         imageScaler = new ImageScaler();
+        //create kag instance sa class para mo scale image
         imageScaler.scaleImage(jLabel1, "src\\main\\resources\\logo1.png");
-        
+        // katong methods naa didto nga class kay mao to imo gamiton inig run nimo sa instance
+        // sa atong case kay scale image nga mo take ug duha ka parameters
+        // panganlan sa LABEL AND SOURCE/PATH SA IMAGE
         Timer timer = new Timer(2000, e -> {
+            //2000 milliseconds kay 2seconds na
             new Login().setVisible(true);
+            //after 2 seconds mo run and login page
             this.dispose();
         });
         timer.setRepeats(false); // Set to false to run only once
@@ -46,7 +55,6 @@ public class SplashScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -54,7 +62,6 @@ public class SplashScreen extends javax.swing.JFrame {
         setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 0));
-        getContentPane().add(jDateChooser1);
 
         jPanel1.setBackground(new java.awt.Color(101, 28, 50));
         jPanel1.setLayout(new java.awt.BorderLayout());
@@ -104,7 +111,6 @@ public class SplashScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables

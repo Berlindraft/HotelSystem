@@ -392,12 +392,12 @@ public class Management extends javax.swing.JFrame {
 
     private void jPanel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseClicked
     jPanel11.removeAll();
-    BookingModel model = new BookingModel(); // Instantiate the model
-    Booking view = new Booking(); // Instantiate the view
-    JCalendar jCalendar = new JCalendar(); // Instantiate the JCalendar
+    BookingModel model = new BookingModel(); 
+    Booking view = new Booking(); 
+    JCalendar jCalendar = new JCalendar(); 
     RoomAvailability roomA = new RoomAvailability();
-    BookingController controller = new BookingController(model, view, jCalendar, roomA); // Instantiate the controller with the model, view, and JCalendar
-    Rooms rooms = new Rooms(controller); // Pass the controller instance to the Rooms constructor
+    BookingController controller = new BookingController(model, view, jCalendar, roomA); 
+    Rooms rooms = new Rooms(controller); 
     jPanel11.add(rooms);
     jPanel11.revalidate();
     jPanel11.repaint();  

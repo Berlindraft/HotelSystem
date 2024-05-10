@@ -5,7 +5,10 @@
 package Controller;
 import Model.colormodel;
 import java.awt.Color;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import javax.swing.JPanel;
 import test.sumview;
 import test.colorview;
 /**
@@ -14,32 +17,31 @@ import test.colorview;
  */
 public class colorcontroller {
     private colormodel model;
-    private colorview roomA;
-
-    public colorcontroller(colormodel model, colorview roomA) {
+    private colorview mainColorView;
+    
+    public colorcontroller(colormodel model, colorview view) {
         this.model = model;
-        this.roomA = roomA;
+        this.mainColorView = view;
     }
+
 
     
     
-       public void updateColor(String roomType) {
-        // You need to define how roomType maps to roomNumber
-        int roomNumber = getRoomNumberFromType(roomType);
-        if (roomNumber != -1) {
-            String status = model.retrieveRoomStatus(roomNumber);
-            Color color;
-            if ("Available".equals(status)) {
-                color = Color.GREEN;
-            } else {
-                color = Color.RED;
-            }
-            roomA.setColor(color);
-            System.out.println("Room color updated");
-        } else {
-            System.out.println("Invalid room type");
-        }
+public void updateColors(String roomType) {
+    System.out.println(roomType);
+    // Retrieve room numbers with the given room type
+    List<Integer> roomNumbers = model.getRoomNumbersFromType(roomType);
+
+    // Update colors for the mainColorView based on retrieved room numbers
+    for (int roomNumber : roomNumbers) {
+        String roomStatus = model.retrieveRoomStatus(roomNumber);
+        Color color = getColorForStatus(roomStatus);
+        mainColorView.setColor(roomNumber, color);
+        System.out.println(roomNumber);
     }
+    System.out.println("updating colors");
+}
+
        
 private int getRoomNumberFromType(String roomType) {
     colormodel model = new colormodel(); // Create an instance of the colormodel class
@@ -52,5 +54,13 @@ private int getRoomNumberFromType(String roomType) {
         return -1;
     }
 }
+//        private String retrieveRoomStatus(int roomNumber) {
+//        // Implement your logic to retrieve room status from model
+//        return "Available"; // Sample implementation
+//    }
+
+    public Color getColorForStatus(String status) {
+        return "Available".equals(status) ? Color.GREEN : Color.RED;
+    }
 
 }

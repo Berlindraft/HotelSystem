@@ -8,24 +8,30 @@ import Controller.colorcontroller;
 import Model.colormodel;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.swing.JPanel;
 
 /**
  *
  * @author Zyron
  */
 public class sumview extends javax.swing.JFrame {
-
     private colorcontroller controller;
-
+    private colorview mainColorView;
     /**
      * Creates new form sumview
      */
     public sumview() {
         initComponents();
-         colormodel model = new colormodel(); // Create an instance of colormodel
-        colorview roomA = new colorview(); // Create an instance of colorview
-        controller = new colorcontroller(model, roomA); // Initialize the controller
+        colormodel model = new colormodel();
 
+        // Create a single instance of colorview
+        mainColorView = new colorview();
+
+        // Initialize the controller with the model and colorview instance
+        controller = new colorcontroller(model, mainColorView);
     }
 
     /**
@@ -42,7 +48,7 @@ public class sumview extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        deluxeButton.setText("Deluxe");
+        deluxeButton.setText("Standard");
         deluxeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deluxeButtonActionPerformed(evt);
@@ -65,7 +71,7 @@ public class sumview extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1)
                     .addComponent(deluxeButton))
-                .addContainerGap(325, Short.MAX_VALUE))
+                .addContainerGap(320, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -82,13 +88,17 @@ public class sumview extends javax.swing.JFrame {
 
     private void deluxeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deluxeButtonActionPerformed
         // TODO add your handling code here:
-        handleRoomTypeButtonClick("Deluxe");
+        handleRoomTypeButtonClick("Standard");
+        System.out.println("button press read 1");
     }//GEN-LAST:event_deluxeButtonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
         this.setVisible(false);
-            new colorview().setVisible(true);
+
+        // Make the colorview frame visible
+        mainColorView.setVisible(true);
+        repaint();
+        System.out.println("button press read 2");
             
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -133,8 +143,10 @@ public class sumview extends javax.swing.JFrame {
 //            }
           
 private void handleRoomTypeButtonClick(String roomType) {
-        controller.updateColor(roomType);
-    }
+    controller.updateColors(roomType);
+    System.out.println(roomType);
+    System.out.println("standard sent");
+}
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton deluxeButton;
     private javax.swing.JButton jButton1;

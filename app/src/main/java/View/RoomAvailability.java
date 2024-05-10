@@ -523,27 +523,20 @@ public class RoomAvailability extends javax.swing.JPanel {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-                    // Get the parent container, which is the Management frame
     Management management = (Management) SwingUtilities.getWindowAncestor(this);
-    
-    // Remove the current Booking panel from the jPanel11
+
     management.getjPanel11().removeAll();
     BookingModel model = new BookingModel();
-    // Create an instance of the RoomType panel
     RoomType roomType = new RoomType(model);
-    
-    // Add the RoomType panel to the jPanel11
     management.getjPanel11().add(roomType);
-    
-    // Revalidate and repaint the jPanel11 to reflect the changes
     management.getjPanel11().revalidate();
     management.getjPanel11().repaint();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-//           jLabel6.setForeground(Color.DARK_GRAY);
-//            jPanel7.setBackground(Color.GREEN);
+           jLabel6.setForeground(Color.DARK_GRAY);
+            jPanel7.setBackground(Color.GREEN);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jPanel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseClicked
