@@ -113,25 +113,25 @@ public class BookingModel {
         }
     }
      
-    public void addBooking(int adults, int children, Date checkinDate, Date checkoutDate) {
-    try (Connection connection = getConnection()) {
-        String sql = "INSERT INTO testdb (guestId, roomNumber, adults, children, checkinDate, checkoutDate) "
-                   + "VALUES (?, ?, ?, ?, ?, ?)";
+public void addBooking(int guestId, int roomNumber, Date checkinDate, Date checkoutDate, int adults, int children, double paymentAmount, Date paymentDate, String paymentMethod) {
+    try (Connection connection = getConnection()) { 
+        String sql = "INSERT INTO newbookingdb (guestId, roomNumber, checkinDate, checkoutDate, adults, children, paymentAmount, paymentDate, paymentMethod) "
+                   + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            int guestId = 0; 
-            int roomNumber = 0;
+            java.sql.Date sqlCheckinDate = new java.sql.Date(checkinDate.getTime());
+            java.sql.Date sqlCheckoutDate = new java.sql.Date(checkoutDate.getTime());
+            java.sql.Date sqlPaymentDate = new java.sql.Date(paymentDate.getTime());
             
             statement.setInt(1, guestId);
             statement.setInt(2, roomNumber);
-            statement.setInt(3, adults);
-            statement.setInt(4, children);
-            
-            java.sql.Date sqlCheckinDate = new java.sql.Date(checkinDate.getTime());
-            java.sql.Date sqlCheckoutDate = new java.sql.Date(checkoutDate.getTime());
-            
-            statement.setDate(5, sqlCheckinDate);
-            statement.setDate(6, sqlCheckoutDate);
-            
+            statement.setDate(3, sqlCheckinDate);
+            statement.setDate(4, sqlCheckoutDate);            
+            statement.setInt(5, adults);
+            statement.setInt(6, children);
+            statement.setDouble(7, paymentAmount);
+            statement.setDate(8, sqlPaymentDate);
+            statement.setString(9, paymentMethod);
+
             int rowsAffected = statement.executeUpdate();
             if (rowsAffected > 0) {
                 System.out.println("New booking created successfully");
@@ -143,6 +143,7 @@ public class BookingModel {
         e.printStackTrace();
     }
 }
+
 
 
 

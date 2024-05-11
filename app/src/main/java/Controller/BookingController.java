@@ -75,22 +75,5 @@ public class BookingController {
             }
         });
     }
-    
-     public void updateColor(String roomType) {
-        int roomNumber = 101; // Assuming room number 101 for demo
-        String status = model.retrieveRoomStatus(roomNumber, roomType);
-        String availability = status; // Assuming room status is same as availability for demo
-        roomA.setColor(availability);
-        System.out.println("this has been read");
-    }
 
-
-    
-    
-    
-    //fini
-
-//    public void updateRoomAvailabilityPanelColor(String roomType) {
-//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-//    }
 }

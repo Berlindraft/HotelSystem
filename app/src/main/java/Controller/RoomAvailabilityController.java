@@ -3,7 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Controller;
-import Model.colormodel;
+import Model.RoomAvailabilityModel;
+import View.RoomAvailability;
 import java.awt.Color;
 import java.util.HashMap;
 import java.util.List;
@@ -15,11 +16,11 @@ import test.colorview;
  *
  * @author Zyron
  */
-public class colorcontroller {
-    private colormodel model;
-    private colorview mainColorView;
+public class RoomAvailabilityController {
+    private RoomAvailabilityModel model;
+    private RoomAvailability mainColorView;
     
-    public colorcontroller(colormodel model, colorview view) {
+    public RoomAvailabilityController(RoomAvailabilityModel model, RoomAvailability view) {
         this.model = model;
         this.mainColorView = view;
     }
@@ -44,7 +45,7 @@ public void updateColors(String roomType) {
 
        
 private int getRoomNumberFromType(String roomType) {
-    colormodel model = new colormodel(); // Create an instance of the colormodel class
+    RoomAvailabilityModel model = new RoomAvailabilityModel(); // Create an instance of the colormodel class
     List<Integer> roomNumbers = model.getRoomNumbersFromType(roomType);
     if (!roomNumbers.isEmpty()) {
         // Return the first room number in the list (or choose another strategy if needed)

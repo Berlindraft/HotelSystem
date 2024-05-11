@@ -1,35 +1,31 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package View;
 
 import Controller.BookingController;
+import Controller.RoomAvailabilityController;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.SwingUtilities;
 import Model.BookingModel;
+import Model.RoomAvailabilityModel;
 
 /**
  *
  * @author Zyron
  */
-public class RoomType extends javax.swing.JPanel implements ActionListener {
-    private BookingModel model;
-    private BookingController controller;
+public class RoomType extends javax.swing.JPanel {
+    private RoomAvailabilityController controller;
+    private RoomAvailability mainColorView;
     /**
      * Creates new form RoomType
      */
-    public RoomType(BookingModel model) {
+    public RoomType() {
         initComponents();
-        this.model = model;
+        RoomAvailabilityModel model = new RoomAvailabilityModel();
+        // Create a single instance of colorview
+        mainColorView = new RoomAvailability();
 
-        // Add action listeners to the buttons
-        jButtonDeluxe.addActionListener(this);
-        jButtonExecutive.addActionListener(this);
-        jButtonStandard.addActionListener(this);
-        jButtonSuite.addActionListener(this);
+        controller = new RoomAvailabilityController(model, mainColorView);
     }
 
     /**
@@ -47,16 +43,19 @@ public class RoomType extends javax.swing.JPanel implements ActionListener {
         jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jButtonDeluxe = new javax.swing.JButton();
+        Availablebutton = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jButtonExecutive = new javax.swing.JButton();
+        premierbutton = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jButtonStandard = new javax.swing.JButton();
+        executivebutton = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jButtonSuite = new javax.swing.JButton();
+        presidentialbutton = new javax.swing.JButton();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        deluxebutton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -100,12 +99,12 @@ public class RoomType extends javax.swing.JPanel implements ActionListener {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel2.setText("Standard");
+        jLabel2.setText("See All Available");
 
-        jButtonDeluxe.setText("Select");
-        jButtonDeluxe.addActionListener(new java.awt.event.ActionListener() {
+        Availablebutton.setText("Select");
+        Availablebutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonDeluxeActionPerformed(evt);
+                AvailablebuttonActionPerformed(evt);
             }
         });
 
@@ -114,23 +113,20 @@ public class RoomType extends javax.swing.JPanel implements ActionListener {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(48, 48, 48)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(87, 87, 87)
-                        .addComponent(jLabel2))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(65, 65, 65)
-                        .addComponent(jButtonDeluxe)))
-                .addContainerGap(70, Short.MAX_VALUE))
+                    .addComponent(jLabel2)
+                    .addComponent(Availablebutton))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addGap(26, 26, 26)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
-                .addComponent(jButtonDeluxe)
-                .addGap(25, 25, 25))
+                .addGap(18, 18, 18)
+                .addComponent(Availablebutton)
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -138,10 +134,10 @@ public class RoomType extends javax.swing.JPanel implements ActionListener {
 
         jLabel3.setText("Premier");
 
-        jButtonExecutive.setText("Select");
-        jButtonExecutive.addActionListener(new java.awt.event.ActionListener() {
+        premierbutton.setText("Select");
+        premierbutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonExecutiveActionPerformed(evt);
+                premierbuttonActionPerformed(evt);
             }
         });
 
@@ -150,23 +146,22 @@ public class RoomType extends javax.swing.JPanel implements ActionListener {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(88, 88, 88)
-                        .addComponent(jLabel3))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(68, 68, 68)
-                        .addComponent(jButtonExecutive)))
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addGap(56, 56, 56)
+                .addComponent(jLabel3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(43, Short.MAX_VALUE)
+                .addComponent(premierbutton)
+                .addGap(39, 39, 39))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(23, 23, 23)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
-                .addComponent(jButtonExecutive)
-                .addGap(23, 23, 23))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addComponent(premierbutton)
+                .addGap(24, 24, 24))
         );
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -174,10 +169,10 @@ public class RoomType extends javax.swing.JPanel implements ActionListener {
 
         jLabel4.setText("Executive");
 
-        jButtonStandard.setText("Select");
-        jButtonStandard.addActionListener(new java.awt.event.ActionListener() {
+        executivebutton.setText("Select");
+        executivebutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonStandardActionPerformed(evt);
+                executivebuttonActionPerformed(evt);
             }
         });
 
@@ -186,20 +181,23 @@ public class RoomType extends javax.swing.JPanel implements ActionListener {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButtonStandard)
-                    .addComponent(jLabel4))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addComponent(jLabel4))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(executivebutton)))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(21, 21, 21)
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
-                .addComponent(jButtonStandard)
-                .addGap(19, 19, 19))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addComponent(executivebutton)
+                .addGap(36, 36, 36))
         );
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
@@ -207,10 +205,10 @@ public class RoomType extends javax.swing.JPanel implements ActionListener {
 
         jLabel5.setText("Presidential");
 
-        jButtonSuite.setText("Select");
-        jButtonSuite.addActionListener(new java.awt.event.ActionListener() {
+        presidentialbutton.setText("Select");
+        presidentialbutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSuiteActionPerformed(evt);
+                presidentialbuttonActionPerformed(evt);
             }
         });
 
@@ -219,20 +217,56 @@ public class RoomType extends javax.swing.JPanel implements ActionListener {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonSuite)
+                .addContainerGap(34, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(presidentialbutton)
                     .addComponent(jLabel5))
-                .addGap(65, 65, 65))
+                .addGap(48, 48, 48))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
-                .addComponent(jButtonSuite)
-                .addGap(17, 17, 17))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addComponent(presidentialbutton)
+                .addGap(19, 19, 19))
+        );
+
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jLabel6.setText("Deluxe");
+
+        deluxebutton1.setText("Select");
+        deluxebutton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deluxebutton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addComponent(jLabel6))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(deluxebutton1)))
+                .addContainerGap(66, Short.MAX_VALUE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(jLabel6)
+                .addGap(18, 18, 18)
+                .addComponent(deluxebutton1)
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -246,20 +280,20 @@ public class RoomType extends javax.swing.JPanel implements ActionListener {
                 .addComponent(jButton2)
                 .addGap(40, 40, 40))
             .addGroup(layout.createSequentialGroup()
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(95, 95, 95)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(46, 46, 46)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(127, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(82, 82, 82))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -268,106 +302,107 @@ public class RoomType extends javax.swing.JPanel implements ActionListener {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(108, 108, 108)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1)
+                            .addComponent(jButton2))
+                        .addGap(18, 18, 18))
+                    .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addGap(18, 18, 18))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(79, 79, 79)
+                                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(77, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(65, 65, 65))))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        // Get the parent container, which is the Management frame
+
     Management management = (Management) SwingUtilities.getWindowAncestor(this);
-    
-    // Remove the current Booking panel from the jPanel11
     management.getjPanel11().removeAll();
-    
-    // Create an instance of the RoomType panel
     Booking booking = new Booking();
-    
-    // Add the RoomType panel to the jPanel11
     management.getjPanel11().add(booking);
-    
-    // Revalidate and repaint the jPanel11 to reflect the changes
     management.getjPanel11().revalidate();
     management.getjPanel11().repaint();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButtonDeluxeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeluxeActionPerformed
+    private void AvailablebuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AvailablebuttonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonDeluxeActionPerformed
+        handleRoomTypeButtonClick("Standard");
+        handleRoomTypeButtonClick("Deluxe");
+        handleRoomTypeButtonClick("Suite");
+        handleRoomTypeButtonClick("Executive");
+        System.out.println("standard button press");
+    }//GEN-LAST:event_AvailablebuttonActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-                    // Get the parent container, which is the Management frame
     Management management = (Management) SwingUtilities.getWindowAncestor(this);
-    
-    // Remove the current Booking panel from the jPanel11
     management.getjPanel11().removeAll();
-    
-    // Create an instance of the RoomType panel
-    RoomAvailability roomavailability = new RoomAvailability();
-    
-    // Add the RoomType panel to the jPanel11
-    management.getjPanel11().add(roomavailability);
-    
-    // Revalidate and repaint the jPanel11 to reflect the changes
+    mainColorView.setVisible(true);
+    management.getjPanel11().add(mainColorView);
     management.getjPanel11().revalidate();
     management.getjPanel11().repaint();
+    System.out.println("next page");
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButtonExecutiveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExecutiveActionPerformed
+    private void premierbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_premierbuttonActionPerformed
         // TODO add your handling code here:
-        updateRoomStatus("Standard");
-    }//GEN-LAST:event_jButtonExecutiveActionPerformed
+        handleRoomTypeButtonClick("Deluxe");
+        System.out.println("premier button press");
+    }//GEN-LAST:event_premierbuttonActionPerformed
 
-    private void jButtonStandardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStandardActionPerformed
+    private void executivebuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_executivebuttonActionPerformed
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_jButtonStandardActionPerformed
+        handleRoomTypeButtonClick("Suite");
+        System.out.println("suite button press");
+    }//GEN-LAST:event_executivebuttonActionPerformed
 
-    private void jButtonSuiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSuiteActionPerformed
+    private void presidentialbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_presidentialbuttonActionPerformed
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_jButtonSuiteActionPerformed
+        handleRoomTypeButtonClick("Executive");
+        System.out.println("presidential button press");
+    }//GEN-LAST:event_presidentialbuttonActionPerformed
 
-@Override
-public void actionPerformed(ActionEvent e) {
-    JButton clickedButton = (JButton)e.getSource();
-    String roomType = clickedButton.getText();
-    //BookingController controller = new BookingController();
-    // Call controller method to update room availability panel color based on the room type
-    controller.updateColor(roomType);
+    private void deluxebutton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deluxebutton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deluxebutton1ActionPerformed
+
+private void handleRoomTypeButtonClick(String roomType) {
+    controller.updateColors(roomType);
+    System.out.println(roomType);
+    System.out.println(roomType + " sent");
 }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Availablebutton;
+    private javax.swing.JButton deluxebutton1;
+    private javax.swing.JButton executivebutton;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButtonDeluxe;
-    private javax.swing.JButton jButtonExecutive;
-    private javax.swing.JButton jButtonStandard;
-    private javax.swing.JButton jButtonSuite;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JButton premierbutton;
+    private javax.swing.JButton presidentialbutton;
     // End of variables declaration//GEN-END:variables
 
     private void updateRoomStatus(String standard) {

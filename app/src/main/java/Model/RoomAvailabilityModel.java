@@ -15,7 +15,7 @@ import java.util.List;
  *
  * @author Zyron
  */
-public class colormodel {
+public class RoomAvailabilityModel {
     
     
          public String retrieveRoomStatus(int roomNumber) {

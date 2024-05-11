@@ -492,13 +492,21 @@ public class Booking extends javax.swing.JPanel {
                 "Confirmation", JOptionPane.YES_NO_OPTION);
 
         if (confirmation == JOptionPane.YES_OPTION) {
+            // Create a BookingModel instance
             BookingModel model = new BookingModel();
-            model.addBooking(adults, children, sqlCheckinDate, sqlCheckoutDate);
+            // Define payment details (to be set later)
+            double paymentAmount = 0.0; // Define payment amount
+            java.sql.Date paymentDate = null; // Define payment date
+            String paymentMethod = ""; // Define payment method
+            
+            // Call addBooking with additional parameters
+            model.addBooking(0, 0, sqlCheckinDate, sqlCheckoutDate, adults, children, paymentAmount, paymentDate, paymentMethod);
 
+            // Refresh the UI
             Management management = (Management) SwingUtilities.getWindowAncestor(jButton5);
             management.getjPanel11().removeAll();
 
-            RoomType roomType = new RoomType(model);
+            RoomType roomType = new RoomType();
             management.getjPanel11().add(roomType);
             management.getjPanel11().revalidate();
             management.getjPanel11().repaint();
