@@ -1,5 +1,6 @@
 package Model;
 
+import Controller.GuestInputController;
 import static Model.DatabaseConnection.getConnection;
 import java.sql.*;
 import javax.swing.JOptionPane;
@@ -123,8 +124,10 @@ public int addRoom() {
 //    }
 
 public void addBooking(Date checkinDate, Date checkoutDate, int adults, int children, double paymentAmount, Date paymentDate, String paymentMethod) {
-    int guestId = addGuest();
+     int guestId = addGuest();
     int roomNumber = addRoom();
+
+        
     try (Connection connection = getConnection()) { 
         String sql = "INSERT INTO newbookingdb (guestId, roomNumber, checkinDate, checkoutDate, adults, children, paymentAmount, paymentDate, paymentMethod) "
                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -145,8 +148,8 @@ public void addBooking(Date checkinDate, Date checkoutDate, int adults, int chil
 
             int rowsAffected = statement.executeUpdate();
             
-            GuestInputModel guestInputModel = new GuestInputModel();
-            guestInputModel.signUp(guestId, prefix, firstname, lastname, suffix, phonenumber, emailaddress);
+//            GuestInputModel guestInputModel = new GuestInputModel();
+//            guestInputModel.signUp(guestId, prefix, firstname, lastname, suffix, phonenumber, emailaddress);
             if (rowsAffected > 0) {
                 System.out.println("New booking created successfully");
             } else {
@@ -157,6 +160,7 @@ public void addBooking(Date checkinDate, Date checkoutDate, int adults, int chil
         e.printStackTrace();
     }
 }
+
 
 
 
