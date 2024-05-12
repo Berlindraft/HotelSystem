@@ -58,62 +58,73 @@ public class BookingModel {
     }
      
      
-      public void addGuest() {
-        try (Connection connection = getConnection()) {
-            String sql = "INSERT INTO guestdb (firstName, lastName, prefixName, suffixName, contactNumber, email, address) "
-           + "VALUES (NULL, NULL, NULL, NULL, NULL, NULL, NULL)";
+public int addGuest() {
+    int guestId = 0; // Initialize guestId
+    try (Connection connection = getConnection()) {
+        String sql = "INSERT INTO guestdb (firstName, lastName, prefixName, suffixName, contactNumber, email, address) "
+                   + "VALUES (NULL, NULL, NULL, NULL, NULL, NULL, NULL)";
 
-            try (PreparedStatement statement = connection.prepareStatement(sql)) {
-                int rowsAffected = statement.executeUpdate();
-                if (rowsAffected > 0) {
-                    System.out.println("New guest record created successfully");
+        try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            int rowsAffected = statement.executeUpdate();
+            if (rowsAffected > 0) {
+                ResultSet generatedKeys = statement.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    guestId = generatedKeys.getInt(1); // Get the generated guestId
+                }
+                System.out.println("New guest record created successfully with guestId: " + guestId);
+            } else {
+                System.out.println("Failed to create new guest record");
+            }
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return guestId;
+}
+public int addRoom() {
+    int roomNumber = -1; // Initialize roomNumber with a default value
+
+    try (Connection connection = getConnection()) {
+        String sql = "SELECT roomNumber FROM roomdb WHERE roomType = 'Lounge'"; // Query to fetch the default roomNumber
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    roomNumber = resultSet.getInt("roomNumber"); // Get the default roomNumber from the result set
+                    System.out.println("Default roomNumber retrieved: " + roomNumber);
                 } else {
-                    System.out.println("Failed to create new guest record");
+                    System.out.println("Failed to retrieve default roomNumber");
                 }
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
+    } catch (SQLException e) {
+        e.printStackTrace();
     }
 
-    public void addRoom() {
-        try (Connection connection = getConnection()) {
-            String sql = "INSERT INTO roomdb (roomNumber, roomType, roomStatus, roomUpdate) "
-           + "VALUES ('0', 'Lounge', 'Available', 'Clean')";
+    return roomNumber;
+}
+//     public void addPayment(int bookingId) {
+//        try (Connection connection = DatabaseConnection.getConnection()) {
+//            String sql = "INSERT INTO paymentdb (bookingId, paymentDate, paymentAmount, paymentMethod) "
+//                       + "VALUES (?, NULL, NULL, NULL)";
+//
+//            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+//                statement.setInt(1, bookingId);
+//
+//                int rowsAffected = statement.executeUpdate();
+//                if (rowsAffected > 0) {
+//                    System.out.println("New payment record created successfully");
+//                } else {
+//                    System.out.println("Failed to create new payment record");
+//                }
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
-            try (PreparedStatement statement = connection.prepareStatement(sql)) {
-                int rowsAffected = statement.executeUpdate();
-                if (rowsAffected > 0) {
-                    System.out.println("New room record created successfully");
-                } else {
-                    System.out.println("Failed to create new room record");
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-     public void addPayment(int bookingId) {
-        try (Connection connection = DatabaseConnection.getConnection()) {
-            String sql = "INSERT INTO paymentdb (bookingId, paymentDate, paymentAmount, paymentMethod) "
-                       + "VALUES (?, NULL, NULL, NULL)";
-
-            try (PreparedStatement statement = connection.prepareStatement(sql)) {
-                statement.setInt(1, bookingId);
-
-                int rowsAffected = statement.executeUpdate();
-                if (rowsAffected > 0) {
-                    System.out.println("New payment record created successfully");
-                } else {
-                    System.out.println("Failed to create new payment record");
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-     
-public void addBooking(int guestId, int roomNumber, Date checkinDate, Date checkoutDate, int adults, int children, double paymentAmount, Date paymentDate, String paymentMethod) {
+public void addBooking(Date checkinDate, Date checkoutDate, int adults, int children, double paymentAmount, Date paymentDate, String paymentMethod) {
+    int guestId = addGuest();
+    int roomNumber = addRoom();
     try (Connection connection = getConnection()) { 
         String sql = "INSERT INTO newbookingdb (guestId, roomNumber, checkinDate, checkoutDate, adults, children, paymentAmount, paymentDate, paymentMethod) "
                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -133,6 +144,9 @@ public void addBooking(int guestId, int roomNumber, Date checkinDate, Date check
             statement.setString(9, paymentMethod);
 
             int rowsAffected = statement.executeUpdate();
+            
+            GuestInputModel guestInputModel = new GuestInputModel();
+            guestInputModel.signUp(guestId, prefix, firstname, lastname, suffix, phonenumber, emailaddress);
             if (rowsAffected > 0) {
                 System.out.println("New booking created successfully");
             } else {

@@ -496,11 +496,12 @@ public class Booking extends javax.swing.JPanel {
             BookingModel model = new BookingModel();
             // Define payment details (to be set later)
             double paymentAmount = 0.0; // Define payment amount
-            java.sql.Date paymentDate = null; // Define payment date
+            java.sql.Date paymentDate = new java.sql.Date(System.currentTimeMillis());
+
             String paymentMethod = ""; // Define payment method
             
             // Call addBooking with additional parameters
-            model.addBooking(0, 0, sqlCheckinDate, sqlCheckoutDate, adults, children, paymentAmount, paymentDate, paymentMethod);
+            model.addBooking(sqlCheckinDate, sqlCheckoutDate, adults, children, paymentAmount, paymentDate, paymentMethod);
 
             // Refresh the UI
             Management management = (Management) SwingUtilities.getWindowAncestor(jButton5);
@@ -512,7 +513,7 @@ public class Booking extends javax.swing.JPanel {
             management.getjPanel11().repaint();
         }
     } catch (ParseException e) {
-        e.printStackTrace();
+        e.printStackTrace(); 
         // Handle parse exception
     }
     }//GEN-LAST:event_jButton5ActionPerformed

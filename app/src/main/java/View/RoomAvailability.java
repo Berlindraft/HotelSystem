@@ -9,12 +9,13 @@ import java.awt.Color;
  * @author Zyron
  */
 public class RoomAvailability extends javax.swing.JPanel {
-
+private Guest guest;
     /**
      * Creates new form RoomAvailability
      */
     public RoomAvailability() {
         initComponents();
+        guest = new Guest();
     }
 
     /**
@@ -335,6 +336,11 @@ public class RoomAvailability extends javax.swing.JPanel {
         });
 
         jButton4.setText("Ok");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jTabbedPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -1938,6 +1944,18 @@ public class RoomAvailability extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    Management management = (Management) SwingUtilities.getWindowAncestor(this);
+    management.getjPanel11().removeAll();
+    guest.setVisible(true);
+    management.getjPanel11().add(guest);
+    management.getjPanel11().revalidate();
+    management.getjPanel11().repaint();
+    System.out.println("next page");
+        
+    }//GEN-LAST:event_jButton4ActionPerformed
+
 public void setColor(int panelNumber, Color color) {
     System.out.println("set coloring to the panel...");
     System.out.println(color);
@@ -2134,8 +2152,6 @@ public void setColor(int panelNumber, Color color) {
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel45;
-    private javax.swing.JLabel jLabel46;
-    private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
@@ -2197,7 +2213,6 @@ public void setColor(int panelNumber, Color color) {
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel31;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel7;

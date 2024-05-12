@@ -383,11 +383,11 @@ public class Management extends javax.swing.JFrame {
 
 
     private void jPanel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseClicked
-    jPanel11.removeAll();
-    Guest guest = new Guest();
-    jPanel11.add(guest);
-    jPanel11.revalidate();
-    jPanel11.repaint();
+//    jPanel11.removeAll();
+//    Guest guest = new Guest();
+//    jPanel11.add(guest);
+//    jPanel11.revalidate();
+//    jPanel11.repaint();
     }//GEN-LAST:event_jPanel6MouseClicked
 
     private void jPanel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseClicked
