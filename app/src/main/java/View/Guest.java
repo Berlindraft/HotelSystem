@@ -5,6 +5,7 @@
 package View;
 
 import Controller.GuestInputController;
+import Model.BookingModel;
 
 /**
  *
@@ -54,7 +55,6 @@ public class Guest extends javax.swing.JPanel {
         jSeparator2 = new javax.swing.JSeparator();
         jLabel17 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -106,9 +106,9 @@ public class Guest extends javax.swing.JPanel {
 
         jLabel4.setText("Check-Out");
 
-        jLabel5.setText("#");
+        jLabel5.setText("12: 00 pm");
 
-        jLabel6.setText("#");
+        jLabel6.setText("3:00 pm");
 
         jLabel7.setText("date");
 
@@ -224,8 +224,6 @@ public class Guest extends javax.swing.JPanel {
 
         jLabel16.setText("YOUR STAY");
 
-        jLabel1.setText("Use Existing Data");
-
         jButton1.setText("Confirm");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -251,10 +249,9 @@ public class Guest extends javax.swing.JPanel {
                 .addComponent(jLabel16)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
+                        .addGap(34, 34, 34)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(prefix, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -265,9 +262,8 @@ public class Guest extends javax.swing.JPanel {
                             .addComponent(phonenumber)
                             .addComponent(emailaddress)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(33, 33, 33)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(158, 158, 158)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jButton1)
                             .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
@@ -300,14 +296,12 @@ public class Guest extends javax.swing.JPanel {
                         .addComponent(emailaddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2)
-                            .addComponent(jLabel1)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(99, 99, 99))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -332,13 +326,17 @@ public class Guest extends javax.swing.JPanel {
         controller.signUp(guestPrefix, guestFirstname, guestLastname, guestSuffix, guestPhone, guestEmail);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+//public void displayCheckInOutDates(String checkInDate, String checkOutDate) {
+//    jLabel9.setText("Check-in Date: " + checkInDate);
+//    jLabel10.setText("Check-out Date: " + checkOutDate);
+//}
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField emailaddress;
     private javax.swing.JTextField firstname;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -364,4 +362,8 @@ public class Guest extends javax.swing.JPanel {
     private javax.swing.JTextField prefix;
     private javax.swing.JTextField suffix;
     // End of variables declaration//GEN-END:variables
+
+    public void displayCheckInOutDates(String checkInDate, String checkOutDate) {
+    jLabel9.setText("Check-in Date: " + checkInDate);
+    jLabel10.setText("Check-out Date: " + checkOutDate);    }
 }

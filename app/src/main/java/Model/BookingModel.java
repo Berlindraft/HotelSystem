@@ -103,31 +103,10 @@ public int addRoom() {
 
     return roomNumber;
 }
-//     public void addPayment(int bookingId) {
-//        try (Connection connection = DatabaseConnection.getConnection()) {
-//            String sql = "INSERT INTO paymentdb (bookingId, paymentDate, paymentAmount, paymentMethod) "
-//                       + "VALUES (?, NULL, NULL, NULL)";
-//
-//            try (PreparedStatement statement = connection.prepareStatement(sql)) {
-//                statement.setInt(1, bookingId);
-//
-//                int rowsAffected = statement.executeUpdate();
-//                if (rowsAffected > 0) {
-//                    System.out.println("New payment record created successfully");
-//                } else {
-//                    System.out.println("Failed to create new payment record");
-//                }
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//    }
 
-public void addBooking(Date checkinDate, Date checkoutDate, int adults, int children, double paymentAmount, Date paymentDate, String paymentMethod) {
-     int guestId = addGuest();
+public void addBooking(int guestId, Date checkinDate, Date checkoutDate, int adults, int children, double paymentAmount, Date paymentDate, String paymentMethod) {
     int roomNumber = addRoom();
 
-        
     try (Connection connection = getConnection()) { 
         String sql = "INSERT INTO newbookingdb (guestId, roomNumber, checkinDate, checkoutDate, adults, children, paymentAmount, paymentDate, paymentMethod) "
                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -152,6 +131,7 @@ public void addBooking(Date checkinDate, Date checkoutDate, int adults, int chil
 //            guestInputModel.signUp(guestId, prefix, firstname, lastname, suffix, phonenumber, emailaddress);
             if (rowsAffected > 0) {
                 System.out.println("New booking created successfully");
+                System.out.println("guest id: " + guestId);
             } else {
                 System.out.println("Failed to create new booking");
             }

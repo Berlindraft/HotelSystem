@@ -493,7 +493,7 @@ public class Booking extends javax.swing.JPanel {
 
         if (confirmation == JOptionPane.YES_OPTION) {
             // Create a BookingModel instance
-            BookingModel model = new BookingModel();
+            BookingModel Bmodel = new BookingModel();
             // Define payment details (to be set later)
             double paymentAmount = 0.0; // Define payment amount
             java.sql.Date paymentDate = new java.sql.Date(System.currentTimeMillis());
@@ -501,7 +501,8 @@ public class Booking extends javax.swing.JPanel {
             String paymentMethod = ""; // Define payment method
             
             // Call addBooking with additional parameters
-            model.addBooking(sqlCheckinDate, sqlCheckoutDate, adults, children, paymentAmount, paymentDate, paymentMethod);
+            int guestId = Bmodel.addGuest();
+            Bmodel.addBooking(guestId, sqlCheckinDate, sqlCheckoutDate, adults, children, paymentAmount, paymentDate, paymentMethod);
 
             // Refresh the UI
             Management management = (Management) SwingUtilities.getWindowAncestor(jButton5);
