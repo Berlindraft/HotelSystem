@@ -144,9 +144,6 @@ public void addBooking(int guestId, Date checkinDate, Date checkoutDate, int adu
 
 
 
-
-
-
 public void subtractBooking(int bookingToRemove) {
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement("DELETE FROM bookingdb WHERE booking = ?")) {

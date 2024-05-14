@@ -10,6 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -68,7 +70,44 @@ public List<Integer> getRoomNumbersFromType(String roomType) {
         e.printStackTrace();
     }
     return roomNumbers;
-}
+}    
     
+    public int getLastInsertedBookingId() {
+        int lastBookingId = -1;
+        try (Connection con = DatabaseConnection.getConnection()) {
+            String query = "SELECT MAX(BookingId) AS lastId FROM newbookingdb";
+            try (PreparedStatement stmt = con.prepareStatement(query)) {
+                ResultSet rs = stmt.executeQuery();
+                if (rs.next()) {
+                    lastBookingId = rs.getInt("lastId");
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(GuestInputModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lastBookingId;
+    }
+    
+public void updateRoomNumber(int bookingId, int roomNumber) {
+    if (bookingId != -1) {
+        try (Connection con = DatabaseConnection.getConnection()) {
+            String queryUpdate = "UPDATE newbookingdb SET roomNumber=? WHERE bookingId=?";
+            try (PreparedStatement stmtUpdate = con.prepareStatement(queryUpdate)) {
+                stmtUpdate.setInt(1, roomNumber);
+                stmtUpdate.setInt(2, bookingId);
+                int rowsAffected = stmtUpdate.executeUpdate();
+                if (rowsAffected > 0) {
+                    System.out.println("Room number updated successfully");
+                } else {
+                    System.out.println("Failed to update room number");
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(GuestInputModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    } else {
+        System.out.println("Invalid booking ID.");
+    }
+}
     
 }

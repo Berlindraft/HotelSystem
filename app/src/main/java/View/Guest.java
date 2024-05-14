@@ -1,23 +1,34 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package View;
 
 import Controller.GuestInputController;
 import Model.BookingModel;
+import Model.GuestInputModel;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 /**
  *
  * @author Zyron
  */
 public class Guest extends javax.swing.JPanel {
+    private GuestInputController controller;
+    private GuestInputModel model;
+    private static final double STANDARD_PRICE_PER_DAY = 1000.0;
+    private static final double DELUXE_PRICE_PER_DAY = 2000.0; 
+    private static final double SUITE_PRICE_PER_DAY = 3000.0; 
+    private static final double EXECUTIVE_PRICE_PER_DAY = 4000.0; 
 
     /**
      * Creates new form Guest
      */
     public Guest() {
         initComponents();
+        this.controller = new GuestInputController();
+        this.model = new GuestInputModel();
+        // Call method to update check-in and check-out dates
+        updateCheckInOutDates();
+
     }
 
     /**
@@ -29,6 +40,7 @@ public class Guest extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         prefix = new javax.swing.JTextField();
@@ -48,12 +60,14 @@ public class Guest extends javax.swing.JPanel {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel17 = new javax.swing.JLabel();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        jRadioButton3 = new javax.swing.JRadioButton();
         jLabel16 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -120,9 +134,7 @@ public class Guest extends javax.swing.JPanel {
 
         jLabel11.setText("total##");
 
-        jLabel12.setText("Miscellaneous and");
-
-        jLabel13.setText("Meal Fees");
+        jLabel12.setText("Miscellaneous Fees");
 
         jLabel14.setText("Total: ");
 
@@ -130,13 +142,39 @@ public class Guest extends javax.swing.JPanel {
 
         jLabel17.setText("addtotal##");
 
+        jRadioButton1.setText("Room Service");
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
+
+        jRadioButton2.setText("Eat all you can Buffet");
+        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton2ActionPerformed(evt);
+            }
+        });
+
+        jRadioButton3.setText("Spa Treatment");
+        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(jSeparator2))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator2)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel11)
+                        .addGap(74, 74, 74))))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,23 +202,25 @@ public class Guest extends javax.swing.JPanel {
                                     .addComponent(jLabel8))))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
                         .addComponent(jLabel14)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel15)
-                        .addGap(67, 67, 67))
+                        .addGap(69, 69, 69))))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jRadioButton3)
+                            .addComponent(jLabel12)
                             .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel13)
-                            .addComponent(jLabel12))
-                        .addGap(0, 37, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel17)
-                            .addComponent(jLabel11))
-                        .addGap(59, 59, 59))))
+                            .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 48, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jRadioButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel17)
+                        .addGap(63, 63, 63))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,24 +242,26 @@ public class Guest extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel11))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel12)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel13))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jLabel17)))
-                .addGap(29, 29, 29)
+                    .addComponent(jLabel10))
+                .addGap(4, 4, 4)
+                .addComponent(jLabel11)
+                .addGap(12, 12, 12)
+                .addComponent(jLabel12)
+                .addGap(7, 7, 7)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel17)
+                    .addComponent(jRadioButton1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jRadioButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jRadioButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
                     .addComponent(jLabel15))
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addGap(26, 26, 26))
         );
 
         jLabel16.setText("YOUR STAY");
@@ -266,7 +308,7 @@ public class Guest extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jButton1)
                             .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(73, 73, 73))
         );
@@ -301,7 +343,7 @@ public class Guest extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(102, Short.MAX_VALUE))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -324,15 +366,33 @@ public class Guest extends javax.swing.JPanel {
         
         GuestInputController controller = new GuestInputController();
         controller.signUp(guestPrefix, guestFirstname, guestLastname, guestSuffix, guestPhone, guestEmail);
+        
+
+        int guestId = model.getLastInsertedGuestId();
+        String[] checkInOutDates = controller.retrieveCheckInOutDates(guestId);
+        String checkInDate = checkInOutDates[0];
+        String checkOutDate = checkInOutDates[1];
+        displayTotalCost(checkInDate, checkOutDate);
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
-//public void displayCheckInOutDates(String checkInDate, String checkOutDate) {
-//    jLabel9.setText("Check-in Date: " + checkInDate);
-//    jLabel10.setText("Check-out Date: " + checkOutDate);
-//}
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton2ActionPerformed
+
+    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton3ActionPerformed
+
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JTextField emailaddress;
     private javax.swing.JTextField firstname;
     private javax.swing.JButton jButton1;
@@ -340,7 +400,6 @@ public class Guest extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
@@ -355,6 +414,9 @@ public class Guest extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextField lastname;
@@ -362,8 +424,86 @@ public class Guest extends javax.swing.JPanel {
     private javax.swing.JTextField prefix;
     private javax.swing.JTextField suffix;
     // End of variables declaration//GEN-END:variables
+   
+    public void updateCheckInOutDates() {
+        // Retrieve the guestId from somewhere
+        int guestId = model.getLastInsertedGuestId();
 
+        // Call the controller to retrieve the check-in and check-out dates
+        String[] checkInOutDates = controller.retrieveCheckInOutDates(guestId);
+
+        // Extract check-in and check-out dates
+        String checkInDate = checkInOutDates[0];
+        String checkOutDate = checkInOutDates[1];
+
+        // Update the labels with the retrieved dates
+        displayCheckInOutDates(checkInDate, checkOutDate);
+        //displayTotalCost(checkInDate, checkOutDate);
+        //CheckCheckdatesPass(checkInOutDates);
+    }
+    
+//    public String[] CheckCheckdatesPass(String[] CheckInOutDates){
+//            return CheckInOutDates;
+//    }
+    
     public void displayCheckInOutDates(String checkInDate, String checkOutDate) {
     jLabel9.setText("Check-in Date: " + checkInDate);
     jLabel10.setText("Check-out Date: " + checkOutDate);    }
+    
+    
+        public long calculateNumberOfDays(String checkInDate, String checkOutDate) {
+        // Define the date format pattern
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        // Parse the check-in and check-out dates
+        LocalDate checkIn = LocalDate.parse(checkInDate, formatter);
+        LocalDate checkOut = LocalDate.parse(checkOutDate, formatter);
+
+        // Calculate the number of days between the two dates
+        return ChronoUnit.DAYS.between(checkIn, checkOut);
+    }
+
+    public void displayTotalCost(String checkInDate, String checkOutDate) {
+        // Retrieve the last inserted booking ID
+        int lastBookingId = model.getLastInsertedBookingId();
+        System.out.println("Last Booking ID: " + lastBookingId); // Debug print
+
+        // Retrieve the room number for the last booking
+        int roomNumber = model.getRoomNumberForBooking(lastBookingId);
+        System.out.println("Room Number: " + roomNumber); // Debug print
+
+        // Retrieve the room type based on the room number
+        String roomType = model.getRoomType(roomNumber);
+        System.out.println("Room Type: " + roomType); // Debug print
+
+        // Calculate the number of days between the check-in and check-out dates
+        long numberOfDays = calculateNumberOfDays(checkInDate, checkOutDate);
+        System.out.println("Number of Days: " + numberOfDays); // Debug print
+
+        // Calculate the base price per day based on room type
+        double basePricePerDay = getPricePerDayByRoomType(roomType);
+        System.out.println("Base Price Per Day: " + basePricePerDay); // Debug print
+
+        // Calculate the total cost
+        double totalCost = numberOfDays * basePricePerDay;
+        System.out.println("Total Cost: $" + totalCost); // Debug print
+
+        // Update the label with the total cost
+        jLabel11.setText("Total Cost: $" + totalCost);
+    }
+    
+    public double getPricePerDayByRoomType(String roomType) {
+    switch (roomType) {
+        case "Standard":
+            return STANDARD_PRICE_PER_DAY;
+        case "Deluxe":
+            return DELUXE_PRICE_PER_DAY;
+        case "Suite":
+            return SUITE_PRICE_PER_DAY;
+        case "Executive":
+            return EXECUTIVE_PRICE_PER_DAY;
+        default:
+            return 0.0; // Or throw an exception for invalid room types
+    }
+}
 }

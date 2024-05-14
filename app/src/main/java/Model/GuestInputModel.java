@@ -70,7 +70,57 @@ public class GuestInputModel {
         }
         return dates;
     }
-    
-    
+        
+        public int getRoomNumberForBooking(int bookingId) {
+    int roomNumber = -1;
+    try (Connection con = DatabaseConnection.getConnection()) {
+        String query = "SELECT roomNumber FROM newbookingdb WHERE bookingId = ?";
+        try (PreparedStatement stmt = con.prepareStatement(query)) {
+            stmt.setInt(1, bookingId);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                roomNumber = rs.getInt("roomNumber");
+            }
+        }
+    } catch (SQLException ex) {
+        Logger.getLogger(RoomAvailabilityModel.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    return roomNumber;
+}
+        
+        
+        
+        public String getRoomType(int roomNumber) {
+        String roomType = "";
+        try (Connection con = DatabaseConnection.getConnection()) {
+            String query = "SELECT roomType FROM roomdb WHERE roomNumber = ?";
+            try (PreparedStatement stmt = con.prepareStatement(query)) {
+                stmt.setInt(1, roomNumber);
+                ResultSet rs = stmt.executeQuery();
+                if (rs.next()) {
+                    roomType = rs.getString("roomType");
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(RoomAvailabilityModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return roomType;
+    }
+        
+    public int getLastInsertedBookingId() {
+        int lastBookingId = -1;
+        try (Connection con = DatabaseConnection.getConnection()) {
+            String query = "SELECT MAX(bookingId) AS lastId FROM newbookingdb";
+            try (PreparedStatement stmt = con.prepareStatement(query)) {
+                ResultSet rs = stmt.executeQuery();
+                if (rs.next()) {
+                    lastBookingId = rs.getInt("lastId");
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(GuestInputModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lastBookingId;
+    }
     
 }
