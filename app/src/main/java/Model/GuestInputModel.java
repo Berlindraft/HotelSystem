@@ -122,5 +122,61 @@ public class GuestInputModel {
         }
         return lastBookingId;
     }
+    public void updateOption1(int bookingId, String status) {
+    String query = "UPDATE newbookingdb SET AddOption1 = ? WHERE bookingId = ?";
+
+    try (Connection con = DatabaseConnection.getConnection();
+         PreparedStatement stmt = con.prepareStatement(query)) {
+
+        stmt.setString(1, status);
+        stmt.setInt(2, bookingId);
+
+        stmt.executeUpdate();
+    } catch (SQLException ex) {
+        Logger.getLogger(BookingModel.class.getName()).log(Level.SEVERE, null, ex);
+    }
+}
+    public void updateOption2(int bookingId, String status) {
+    String query = "UPDATE newbookingdb SET AddOption2 = ? WHERE bookingId = ?";
+
+    try (Connection con = DatabaseConnection.getConnection();
+         PreparedStatement stmt = con.prepareStatement(query)) {
+
+        stmt.setString(1, status);
+        stmt.setInt(2, bookingId);
+
+        stmt.executeUpdate();
+    } catch (SQLException ex) {
+        Logger.getLogger(BookingModel.class.getName()).log(Level.SEVERE, null, ex);
+    }
+}
+    public void updateOption3(int bookingId, String status) {
+    String query = "UPDATE newbookingdb SET AddOption3 = ? WHERE bookingId = ?";
+
+    try (Connection con = DatabaseConnection.getConnection();
+         PreparedStatement stmt = con.prepareStatement(query)) {
+
+        stmt.setString(1, status);
+        stmt.setInt(2, bookingId);
+
+        stmt.executeUpdate();
+    } catch (SQLException ex) {
+        Logger.getLogger(BookingModel.class.getName()).log(Level.SEVERE, null, ex);
+    }
+}
     
+    public void updatePaymentTotal(int bookingId, double paymentTotal) {
+    String query = "UPDATE newbookingdb SET paymentTotal = ? WHERE bookingId = ?";
+
+    try (Connection con = DatabaseConnection.getConnection();
+         PreparedStatement stmt = con.prepareStatement(query)) {
+
+        stmt.setDouble(1, paymentTotal);
+        stmt.setInt(2, bookingId);
+
+        stmt.executeUpdate();
+    } catch (SQLException ex) {
+        Logger.getLogger(BookingModel.class.getName()).log(Level.SEVERE, null, ex);
+    }
+}
 }

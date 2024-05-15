@@ -33,8 +33,8 @@ public class GuestInputController {
     public void signUp(String prefix, String firstname, String lastname, String suffix, String phonenumber, String emailaddress) {
         if (firstname.isEmpty() || lastname.isEmpty() || phonenumber.isEmpty() || emailaddress.isEmpty()) {
             JOptionPane.showMessageDialog(new JFrame(), "All these fields are required");
-            return;
         }else{
+            model.signUp(prefix, firstname, lastname, suffix, phonenumber, emailaddress);
             JOptionPane.showMessageDialog(new JFrame(), "Sent into database");
         }}
         
