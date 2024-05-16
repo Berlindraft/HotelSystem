@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -16,6 +17,7 @@ import java.time.temporal.ChronoUnit;
 public class Guest extends javax.swing.JPanel {
     private GuestInputController controller;
     private GuestInputModel model;
+    private Payment payment;
     private static final double STANDARD_PRICE_PER_DAY = 1000.0;
     private static final double DELUXE_PRICE_PER_DAY = 2000.0; 
     private static final double SUITE_PRICE_PER_DAY = 3000.0; 
@@ -33,6 +35,7 @@ public class Guest extends javax.swing.JPanel {
         initComponents();
         this.controller = new GuestInputController();
         this.model = new GuestInputModel();
+        this.payment = new Payment();
         
 jCheckBox1.addActionListener(e -> updateTotalCost());
 jCheckBox2.addActionListener(e -> updateTotalCost());
@@ -120,6 +123,11 @@ jCheckBox3.addActionListener(e -> updateTotalCost());
         });
 
         firstname.setText("First Name");
+        firstname.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                firstnameActionPerformed(evt);
+            }
+        });
 
         lastname.setText("Last Name");
 
@@ -280,9 +288,9 @@ jCheckBox3.addActionListener(e -> updateTotalCost());
                     .addComponent(jLabel1)
                     .addComponent(jCheckBox1))
                 .addGap(14, 14, 14)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
-                    .addComponent(jCheckBox2))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jCheckBox2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel13))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
@@ -307,7 +315,7 @@ jCheckBox3.addActionListener(e -> updateTotalCost());
             }
         });
 
-        jButton2.setText("Ok");
+        jButton2.setText("CONTINUE");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -340,12 +348,14 @@ jCheckBox3.addActionListener(e -> updateTotalCost());
                                     .addComponent(emailaddress)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(158, 158, 158)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jButton1)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jButton1)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(30, 30, 30))
+                .addGap(17, 17, 17))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(88, 88, 88))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -372,13 +382,13 @@ jCheckBox3.addActionListener(e -> updateTotalCost());
                         .addGap(18, 18, 18)
                         .addComponent(emailaddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2))
+                        .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton2)
+                .addContainerGap(34, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -388,6 +398,14 @@ jCheckBox3.addActionListener(e -> updateTotalCost());
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+    Management management = (Management) SwingUtilities.getWindowAncestor(this);
+    management.getjPanel11().removeAll();
+    payment.setVisible(true);
+    management.getjPanel11().add(payment);
+    management.getjPanel11().revalidate();
+    management.getjPanel11().repaint();
+    System.out.println("next page");
+          
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -399,7 +417,7 @@ jCheckBox3.addActionListener(e -> updateTotalCost());
         String guestPhone = phonenumber.getText();
         String guestEmail = emailaddress.getText();
         
-        controller = new GuestInputController();
+        //controller = new GuestInputController();
         controller.signUp(guestPrefix, guestFirstname, guestLastname, guestSuffix, guestPhone, guestEmail);
         
 
@@ -445,11 +463,15 @@ jCheckBox3.addActionListener(e -> updateTotalCost());
 //    jLabel17.setText("Total Cost: $" + newTotalCost);
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void firstnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstnameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_firstnameActionPerformed
+
 private void updateTotalCost() {
     double additionalFees = 0;
     String status = "Yes";
     
-    int lastBookingId = model.getLastInsertedBookingId();
+    int paymentId = model.getLastInsertedPaymentId();
     
         if (jCheckBox1.isSelected()) {
             additionalFees += OPTION_1;
@@ -472,7 +494,7 @@ private void updateTotalCost() {
 
 
         // Update the paymentTotal in the database
-        model.updatePaymentTotal(lastBookingId, combinedTotalCost);
+        model.updatePaymentTotal(paymentId, combinedTotalCost);
 }
 
 
@@ -526,16 +548,11 @@ private void updateTotalCost() {
         String checkInDate = checkInOutDates[0];
         String checkOutDate = checkInOutDates[1];
 
-        // Update the labels with the retrieved dates
         displayCheckInOutDates(checkInDate, checkOutDate);
-        //displayTotalCost(checkInDate, checkOutDate);
-        //CheckCheckdatesPass(checkInOutDates);
+
     }
     
-//    public String[] CheckCheckdatesPass(String[] CheckInOutDates){
-//            return CheckInOutDates;
-//    }
-    
+
     public void displayCheckInOutDates(String checkInDate, String checkOutDate) {
     jLabel9.setText("Check-in Date: " + checkInDate);
     jLabel10.setText("Check-out Date: " + checkOutDate);    }

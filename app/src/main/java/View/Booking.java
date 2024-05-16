@@ -502,7 +502,9 @@ public class Booking extends javax.swing.JPanel {
             
             // Call addBooking with additional parameters
             int guestId = Bmodel.addGuest();
-            Bmodel.addBooking(guestId, sqlCheckinDate, sqlCheckoutDate, adults, children, paymentAmount, paymentDate, paymentMethod);
+            int paymentId = Bmodel.addPayment(guestId);
+            
+            Bmodel.addBooking(guestId, paymentId, sqlCheckinDate, sqlCheckoutDate, adults, children, paymentAmount, paymentDate, paymentMethod);
 
             // Refresh the UI
             Management management = (Management) SwingUtilities.getWindowAncestor(jButton5);

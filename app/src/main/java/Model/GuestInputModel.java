@@ -122,6 +122,21 @@ public class GuestInputModel {
         }
         return lastBookingId;
     }
+    public int getLastInsertedPaymentId() {
+        int paymentId = -1;
+        try (Connection con = DatabaseConnection.getConnection()) {
+            String query = "SELECT MAX(paymentId) AS lastId FROM paymentdb";
+            try (PreparedStatement stmt = con.prepareStatement(query)) {
+                ResultSet rs = stmt.executeQuery();
+                if (rs.next()) {
+                    paymentId = rs.getInt("lastId");
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(GuestInputModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return paymentId;
+    }
     public void updateOption1(int bookingId, String status) {
     String query = "UPDATE newbookingdb SET AddOption1 = ? WHERE bookingId = ?";
 
@@ -165,14 +180,14 @@ public class GuestInputModel {
     }
 }
     
-    public void updatePaymentTotal(int bookingId, double paymentTotal) {
-    String query = "UPDATE newbookingdb SET paymentTotal = ? WHERE bookingId = ?";
+    public void updatePaymentTotal(int paymentId, double paymentTotal) {
+    String query = "UPDATE paymentdb SET paymentAmount = ? WHERE paymentId = ?";
 
     try (Connection con = DatabaseConnection.getConnection();
          PreparedStatement stmt = con.prepareStatement(query)) {
 
         stmt.setDouble(1, paymentTotal);
-        stmt.setInt(2, bookingId);
+        stmt.setInt(2, paymentId);
 
         stmt.executeUpdate();
     } catch (SQLException ex) {

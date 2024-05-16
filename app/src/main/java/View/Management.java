@@ -167,6 +167,9 @@ public class Management extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel6MouseClicked(evt);
             }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPanel6MouseExited(evt);
+            }
         });
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
@@ -383,11 +386,11 @@ public class Management extends javax.swing.JFrame {
 
 
     private void jPanel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseClicked
-//    jPanel11.removeAll();
-//    Guest guest = new Guest();
-//    jPanel11.add(guest);
-//    jPanel11.revalidate();
-//    jPanel11.repaint();
+//        jPanel11.removeAll();
+//        Payment payment = new Payment();
+//        jPanel11.add(payment);
+//        jPanel11.revalidate();
+//        jPanel11.repaint();
     }//GEN-LAST:event_jPanel6MouseClicked
 
     private void jPanel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseClicked
@@ -406,6 +409,10 @@ public class Management extends javax.swing.JFrame {
     private void jPanel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel12MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jPanel12MouseClicked
+
+    private void jPanel6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel6MouseExited
 
     /**
      * @param args the command line arguments

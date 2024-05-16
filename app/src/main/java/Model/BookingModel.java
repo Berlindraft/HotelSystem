@@ -102,28 +102,53 @@ public int addRoom() {
     }
 
     return roomNumber;
+}public int addPayment(int guestId) {
+    int paymentId = 0; // Initialize paymentId
+    try (Connection connection = DatabaseConnection.getConnection()) {
+        String sql = "INSERT INTO paymentdb (guestId, paymentDate, paymentAmount, paymentMethod, cardNumber, cardExpiration, cardName, cardCvv, gcashNumber, gcashName, cashReceived) "
+                   + "VALUES (?, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)";
+
+        try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            statement.setInt(1, guestId); // Set the bookingId
+
+            int rowsAffected = statement.executeUpdate();
+            if (rowsAffected > 0) {
+                ResultSet generatedKeys = statement.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    paymentId = generatedKeys.getInt(1); // Get the generated paymentId
+                }
+                System.out.println("New payment record created successfully with paymentId: " + paymentId);
+            } else {
+                System.out.println("Failed to create new payment record");
+            }
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return paymentId;
 }
 
-public void addBooking(int guestId, Date checkinDate, Date checkoutDate, int adults, int children, double paymentAmount, Date paymentDate, String paymentMethod) {
-    int roomNumber = addRoom();
 
+public void addBooking(int guestId, int paymentId, Date checkinDate, Date checkoutDate, int adults, int children, double paymentAmount, Date paymentDate, String paymentMethod) {
+    int roomNumber = addRoom();
     try (Connection connection = getConnection()) { 
-        String sql = "INSERT INTO newbookingdb (guestId, roomNumber, checkinDate, checkoutDate, adults, children, paymentAmount, paymentDate, paymentMethod) "
-                   + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO newbookingdb (guestId, paymentId, roomNumber, checkinDate, checkoutDate, adults, children, addOption1, addOption2, addOption3) "
+                   + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             java.sql.Date sqlCheckinDate = new java.sql.Date(checkinDate.getTime());
             java.sql.Date sqlCheckoutDate = new java.sql.Date(checkoutDate.getTime());
             java.sql.Date sqlPaymentDate = new java.sql.Date(paymentDate.getTime());
             
             statement.setInt(1, guestId);
-            statement.setInt(2, roomNumber);
-            statement.setDate(3, sqlCheckinDate);
-            statement.setDate(4, sqlCheckoutDate);            
-            statement.setInt(5, adults);
-            statement.setInt(6, children);
-            statement.setDouble(7, paymentAmount);
-            statement.setDate(8, sqlPaymentDate);
-            statement.setString(9, paymentMethod);
+            statement.setInt(2, paymentId);
+            statement.setInt(3, roomNumber);
+            statement.setDate(4, sqlCheckinDate);
+            statement.setDate(5, sqlCheckoutDate);            
+            statement.setInt(6, adults);
+            statement.setInt(7, children);
+            statement.setDouble(8, paymentAmount);
+            statement.setDate(9, sqlPaymentDate);
+            statement.setString(10, paymentMethod);
 
             int rowsAffected = statement.executeUpdate();
             
