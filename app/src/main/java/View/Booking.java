@@ -5,16 +5,11 @@
 package View;
 import Controller.BookingController;
 import Model.BookingModel;
-import java.awt.Color;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 /**
@@ -492,15 +487,12 @@ public class Booking extends javax.swing.JPanel {
                 "Confirmation", JOptionPane.YES_NO_OPTION);
 
         if (confirmation == JOptionPane.YES_OPTION) {
-            // Create a BookingModel instance
             BookingModel Bmodel = new BookingModel();
-            // Define payment details (to be set later)
-            double paymentAmount = 0.0; // Define payment amount
+            double paymentAmount = 0.0; 
             java.sql.Date paymentDate = new java.sql.Date(System.currentTimeMillis());
 
-            String paymentMethod = ""; // Define payment method
+            String paymentMethod = ""; 
             
-            // Call addBooking with additional parameters
             int guestId = Bmodel.addGuest();
             int paymentId = Bmodel.addPayment(guestId);
             
@@ -641,8 +633,6 @@ public class Booking extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     // End of variables declaration//GEN-END:variables
-
-
 
 
 }

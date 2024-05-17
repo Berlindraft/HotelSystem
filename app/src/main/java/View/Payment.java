@@ -16,9 +16,7 @@ import javax.swing.SwingUtilities;
 public class Payment extends javax.swing.JPanel {
 private static Confirmation confirmation;
 private static PaymentModel model;
-    /**
-     * Creates new form Payment
-     */
+
     public Payment() {
         initComponents();
         this.confirmation = new Confirmation();
@@ -249,9 +247,7 @@ private static PaymentModel model;
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
         String formattedDate = dateFormat.format(paymentDate); 
         
-        // Check if any of the fields are empty
         if (cardNumber.isEmpty() || cardExpiration.isEmpty() || cardName.isEmpty() || cardCvv.isEmpty() || paymentDate == null) {
-            // Show an error message if any field is empty
             JOptionPane.showMessageDialog(this, "Please fill in all fields.", "Missing Information", JOptionPane.WARNING_MESSAGE);
         } else {
                 model.cardInformation(paymentMethod, cardNumber, cardExpiration, cardName, cardCvv, formattedDate);
@@ -260,7 +256,6 @@ private static PaymentModel model;
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // Retrieve card details from text fields
         String gcashnumber = jTextField5.getText();
         String gcashname = jTextField6.getText();
         String paymentMethod = "Gcash";
@@ -269,9 +264,7 @@ private static PaymentModel model;
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
         String formattedDate = dateFormat.format(paymentDate); 
         
-        // Check if any of the fields are empty
         if (gcashnumber.isEmpty() || gcashname.isEmpty() || paymentDate == null) {
-            // Show an error message if any field is empty
             JOptionPane.showMessageDialog(this, "Please fill in all fields.", "Missing Information", JOptionPane.WARNING_MESSAGE);
         } else {
                 model.gcashInformation(paymentMethod, gcashnumber, gcashname, formattedDate);
@@ -280,7 +273,6 @@ private static PaymentModel model;
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // Retrieve card details from text fields
         String cashreceivedetxt = jTextField7.getText();
         String paymentMethod = "Cash";
 
@@ -289,14 +281,11 @@ private static PaymentModel model;
         String formattedDate = dateFormat.format(paymentDate); 
         int cashReceived = Integer.parseInt(cashreceivedetxt);
         
-        // Check if any of the fields are empty
         if (cashreceivedetxt.isEmpty() || paymentDate == null) {
-            // Show an error message if any field is empty
             JOptionPane.showMessageDialog(this, "Please fill in all fields.", "Missing Information", JOptionPane.WARNING_MESSAGE);
         } else {
             
             
-            // Call the model method to save the cash received and the date
             model.cashReceived(paymentMethod, cashReceived, formattedDate);
                 JOptionPane.showMessageDialog(this, "Card information saved successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
             }

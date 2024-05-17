@@ -219,12 +219,10 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_userNameActionPerformed
 
     private void showPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showPassActionPerformed
-        // TODO add your handling code here:
-                // Toggle password visibility based on checkbox state
         if (showPass.isSelected()) {
-            userPass.setEchoChar((char) 0); // Show password
+            userPass.setEchoChar((char) 0); 
         } else {
-            userPass.setEchoChar('\u2022'); // Hide password
+            userPass.setEchoChar('\u2022');
         }
     }//GEN-LAST:event_showPassActionPerformed
 
@@ -233,14 +231,12 @@ public class Login extends javax.swing.JFrame {
         String username = userName.getText();
         String password = new String(userPass.getPassword());
 
-        // Call the login method in the controller
         AdminSignupController controller = new AdminSignupController();
         boolean loggedIn = controller.login(username, password);
 
         if (loggedIn) {
              Management management = new Management();
              management.setVisible(true);
-//             Close the login window
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(new JFrame(), "Invalid username or password");

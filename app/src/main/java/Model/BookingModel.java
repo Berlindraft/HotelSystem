@@ -1,6 +1,5 @@
 package Model;
 
-import Controller.GuestInputController;
 import static Model.DatabaseConnection.getConnection;
 import java.sql.*;
 import javax.swing.JOptionPane;
@@ -83,14 +82,14 @@ public int addGuest() {
     return guestId;
 }
 public int addRoom() {
-    int roomNumber = -1; // Initialize roomNumber with a default value
+    int roomNumber = -1; 
 
     try (Connection connection = getConnection()) {
-        String sql = "SELECT roomNumber FROM roomdb WHERE roomType = 'Lounge'"; // Query to fetch the default roomNumber
+        String sql = "SELECT roomNumber FROM roomdb WHERE roomType = 'Lounge'"; 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
-                    roomNumber = resultSet.getInt("roomNumber"); // Get the default roomNumber from the result set
+                    roomNumber = resultSet.getInt("roomNumber"); 
                     System.out.println("Default roomNumber retrieved: " + roomNumber);
                 } else {
                     System.out.println("Failed to retrieve default roomNumber");
@@ -103,19 +102,19 @@ public int addRoom() {
 
     return roomNumber;
 }public int addPayment(int guestId) {
-    int paymentId = 0; // Initialize paymentId
+    int paymentId = 0; 
     try (Connection connection = DatabaseConnection.getConnection()) {
         String sql = "INSERT INTO paymentdb (guestId, paymentDate, paymentAmount, paymentMethod, cardNumber, cardExpiration, cardName, cardCvv, gcashNumber, gcashName, cashReceived) "
                    + "VALUES (?, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)";
 
         try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            statement.setInt(1, guestId); // Set the bookingId
+            statement.setInt(1, guestId); 
 
             int rowsAffected = statement.executeUpdate();
             if (rowsAffected > 0) {
                 ResultSet generatedKeys = statement.getGeneratedKeys();
                 if (generatedKeys.next()) {
-                    paymentId = generatedKeys.getInt(1); // Get the generated paymentId
+                    paymentId = generatedKeys.getInt(1); 
                 }
                 System.out.println("New payment record created successfully with paymentId: " + paymentId);
             } else {
@@ -151,9 +150,7 @@ public void addBooking(int guestId, int paymentId, Date checkinDate, Date checko
             statement.setString(10, paymentMethod);
 
             int rowsAffected = statement.executeUpdate();
-            
-//            GuestInputModel guestInputModel = new GuestInputModel();
-//            guestInputModel.signUp(guestId, prefix, firstname, lastname, suffix, phonenumber, emailaddress);
+
             if (rowsAffected > 0) {
                 System.out.println("New booking created successfully");
                 System.out.println("guest id: " + guestId);
@@ -199,8 +196,7 @@ public void subtractBooking(int bookingToRemove) {
     }
 
 public String retrieveStatus(int roomNumber) {
-    String status = ""; // Initialize with an empty string
-    // Query the database to retrieve the status for the given roomNumber
+    String status = ""; 
     try (Connection connection = DatabaseConnection.getConnection();
          PreparedStatement statement = connection.prepareStatement("SELECT roomStatus FROM roomdb WHERE roomNumber = ?");
     ) {

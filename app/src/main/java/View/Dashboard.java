@@ -16,18 +16,14 @@ import javax.swing.JOptionPane;
  */
 public class Dashboard extends javax.swing.JPanel {
 
-    /**
-     * Creates new form Dashboard
-     */
     public Dashboard() {
         initComponents();
         
     }
 public void loadData() {
-        DashboardModel dashboardModel = new DashboardModel(); // Assuming DashboardModel is your model class
+        DashboardModel dashboardModel = new DashboardModel();
 
         try {
-            // Fetch data from the database using DashboardModel methods
             int totalCheckIns = dashboardModel.getTotalCheckInsToday();
             int totalCheckOuts = dashboardModel.getTotalCheckOutsToday();
             int totalOccupied = dashboardModel.getTotalOccupiedRooms();
@@ -54,7 +50,6 @@ public void loadData() {
             displayRoom4Status(presidentialRoomStatus);
         } catch (SQLException e) {
             e.printStackTrace();
-            // Handle SQLException
             displayErrorMessage("Error fetching data");
         }
     }

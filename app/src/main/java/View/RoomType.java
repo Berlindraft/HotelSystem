@@ -1,12 +1,8 @@
 package View;
 
-import Controller.BookingController;
+
 import Controller.RoomAvailabilityController;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.JButton;
 import javax.swing.SwingUtilities;
-import Model.BookingModel;
 import Model.RoomAvailabilityModel;
 
 /**
@@ -22,7 +18,6 @@ public class RoomType extends javax.swing.JPanel {
     public RoomType() {
         initComponents();
         RoomAvailabilityModel model = new RoomAvailabilityModel();
-        // Create a single instance of colorview
         mainColorView = new RoomAvailability();
 
         controller = new RoomAvailabilityController(model, mainColorView);
@@ -337,7 +332,6 @@ public class RoomType extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void AvailablebuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AvailablebuttonActionPerformed
-        // TODO add your handling code here:
         handleRoomTypeButtonClick("Standard");
         handleRoomTypeButtonClick("Deluxe");
         handleRoomTypeButtonClick("Suite");
@@ -356,25 +350,21 @@ public class RoomType extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void premierbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_premierbuttonActionPerformed
-        // TODO add your handling code here:
         handleRoomTypeButtonClick("Deluxe");
         System.out.println("premier button press");
     }//GEN-LAST:event_premierbuttonActionPerformed
 
     private void executivebuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_executivebuttonActionPerformed
-        // TODO add your handling code here:
         handleRoomTypeButtonClick("Suite");
         System.out.println("suite button press");
     }//GEN-LAST:event_executivebuttonActionPerformed
 
     private void presidentialbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_presidentialbuttonActionPerformed
-        // TODO add your handling code here:
         handleRoomTypeButtonClick("Executive");
         System.out.println("presidential button press");
     }//GEN-LAST:event_presidentialbuttonActionPerformed
 
     private void deluxebutton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deluxebutton1ActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_deluxebutton1ActionPerformed
 
 private void handleRoomTypeButtonClick(String roomType) {

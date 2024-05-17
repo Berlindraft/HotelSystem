@@ -266,14 +266,13 @@ public class Register extends javax.swing.JFrame {
     }//GEN-LAST:event_userEmailActionPerformed
 
     private void showPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showPassActionPerformed
-        // TODO add your handling code here:
-        // Toggle password visibility based on checkbox state
+
         if (showPass.isSelected()) {
-            userPass.setEchoChar((char) 0); // Show password
-            userPass2.setEchoChar((char) 0); // Show confirm password
+            userPass.setEchoChar((char) 0); 
+            userPass2.setEchoChar((char) 0); 
         } else {
-            userPass.setEchoChar('\u2022'); // Hide password
-            userPass2.setEchoChar('\u2022'); // Hide confirm password
+            userPass.setEchoChar('\u2022'); 
+            userPass2.setEchoChar('\u2022'); 
         }
     }//GEN-LAST:event_showPassActionPerformed
 

@@ -19,21 +19,10 @@ import javax.swing.JOptionPane;
  */
 public class Confirmation extends javax.swing.JPanel {
 private static ConfirmationModel model;
-    /**
-     * Creates new form Confirmation
-     */
     public Confirmation() {
         initComponents();
         this.model = new ConfirmationModel();
-        
-//        updateBookingGuestId();
-//        displayRoomNumber();
-//        updateRoomDescription();
-//        updateGuestInformation();
-//        updatePaymentInformation();
-//        updateBookingInformation();
-//        displayAddOns();
-//        setupCheckboxListeners();
+
     }
     
 
@@ -260,7 +249,6 @@ private static ConfirmationModel model;
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    // Ensure both checkboxes are checked (extra safeguard)
     if (!jCheckBox1.isSelected() || !jCheckBox2.isSelected()) {
         JOptionPane.showMessageDialog(this, "Please agree to all terms before confirming the booking.", "Terms Agreement Required", JOptionPane.ERROR_MESSAGE);
         return;
@@ -284,9 +272,9 @@ public void setupCheckboxListeners() {
 }
 public void checkAndEnableConfirmButton() {
     if (jCheckBox1.isSelected() && jCheckBox2.isSelected()) {
-        jButton1.setEnabled(true); // Enable the confirm button if both checkboxes are selected
+        jButton1.setEnabled(true);
     } else {
-        jButton1.setEnabled(false); // Disable the confirm button if either checkbox is not selected
+        jButton1.setEnabled(false); 
     }
 }
 
@@ -312,7 +300,6 @@ public void updateRoomDescription() {
     String roomName = model.getRoomNameByType(roomType);
     String roomDescription = model.getRoomDescriptionByType(roomType);
     
-    // Assuming you have JLabels named roomNameLabel and roomDescriptionLabel
     jLabel3.setText("Room Type: " + roomType);
     jLabel4.setText("Room Name: " + roomName);
     jLabel5.setText("Room Description: " + roomDescription);
@@ -355,10 +342,7 @@ public void updateBookingInformation() {
 }
 
 public long calculateNumberOfDays(String checkInDate, String checkOutDate) {
-        // Define the date format pattern
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
-        // Parse the check-in and check-out dates
         LocalDate checkIn = LocalDate.parse(checkInDate, formatter);
         LocalDate checkOut = LocalDate.parse(checkOutDate, formatter);
 
@@ -369,11 +353,11 @@ public long calculateNumberOfDays(String checkInDate, String checkOutDate) {
 public void displayAddOns() {
     int bookingId = model.getLastInsertedBookingId();
     List<String> addOns = model.getAddOnOptions(bookingId);
-    String addOnText = String.join(", ", addOns); // Concatenate add-ons with commas
+    String addOnText = String.join(", ", addOns); 
     if (addOnText.isEmpty()) {
         addOnText = "No additional options selected.";
     }
-    jLabel9.setText(addOnText); // Assuming there's a JLabel named addOnsLabel
+    jLabel9.setText(addOnText); 
 }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

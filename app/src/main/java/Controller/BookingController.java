@@ -8,7 +8,6 @@ import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.text.SimpleDateFormat;
-import java.awt.Color;
 
 public class BookingController {
     private BookingModel model;

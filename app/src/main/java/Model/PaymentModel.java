@@ -53,7 +53,7 @@ public class PaymentModel {
         
         
  public void cardInformation(String paymentMethod, String cardNumber, String cardExpiration, String cardName, String cardCvv, String paymentDate) {
-    int paymentId = getLastInsertedBookingId(); // Retrieve the last inserted paymentId
+    int paymentId = getLastInsertedBookingId(); 
 
     if (paymentId != -1) {
         try (Connection con = DatabaseConnection.getConnection()) {
@@ -120,7 +120,7 @@ public class PaymentModel {
     }
         
         public void cashReceived(String paymentMethod,int cashreceived, String paymentDate) {
-        int paymentid = getLastInsertedBookingId(); // Retrieve the last inserted guestId
+        int paymentid = getLastInsertedBookingId(); 
 
         if (paymentid != -1) {
             try (Connection con = DatabaseConnection.getConnection()) {
@@ -168,21 +168,21 @@ public class PaymentModel {
     
     public double getPaymentAmount(int paymentId) {
         String query = "SELECT paymentAmount FROM paymentdb WHERE paymentId = ?";
-        double paymentAmount = 0.0; // Default to 0 if not found
+        double paymentAmount = 0.0; 
 
         try (Connection con = DatabaseConnection.getConnection();
              PreparedStatement stmt = con.prepareStatement(query)) {
 
-            stmt.setInt(1, paymentId); // Set paymentId in the query
+            stmt.setInt(1, paymentId); 
 
-            ResultSet rs = stmt.executeQuery(); // Execute the SELECT query
-            if (rs.next()) { // If there's a result
-                paymentAmount = rs.getDouble("paymentAmount"); // Get the payment amount from the result set
+            ResultSet rs = stmt.executeQuery(); 
+            if (rs.next()) { 
+                paymentAmount = rs.getDouble("paymentAmount"); 
             }
         } catch (SQLException ex) {
             Logger.getLogger(BookingModel.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return paymentAmount; // Return the retrieved payment amount
+        return paymentAmount; 
     }
 }

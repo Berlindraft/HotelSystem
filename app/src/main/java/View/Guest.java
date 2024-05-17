@@ -1,10 +1,7 @@
 package View;
 
 import Controller.GuestInputController;
-import Model.BookingModel;
 import Model.GuestInputModel;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -40,7 +37,6 @@ public class Guest extends javax.swing.JPanel {
 jCheckBox1.addActionListener(e -> updateTotalCost());
 jCheckBox2.addActionListener(e -> updateTotalCost());
 jCheckBox3.addActionListener(e -> updateTotalCost());
-        // Call method to update check-in and check-out dates
         updateCheckInOutDates();
         updateTotalCost();
     }
@@ -417,16 +413,9 @@ jCheckBox3.addActionListener(e -> updateTotalCost());
         String guestPhone = phonenumber.getText();
         String guestEmail = emailaddress.getText();
         
-        //controller = new GuestInputController();
         controller.signUp(guestPrefix, guestFirstname, guestLastname, guestSuffix, guestPhone, guestEmail);
         
 
-//        int guestId = model.getLastInsertedGuestId();
-//        String[] checkInOutDates = controller.retrieveCheckInOutDates(guestId);
-//        String checkInDate = checkInOutDates[0];
-//        String checkOutDate = checkInOutDates[1];
-//        displayTotalCost(checkInDate, checkOutDate);
-        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
@@ -440,7 +429,6 @@ jCheckBox3.addActionListener(e -> updateTotalCost());
         String checkOutDate = checkInOutDates[1];
         displayTotalCost(checkInDate, checkOutDate);
         
-//double additionalFees = 0;
     String status = "Yes";
     String statusNull = null;
     
@@ -456,11 +444,6 @@ jCheckBox3.addActionListener(e -> updateTotalCost());
             model.updateOption3(lastBookingId, status);
         }else{model.updateOption3(lastBookingId, statusNull);}
 
-//    // Calculate the new total cost
-//    double newTotalCost = initialTotalCost + additionalFees;
-//    
-//    // Update the label with the new total cost
-//    jLabel17.setText("Total Cost: $" + newTotalCost);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void firstnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstnameActionPerformed
@@ -483,17 +466,9 @@ private void updateTotalCost() {
             additionalFees += OPTION_3;
         }
 
-        // Update the label with the additional options cost
         jLabel17.setText("" + additionalFees);
-
-        // Calculate the combined total cost
         combinedTotalCost = initialTotalCost + additionalFees;
-
-        // Update the label with the combined total cost
         jLabel15.setText("" + combinedTotalCost);
-
-
-        // Update the paymentTotal in the database
         model.updatePaymentTotal(paymentId, combinedTotalCost);
 }
 
@@ -538,16 +513,10 @@ private void updateTotalCost() {
     // End of variables declaration//GEN-END:variables
    
     public void updateCheckInOutDates() {
-        // Retrieve the guestId from somewhere
         int guestId = model.getLastInsertedGuestId();
-
-        // Call the controller to retrieve the check-in and check-out dates
         String[] checkInOutDates = controller.retrieveCheckInOutDates(guestId);
-
-        // Extract check-in and check-out dates
         String checkInDate = checkInOutDates[0];
         String checkOutDate = checkInOutDates[1];
-
         displayCheckInOutDates(checkInDate, checkOutDate);
 
     }
@@ -559,43 +528,33 @@ private void updateTotalCost() {
     
     
         public long calculateNumberOfDays(String checkInDate, String checkOutDate) {
-        // Define the date format pattern
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
-        // Parse the check-in and check-out dates
         LocalDate checkIn = LocalDate.parse(checkInDate, formatter);
         LocalDate checkOut = LocalDate.parse(checkOutDate, formatter);
 
-        // Calculate the number of days between the two dates
         return ChronoUnit.DAYS.between(checkIn, checkOut);
     }
 
     public void displayTotalCost(String checkInDate, String checkOutDate) {
-        // Retrieve the last inserted booking ID
         int lastBookingId = model.getLastInsertedBookingId();
         System.out.println("Last Booking ID: " + lastBookingId); // Debug print
 
-        // Retrieve the room number for the last booking
         int roomNumber = model.getRoomNumberForBooking(lastBookingId);
-        System.out.println("Room Number: " + roomNumber); // Debug print
+        System.out.println("Room Number: " + roomNumber); 
 
-        // Retrieve the room type based on the room number
         String roomType = model.getRoomType(roomNumber);
-        System.out.println("Room Type: " + roomType); // Debug print
+        System.out.println("Room Type: " + roomType); 
 
-        // Calculate the number of days between the check-in and check-out dates
         long numberOfDays = calculateNumberOfDays(checkInDate, checkOutDate);
-        System.out.println("Number of Days: " + numberOfDays); // Debug print
+        System.out.println("Number of Days: " + numberOfDays); 
 
-        // Calculate the base price per day based on room type
         double basePricePerDay = getPricePerDayByRoomType(roomType);
-        System.out.println("Base Price Per Day: " + basePricePerDay); // Debug print
+        System.out.println("Base Price Per Day: " + basePricePerDay); 
 
-        // Calculate the total cost
         double totalCost = numberOfDays * basePricePerDay;
-        System.out.println("Total Cost: $" + totalCost); // Debug print
+        System.out.println("Total Cost: $" + totalCost); 
         initialTotalCost = numberOfDays * basePricePerDay;
-        // Update the label with the total cost
+        
         jLabel11.setText("Total Cost: $" + totalCost);
         updateTotalCost();
     }
@@ -611,7 +570,7 @@ private void updateTotalCost() {
         case "Executive":
             return EXECUTIVE_PRICE_PER_DAY;
         default:
-            return 0.0; // Or throw an exception for invalid room types
+            return 0.0; 
     }
 }
 }

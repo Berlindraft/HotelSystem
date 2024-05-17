@@ -13,9 +13,7 @@ import javax.swing.JOptionPane;
 public class RoomAvailability extends javax.swing.JPanel {
 private Guest guest;
 private RoomAvailabilityModel model;
-    /**
-     * Creates new form RoomAvailability
-     */
+
     public RoomAvailability() {
         initComponents();
         guest = new Guest();
@@ -1940,7 +1938,6 @@ private RoomAvailabilityModel model;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
     Management management = (Management) SwingUtilities.getWindowAncestor(this);
 
     management.getjPanel11().removeAll();
@@ -1955,7 +1952,6 @@ private RoomAvailabilityModel model;
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
     Management management = (Management) SwingUtilities.getWindowAncestor(this);
     management.getjPanel11().removeAll();
     guest.setVisible(true);
@@ -1967,28 +1963,19 @@ private RoomAvailabilityModel model;
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    // Retrieve the room number entered by the user
     String roomNumberText = jTextField1.getText().trim(); // Trim leading and trailing whitespace
     
     try {
-        // Convert the room number text to an integer
         int roomNumber = Integer.parseInt(roomNumberText);
-        
-        // Retrieve the last inserted booking ID
         int lastBookingId = model.getLastInsertedBookingId();
-        
-        // Update the room number in the database
         model.updateRoomNumber(lastBookingId, roomNumber);
         
-        // Optionally, provide feedback to the user that the room number has been updated
         JOptionPane.showMessageDialog(this, "Room number updated successfully!");
     } catch (NumberFormatException ex) {
-        // Handle the case where the input cannot be parsed as an integer
         JOptionPane.showMessageDialog(this, "Invalid room number format. Please enter a valid integer.");
     }
     }//GEN-LAST:event_jButton1ActionPerformed
     public void updateBookingId() {
-        // Retrieve the guestId from somewhere
         int BookingId = model.getLastInsertedBookingId();
         jLabel8.setText("Booking ID: " + BookingId);
 
@@ -2140,9 +2127,7 @@ public void setColor(int panelNumber, Color color) {
     repaint();
 }
 
-    
-    
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

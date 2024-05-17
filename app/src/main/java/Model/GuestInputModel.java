@@ -11,7 +11,7 @@ public class GuestInputModel {
     private BookingModel model;
 
     public void signUp(String prefix, String firstname, String lastname, String suffix, String phonenumber, String emailaddress) {
-        int guestId = getLastInsertedGuestId(); // Retrieve the last inserted guestId
+        int guestId = getLastInsertedGuestId(); 
 
         if (guestId != -1) {
             try (Connection con = DatabaseConnection.getConnection()) {
@@ -56,7 +56,7 @@ public class GuestInputModel {
     }
     
         public String[] retrieveCheckInOutDates(int guestId) {
-        String[] dates = new String[2]; // Array to store check-in and check-out dates
+        String[] dates = new String[2]; 
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement("SELECT checkinDate, checkoutDate FROM newbookingdb WHERE guestId = ?")) {
             statement.setInt(1, guestId);

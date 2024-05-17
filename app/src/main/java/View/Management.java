@@ -18,9 +18,6 @@ import javax.swing.JPanel;
  */
 public class Management extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Management
-     */
     public Management() {
         initComponents();
         Dashboard dashboard = new Dashboard();
@@ -236,7 +233,7 @@ public class Management extends javax.swing.JFrame {
 
         jLabel9.setBackground(new java.awt.Color(255, 255, 255));
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel9.setText("SETTINGS");
+        jLabel9.setText("TRANSACTIONS");
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
@@ -245,7 +242,7 @@ public class Management extends javax.swing.JFrame {
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(jLabel9)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -386,28 +383,27 @@ public class Management extends javax.swing.JFrame {
 
 
     private void jPanel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseClicked
-//        jPanel11.removeAll();
-//        Payment payment = new Payment();
-//        jPanel11.add(payment);
-//        jPanel11.revalidate();
-//        jPanel11.repaint();
+        jPanel11.removeAll();
+        GuestTable guestTable = new GuestTable();
+        jPanel11.add(guestTable);
+        jPanel11.revalidate();
+        jPanel11.repaint();
     }//GEN-LAST:event_jPanel6MouseClicked
 
     private void jPanel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseClicked
-    jPanel11.removeAll();
-    BookingModel model = new BookingModel(); 
-    Booking view = new Booking(); 
-    JCalendar jCalendar = new JCalendar(); 
-    RoomAvailability roomA = new RoomAvailability();
-    BookingController controller = new BookingController(model, view, jCalendar, roomA); 
-    Rooms rooms = new Rooms(controller); 
-    jPanel11.add(rooms);
-    jPanel11.revalidate();
-    jPanel11.repaint();  
+        jPanel11.removeAll();
+        RoomTable roomTable = new RoomTable();
+        jPanel11.add(roomTable);
+        jPanel11.revalidate();
+        jPanel11.repaint();
     }//GEN-LAST:event_jPanel7MouseClicked
 
     private void jPanel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel12MouseClicked
-        // TODO add your handling code here:
+        jPanel11.removeAll();
+        TransactionTable transactionTable = new TransactionTable();
+        jPanel11.add(transactionTable);
+        jPanel11.revalidate();
+        jPanel11.repaint();
     }//GEN-LAST:event_jPanel12MouseClicked
 
     private void jPanel6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseExited

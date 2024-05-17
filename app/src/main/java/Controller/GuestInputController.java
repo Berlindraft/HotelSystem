@@ -13,9 +13,9 @@ import javax.swing.JOptionPane;
 public class GuestInputController {
     private GuestInputModel model;
     private BookingModel Bmodel;
-    private Guest view; // Import your actual view class
+    private Guest view; 
 
-    public GuestInputController() { // Pass the view object to the constructor
+    public GuestInputController() { 
         this.model = new GuestInputModel(); 
         this.Bmodel = new BookingModel();
         
@@ -23,12 +23,9 @@ public class GuestInputController {
     }  
     
     public String[] retrieveCheckInOutDates(int guestId) {
-        // Call the corresponding method in the model to retrieve the dates
         return model.retrieveCheckInOutDates(guestId);
     }
     
-    
-
 
     public void signUp(String prefix, String firstname, String lastname, String suffix, String phonenumber, String emailaddress) {
         if (firstname.isEmpty() || lastname.isEmpty() || phonenumber.isEmpty() || emailaddress.isEmpty()) {
