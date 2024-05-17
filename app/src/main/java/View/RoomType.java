@@ -50,7 +50,7 @@ public class RoomType extends javax.swing.JPanel {
         presidentialbutton = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        deluxebutton1 = new javax.swing.JButton();
+        deluxebutton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -233,10 +233,10 @@ public class RoomType extends javax.swing.JPanel {
 
         jLabel6.setText("Deluxe");
 
-        deluxebutton1.setText("Select");
-        deluxebutton1.addActionListener(new java.awt.event.ActionListener() {
+        deluxebutton.setText("Select");
+        deluxebutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deluxebutton1ActionPerformed(evt);
+                deluxebuttonActionPerformed(evt);
             }
         });
 
@@ -250,9 +250,9 @@ public class RoomType extends javax.swing.JPanel {
                         .addGap(48, 48, 48)
                         .addComponent(jLabel6))
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(deluxebutton1)))
-                .addContainerGap(66, Short.MAX_VALUE))
+                        .addGap(35, 35, 35)
+                        .addComponent(deluxebutton)))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -260,8 +260,8 @@ public class RoomType extends javax.swing.JPanel {
                 .addGap(26, 26, 26)
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
-                .addComponent(deluxebutton1)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addComponent(deluxebutton)
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -351,31 +351,33 @@ public class RoomType extends javax.swing.JPanel {
 
     private void premierbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_premierbuttonActionPerformed
         handleRoomTypeButtonClick("Deluxe");
-        System.out.println("premier button press");
+        System.out.println("premier rooms selected");
     }//GEN-LAST:event_premierbuttonActionPerformed
 
     private void executivebuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_executivebuttonActionPerformed
         handleRoomTypeButtonClick("Suite");
-        System.out.println("suite button press");
+        System.out.println("suite rooms selected");
     }//GEN-LAST:event_executivebuttonActionPerformed
 
     private void presidentialbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_presidentialbuttonActionPerformed
         handleRoomTypeButtonClick("Executive");
-        System.out.println("presidential button press");
+        System.out.println("presidential rooms selected");
     }//GEN-LAST:event_presidentialbuttonActionPerformed
 
-    private void deluxebutton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deluxebutton1ActionPerformed
-    }//GEN-LAST:event_deluxebutton1ActionPerformed
+    private void deluxebuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deluxebuttonActionPerformed
+        // TODO add your handling code here:
+        handleRoomTypeButtonClick("Standard");
+        System.out.println("standard rooms selected");
+    }//GEN-LAST:event_deluxebuttonActionPerformed
 
 private void handleRoomTypeButtonClick(String roomType) {
     controller.updateColors(roomType);
-    System.out.println(roomType);
-    System.out.println(roomType + " sent");
+    System.out.println(roomType + " scanning");
 }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Availablebutton;
-    private javax.swing.JButton deluxebutton1;
+    private javax.swing.JButton deluxebutton;
     private javax.swing.JButton executivebutton;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

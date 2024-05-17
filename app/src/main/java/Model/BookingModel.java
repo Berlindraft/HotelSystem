@@ -128,15 +128,17 @@ public int addRoom() {
 }
 
 
-public void addBooking(int guestId, int paymentId, Date checkinDate, Date checkoutDate, int adults, int children, double paymentAmount, Date paymentDate, String paymentMethod) {
+public void addBooking(int guestId, int paymentId, Date checkinDate, Date checkoutDate, int adults, int children ) {
     int roomNumber = addRoom();
+    String AddOption1 = null;
+    String AddOption2 = null;
+    String AddOption3 = null;
     try (Connection connection = getConnection()) { 
         String sql = "INSERT INTO newbookingdb (guestId, paymentId, roomNumber, checkinDate, checkoutDate, adults, children, addOption1, addOption2, addOption3) "
                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             java.sql.Date sqlCheckinDate = new java.sql.Date(checkinDate.getTime());
             java.sql.Date sqlCheckoutDate = new java.sql.Date(checkoutDate.getTime());
-            java.sql.Date sqlPaymentDate = new java.sql.Date(paymentDate.getTime());
             
             statement.setInt(1, guestId);
             statement.setInt(2, paymentId);
@@ -145,15 +147,14 @@ public void addBooking(int guestId, int paymentId, Date checkinDate, Date checko
             statement.setDate(5, sqlCheckoutDate);            
             statement.setInt(6, adults);
             statement.setInt(7, children);
-            statement.setDouble(8, paymentAmount);
-            statement.setDate(9, sqlPaymentDate);
-            statement.setString(10, paymentMethod);
+            statement.setString(8, AddOption1);
+            statement.setString(9, AddOption2);
+            statement.setString(10, AddOption3);
 
             int rowsAffected = statement.executeUpdate();
 
             if (rowsAffected > 0) {
                 System.out.println("New booking created successfully");
-                System.out.println("guest id: " + guestId);
             } else {
                 System.out.println("Failed to create new booking");
             }

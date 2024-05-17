@@ -33,7 +33,7 @@ public void updateColors(String roomType) {
         mainColorView.setColor(roomNumber, color);
         System.out.println(roomNumber);
     }
-    System.out.println("updating colors");
+    System.out.println("colors updated");
 }
 
        

@@ -29,7 +29,6 @@ public class RoomAvailabilityModel {
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
                     status = resultSet.getString("roomStatus");
-                    System.out.println(status + " read");
                 }
             }
         } catch (SQLException e) {
@@ -54,7 +53,7 @@ public List<Integer> getRoomNumbersFromType(String roomType) {
     }
     return roomNumbers;
 }
-
+// this method is suppose to get the room number by status // not used
     public List<Integer> getRoomNumbersByStatus(String status) {
     List<Integer> roomNumbers = new ArrayList<>();
     try (Connection connection = DatabaseConnection.getConnection();
@@ -88,16 +87,29 @@ public List<Integer> getRoomNumbersFromType(String roomType) {
         return lastBookingId;
     }
     
-public void updateRoomNumber(int bookingId, int roomNumber) {
+public void updateRoomNumberAndStatus(int bookingId, int roomNumber) {
     if (bookingId != -1) {
         try (Connection con = DatabaseConnection.getConnection()) {
-            String queryUpdate = "UPDATE newbookingdb SET roomNumber=? WHERE bookingId=?";
-            try (PreparedStatement stmtUpdate = con.prepareStatement(queryUpdate)) {
-                stmtUpdate.setInt(1, roomNumber);
-                stmtUpdate.setInt(2, bookingId);
-                int rowsAffected = stmtUpdate.executeUpdate();
-                if (rowsAffected > 0) {
-                    System.out.println("Room number updated successfully");
+            // First, update the room number
+            String queryUpdateRoomNumber = "UPDATE newbookingdb SET roomNumber=? WHERE bookingId=?";
+            try (PreparedStatement stmtUpdateRoomNumber = con.prepareStatement(queryUpdateRoomNumber)) {
+                stmtUpdateRoomNumber.setInt(1, roomNumber);
+                stmtUpdateRoomNumber.setInt(2, bookingId);
+                int rowsAffectedRoomNumber = stmtUpdateRoomNumber.executeUpdate();
+
+                if (rowsAffectedRoomNumber > 0) {
+                    // If room number update is successful, update the room status to 'Occupied'
+                    String queryUpdateRoomStatus = "UPDATE roomdb SET roomStatus='Occupied' WHERE roomNumber=?";
+                    try (PreparedStatement stmtUpdateRoomStatus = con.prepareStatement(queryUpdateRoomStatus)) {
+                        stmtUpdateRoomStatus.setInt(1, roomNumber);
+                        int rowsAffectedRoomStatus = stmtUpdateRoomStatus.executeUpdate();
+
+                        if (rowsAffectedRoomStatus > 0) {
+                            System.out.println("Room number and status updated successfully");
+                        } else {
+                            System.out.println("Failed to update room status");
+                        }
+                    }
                 } else {
                     System.out.println("Failed to update room number");
                 }
@@ -109,5 +121,6 @@ public void updateRoomNumber(int bookingId, int roomNumber) {
         System.out.println("Invalid booking ID.");
     }
 }
+
     
 }

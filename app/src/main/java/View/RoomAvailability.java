@@ -4,6 +4,7 @@ import Model.BookingModel;
 import Model.RoomAvailabilityModel;
 import javax.swing.SwingUtilities;
 import java.awt.Color;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
@@ -1957,33 +1958,34 @@ private RoomAvailabilityModel model;
     guest.setVisible(true);
     management.getjPanel11().add(guest);
     management.getjPanel11().revalidate();
-    management.getjPanel11().repaint();
-    System.out.println("next page");
-        
+    management.getjPanel11().repaint();  
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    String roomNumberText = jTextField1.getText().trim(); // Trim leading and trailing whitespace
-    
-    try {
-        int roomNumber = Integer.parseInt(roomNumberText);
-        int lastBookingId = model.getLastInsertedBookingId();
-        model.updateRoomNumber(lastBookingId, roomNumber);
-        
-        JOptionPane.showMessageDialog(this, "Room number updated successfully!");
-    } catch (NumberFormatException ex) {
-        JOptionPane.showMessageDialog(this, "Invalid room number format. Please enter a valid integer.");
-    }
+        String roomNumberText = jTextField1.getText().trim(); 
+        try {
+            int roomNumber = Integer.parseInt(roomNumberText); 
+            int lastBookingId = model.getLastInsertedBookingId(); 
+
+            String currentStatus = model.retrieveRoomStatus(roomNumber);
+            if ("Available".equalsIgnoreCase(currentStatus)) {
+                model.updateRoomNumberAndStatus(lastBookingId, roomNumber);
+                JOptionPane.showMessageDialog(this, "Room number updated successfully");
+            } else {
+                JOptionPane.showMessageDialog(this, "Room is not available.");
+            }
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Invalid room number format. Please enter a valid integer.");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error updating room: " + ex.getMessage());
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
     public void updateBookingId() {
         int BookingId = model.getLastInsertedBookingId();
         jLabel8.setText("Booking ID: " + BookingId);
 
     }
-public void setColor(int panelNumber, Color color) {
-    System.out.println("set coloring to the panel...");
-    System.out.println(color);
-    
+public void setColor(int panelNumber, Color color) { 
     switch (panelNumber) {
         case 101:
             r101.setBackground(color);

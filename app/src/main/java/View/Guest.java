@@ -151,13 +151,13 @@ jCheckBox3.addActionListener(e -> updateTotalCost());
 
         jLabel10.setText("#");
 
-        jLabel11.setText("total##");
+        jLabel11.setText("Total: ");
 
         jLabel12.setText("Miscellaneous Fees");
 
         jLabel14.setText("Total: ");
 
-        jLabel15.setText("total##");
+        jLabel15.setText("0");
 
         jLabel17.setText("$ 0");
 
@@ -399,9 +399,7 @@ jCheckBox3.addActionListener(e -> updateTotalCost());
     payment.setVisible(true);
     management.getjPanel11().add(payment);
     management.getjPanel11().revalidate();
-    management.getjPanel11().repaint();
-    System.out.println("next page");
-          
+    management.getjPanel11().repaint();  
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -470,9 +468,70 @@ private void updateTotalCost() {
         combinedTotalCost = initialTotalCost + additionalFees;
         jLabel15.setText("" + combinedTotalCost);
         model.updatePaymentTotal(paymentId, combinedTotalCost);
+        System.out.println(combinedTotalCost + " updated in database to paymentId" + paymentId );
 }
 
+    public void updateCheckInOutDates() {
+        int guestId = model.getLastInsertedGuestId();
+        String[] checkInOutDates = controller.retrieveCheckInOutDates(guestId);
+        String checkInDate = checkInOutDates[0];
+        String checkOutDate = checkInOutDates[1];
+        displayCheckInOutDates(checkInDate, checkOutDate);
 
+    }
+    
+
+    public void displayCheckInOutDates(String checkInDate, String checkOutDate) {
+    jLabel9.setText("Check-in Date: " + checkInDate);
+    jLabel10.setText("Check-out Date: " + checkOutDate);    }
+    
+    
+        public long calculateNumberOfDays(String checkInDate, String checkOutDate) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate checkIn = LocalDate.parse(checkInDate, formatter);
+        LocalDate checkOut = LocalDate.parse(checkOutDate, formatter);
+
+        return ChronoUnit.DAYS.between(checkIn, checkOut);
+    }
+
+    public void displayTotalCost(String checkInDate, String checkOutDate) {
+        int lastBookingId = model.getLastInsertedBookingId();
+        System.out.println("Last Booking ID: " + lastBookingId); // Debug print
+
+        int roomNumber = model.getRoomNumberForBooking(lastBookingId);
+        System.out.println("Room Number: " + roomNumber); 
+
+        String roomType = model.getRoomType(roomNumber);
+        System.out.println("Room Type: " + roomType); 
+
+        long numberOfDays = calculateNumberOfDays(checkInDate, checkOutDate);
+        System.out.println("Number of Days: " + numberOfDays); 
+
+        double basePricePerDay = getPricePerDayByRoomType(roomType);
+        System.out.println("Base Price of " + roomType + " :"  + basePricePerDay); 
+
+        double totalCost = numberOfDays * basePricePerDay;
+        System.out.println("Total Cost: $" + totalCost); 
+        initialTotalCost = numberOfDays * basePricePerDay;
+        
+        jLabel11.setText("Total Cost: $" + totalCost);
+        updateTotalCost();
+    }
+    
+    public double getPricePerDayByRoomType(String roomType) {
+    switch (roomType) {
+        case "Standard":
+            return STANDARD_PRICE_PER_DAY;
+        case "Deluxe":
+            return DELUXE_PRICE_PER_DAY;
+        case "Suite":
+            return SUITE_PRICE_PER_DAY;
+        case "Executive":
+            return EXECUTIVE_PRICE_PER_DAY;
+        default:
+            return 0.0; 
+    }
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
@@ -512,65 +571,4 @@ private void updateTotalCost() {
     private javax.swing.JTextField suffix;
     // End of variables declaration//GEN-END:variables
    
-    public void updateCheckInOutDates() {
-        int guestId = model.getLastInsertedGuestId();
-        String[] checkInOutDates = controller.retrieveCheckInOutDates(guestId);
-        String checkInDate = checkInOutDates[0];
-        String checkOutDate = checkInOutDates[1];
-        displayCheckInOutDates(checkInDate, checkOutDate);
-
-    }
-    
-
-    public void displayCheckInOutDates(String checkInDate, String checkOutDate) {
-    jLabel9.setText("Check-in Date: " + checkInDate);
-    jLabel10.setText("Check-out Date: " + checkOutDate);    }
-    
-    
-        public long calculateNumberOfDays(String checkInDate, String checkOutDate) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate checkIn = LocalDate.parse(checkInDate, formatter);
-        LocalDate checkOut = LocalDate.parse(checkOutDate, formatter);
-
-        return ChronoUnit.DAYS.between(checkIn, checkOut);
-    }
-
-    public void displayTotalCost(String checkInDate, String checkOutDate) {
-        int lastBookingId = model.getLastInsertedBookingId();
-        System.out.println("Last Booking ID: " + lastBookingId); // Debug print
-
-        int roomNumber = model.getRoomNumberForBooking(lastBookingId);
-        System.out.println("Room Number: " + roomNumber); 
-
-        String roomType = model.getRoomType(roomNumber);
-        System.out.println("Room Type: " + roomType); 
-
-        long numberOfDays = calculateNumberOfDays(checkInDate, checkOutDate);
-        System.out.println("Number of Days: " + numberOfDays); 
-
-        double basePricePerDay = getPricePerDayByRoomType(roomType);
-        System.out.println("Base Price Per Day: " + basePricePerDay); 
-
-        double totalCost = numberOfDays * basePricePerDay;
-        System.out.println("Total Cost: $" + totalCost); 
-        initialTotalCost = numberOfDays * basePricePerDay;
-        
-        jLabel11.setText("Total Cost: $" + totalCost);
-        updateTotalCost();
-    }
-    
-    public double getPricePerDayByRoomType(String roomType) {
-    switch (roomType) {
-        case "Standard":
-            return STANDARD_PRICE_PER_DAY;
-        case "Deluxe":
-            return DELUXE_PRICE_PER_DAY;
-        case "Suite":
-            return SUITE_PRICE_PER_DAY;
-        case "Executive":
-            return EXECUTIVE_PRICE_PER_DAY;
-        default:
-            return 0.0; 
-    }
-}
 }

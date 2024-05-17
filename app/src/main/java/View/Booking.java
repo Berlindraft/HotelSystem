@@ -463,9 +463,6 @@ public class Booking extends javax.swing.JPanel {
     int children = Integer.parseInt(jLabel6.getText());
     String checkinDateString = jLabel9.getText();
     String checkoutDateString = jLabel10.getText();
-    // Debugging: Print out date strings
-    System.out.println("Check-in Date String: " + checkinDateString);
-    System.out.println("Check-out Date String: " + checkoutDateString);
 
     SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
     Date checkinDate;
@@ -488,15 +485,11 @@ public class Booking extends javax.swing.JPanel {
 
         if (confirmation == JOptionPane.YES_OPTION) {
             BookingModel Bmodel = new BookingModel();
-            double paymentAmount = 0.0; 
-            java.sql.Date paymentDate = new java.sql.Date(System.currentTimeMillis());
-
-            String paymentMethod = ""; 
-            
+           
             int guestId = Bmodel.addGuest();
             int paymentId = Bmodel.addPayment(guestId);
             
-            Bmodel.addBooking(guestId, paymentId, sqlCheckinDate, sqlCheckoutDate, adults, children, paymentAmount, paymentDate, paymentMethod);
+            Bmodel.addBooking(guestId, paymentId, sqlCheckinDate, sqlCheckoutDate, adults, children);
 
             // Refresh the UI
             Management management = (Management) SwingUtilities.getWindowAncestor(jButton5);
