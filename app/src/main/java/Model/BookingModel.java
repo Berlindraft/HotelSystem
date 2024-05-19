@@ -7,37 +7,9 @@ import javax.swing.JOptionPane;
  *
  * @author Zyron
  */
-
+//nakoy gi delete 5/17 check errors
 public class BookingModel {
     
-     public int retrieveAdultCount() {
-        int adultCount = 0;
-        try (Connection connection = DatabaseConnection.getConnection();
-             PreparedStatement statement = connection.prepareStatement("SELECT * FROM guestcat")) {
-            ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                adultCount = resultSet.getInt("adults");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return adultCount;
-    }
-     
-     public int retrieveChildrenCount() {
-        int childrenCount = 0;
-        try (Connection connection = DatabaseConnection.getConnection();
-             PreparedStatement statement = connection.prepareStatement("SELECT * FROM guestcat")) {
-            ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                childrenCount = resultSet.getInt("children");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return childrenCount;
-    }
-     
      public void updateAdultCount(int newAdultCount) {
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement("UPDATE guestcat SET adults = ?")) {
@@ -163,85 +135,6 @@ public void addBooking(int guestId, int paymentId, Date checkinDate, Date checko
         e.printStackTrace();
     }
 }
-
-
-
-
-public void subtractBooking(int bookingToRemove) {
-        try (Connection connection = DatabaseConnection.getConnection();
-             PreparedStatement statement = connection.prepareStatement("DELETE FROM bookingdb WHERE booking = ?")) {
-            statement.setInt(1, bookingToRemove);
-            statement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void checkInDateMethod(java.util.Date selectedDate) {
-         try (Connection connection = getConnection()) {
-             String sql = "INSERT INTO testdb (checkinDate) VALUES (?)";
-            try (PreparedStatement statement = connection.prepareStatement(sql)) {
-                statement.setDate(1, new java.sql.Date(selectedDate.getTime()));
-                int rowsAffected = statement.executeUpdate();
-                if (rowsAffected > 0) {
-                    JOptionPane.showMessageDialog(null, "Date added to the database successfully!");
-                } else {
-                    JOptionPane.showMessageDialog(null, "Failed to add date to the database");
-                }
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(null, "An error occurred while adding date to the database");
-        }
-        
-    }
-
-public String retrieveStatus(int roomNumber) {
-    String status = ""; 
-    try (Connection connection = DatabaseConnection.getConnection();
-         PreparedStatement statement = connection.prepareStatement("SELECT roomStatus FROM roomdb WHERE roomNumber = ?");
-    ) {
-        statement.setInt(1, roomNumber);
-        try (ResultSet resultSet = statement.executeQuery()) {
-            if (resultSet.next()) {
-                status = resultSet.getString("roomStatus");
-            }
-        }
-    } catch (SQLException e) {
-        e.printStackTrace();
-    }
-    return status;
-}
-
-public String retrieveRoomStatus(int roomNumber, String roomType) {
-    String status = "";
-    try (Connection connection = DatabaseConnection.getConnection();
-         PreparedStatement statement = connection.prepareStatement("SELECT roomStatus FROM roomdb WHERE roomNumber = ? AND roomType = ?");
-    ) {
-        statement.setInt(1, roomNumber);
-        statement.setString(2, roomType);
-        try (ResultSet resultSet = statement.executeQuery()) {
-            if (resultSet.next()) {
-                status = resultSet.getString("roomStatus");
-            }
-        }
-    } catch (SQLException e) {
-        e.printStackTrace();
-    }
-    return status;
-}
-
-
-
-
-    
-    
-    
-    
-    
-    
-    
-    
 
 //fini
     }

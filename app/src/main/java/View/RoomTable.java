@@ -21,34 +21,61 @@ private RoomTableModel model;
         this.model = new RoomTableModel();
         attachButtonActions();
         updateRoomTable();
+        
     }
-    
+
+
 private void attachButtonActions() {
     jButton1.addActionListener(e -> updateRoom());
     jButton2.addActionListener(e -> clearRoom());
 }
 private void updateRoom() {
-        int roomNumber = Integer.parseInt(jTextField1.getText().trim());
-        String roomStatus = jTextField4.getText().trim();
-        String roomUpdate = jTextField7.getText().trim();
+    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+    boolean success = true;
+    for (int i = 0; i < model.getRowCount(); i++) {
+        Integer roomNumber = (Integer) model.getValueAt(i, 0); 
+        String roomType = (String) model.getValueAt(i, 1);
+        String roomStatus = (String) model.getValueAt(i, 2); 
+        String roomUpdate = (String) model.getValueAt(i, 3); 
 
-        if (model.updateRoomDetails(roomNumber, roomStatus, roomUpdate)) {
-            JOptionPane.showMessageDialog(this, "Room updated successfully!");
-            updateRoomTable();
-        } else {
-            JOptionPane.showMessageDialog(this, "Failed to update room.");
+        if (!this.model.updateRoomDetails(roomNumber, roomStatus, roomUpdate)) {
+            success = false;
+            break;
         }
     }
+    
+    if (success) {
+        JOptionPane.showMessageDialog(this, "Room updated successfully!");
+        updateRoomTable(); 
+    } else {
+        JOptionPane.showMessageDialog(this, "Failed to update room");
+    }
+}
 
-    private void clearRoom() {
-        int roomNumber = Integer.parseInt(jTextField1.getText().trim());
-        if (model.clearRoomDetails(roomNumber)) {
+private void clearRoom() {
+    int selectedRow = jTable1.getSelectedRow();
+    if (selectedRow == -1) {
+        JOptionPane.showMessageDialog(this, "Please select a row to clear.");
+        return;
+    }
+
+    int confirmation = JOptionPane.showConfirmDialog(this, "Are you sure you want to clear the selected room details?", "Confirm Clear", JOptionPane.YES_NO_OPTION);
+    if (confirmation == JOptionPane.YES_OPTION) {
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        int roomNumber = (Integer) model.getValueAt(selectedRow, 0); 
+
+        model.setValueAt(null, selectedRow, 2); 
+        model.setValueAt(null, selectedRow, 3); 
+
+
+        if (this.model.clearRoomDetails(roomNumber)) {
             JOptionPane.showMessageDialog(this, "Room cleared successfully!");
-            updateRoomTable();
+            updateRoomTable(); 
         } else {
             JOptionPane.showMessageDialog(this, "Failed to clear room.");
         }
     }
+}
 
     private void updateRoomTable() {
         try {
@@ -69,6 +96,8 @@ private void updateRoom() {
     }
 
 
+
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -83,9 +112,6 @@ private void updateRoom() {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -111,18 +137,20 @@ private void updateRoom() {
             Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, true, true
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
+        jTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTable1);
-
-        jTextField1.setText("Room Number");
-
-        jTextField4.setText("Room Status");
-
-        jTextField7.setText("Room Update");
 
         jButton1.setText("UPDATE");
 
@@ -133,36 +161,23 @@ private void updateRoom() {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(53, 53, 53)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 593, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(114, 114, 114)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(84, 84, 84)
-                                .addComponent(jButton1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton2)))))
-                .addContainerGap(74, Short.MAX_VALUE))
+                        .addGap(251, 251, 251)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(63, 63, 63)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 593, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addGap(35, 35, 35)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(52, 52, 52)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
@@ -179,10 +194,7 @@ private void updateRoom() {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField7;
     // End of variables declaration//GEN-END:variables
 }

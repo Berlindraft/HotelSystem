@@ -135,31 +135,6 @@ public class DashboardModel {
     int occupiedRooms = 0;
 
     try (Connection connection = DatabaseConnection.getConnection();
-         PreparedStatement statement = connection.prepareStatement("SELECT COUNT(*) AS total FROM roomdb WHERE roomType = 'Standard'");
-         ResultSet resultSet = statement.executeQuery()) {
-        if (resultSet.next()) {
-            totalRooms = resultSet.getInt("total");
-        }
-    }
-
-    try (Connection connection = DatabaseConnection.getConnection();
-         PreparedStatement statement = connection.prepareStatement("SELECT COUNT(*) AS total FROM roomdb WHERE roomType = 'Standard' AND roomStatus = 'Occupied'");
-         ResultSet resultSet = statement.executeQuery()) {
-        if (resultSet.next()) {
-            occupiedRooms = resultSet.getInt("total");
-        }
-    }
-    
-        roomStatus = occupiedRooms + "/" + totalRooms;
-
-    return roomStatus;
-}
-    public String getRoom2Status() throws SQLException {
-    String roomStatus = "";
-    int totalRooms = 0;
-    int occupiedRooms = 0;
-
-    try (Connection connection = DatabaseConnection.getConnection();
          PreparedStatement statement = connection.prepareStatement("SELECT COUNT(*) AS total FROM roomdb WHERE roomType = 'Deluxe'");
          ResultSet resultSet = statement.executeQuery()) {
         if (resultSet.next()) {
@@ -179,13 +154,13 @@ public class DashboardModel {
 
     return roomStatus;
 }
-    public String getRoom3Status() throws SQLException {
+    public String getRoom2Status() throws SQLException {
     String roomStatus = "";
     int totalRooms = 0;
     int occupiedRooms = 0;
 
     try (Connection connection = DatabaseConnection.getConnection();
-         PreparedStatement statement = connection.prepareStatement("SELECT COUNT(*) AS total FROM roomdb WHERE roomType = 'Suite'");
+         PreparedStatement statement = connection.prepareStatement("SELECT COUNT(*) AS total FROM roomdb WHERE roomType = 'Premier'");
          ResultSet resultSet = statement.executeQuery()) {
         if (resultSet.next()) {
             totalRooms = resultSet.getInt("total");
@@ -193,7 +168,32 @@ public class DashboardModel {
     }
 
     try (Connection connection = DatabaseConnection.getConnection();
-         PreparedStatement statement = connection.prepareStatement("SELECT COUNT(*) AS total FROM roomdb WHERE roomType = 'Suite' AND roomStatus = 'Occupied'");
+         PreparedStatement statement = connection.prepareStatement("SELECT COUNT(*) AS total FROM roomdb WHERE roomType = 'Premier' AND roomStatus = 'Occupied'");
+         ResultSet resultSet = statement.executeQuery()) {
+        if (resultSet.next()) {
+            occupiedRooms = resultSet.getInt("total");
+        }
+    }
+    
+        roomStatus = occupiedRooms + "/" + totalRooms;
+
+    return roomStatus;
+}
+    public String getRoom3Status() throws SQLException {
+    String roomStatus = "";
+    int totalRooms = 0;
+    int occupiedRooms = 0;
+
+    try (Connection connection = DatabaseConnection.getConnection();
+         PreparedStatement statement = connection.prepareStatement("SELECT COUNT(*) AS total FROM roomdb WHERE roomType = 'Executive'");
+         ResultSet resultSet = statement.executeQuery()) {
+        if (resultSet.next()) {
+            totalRooms = resultSet.getInt("total");
+        }
+    }
+
+    try (Connection connection = DatabaseConnection.getConnection();
+         PreparedStatement statement = connection.prepareStatement("SELECT COUNT(*) AS total FROM roomdb WHERE roomType = 'Executive' AND roomStatus = 'Occupied'");
          ResultSet resultSet = statement.executeQuery()) {
         if (resultSet.next()) {
             occupiedRooms = resultSet.getInt("total");
@@ -210,7 +210,7 @@ public class DashboardModel {
     int occupiedRooms = 0;
 
     try (Connection connection = DatabaseConnection.getConnection();
-         PreparedStatement statement = connection.prepareStatement("SELECT COUNT(*) AS total FROM roomdb WHERE roomType = 'Executive'");
+         PreparedStatement statement = connection.prepareStatement("SELECT COUNT(*) AS total FROM roomdb WHERE roomType = 'Presidential'");
          ResultSet resultSet = statement.executeQuery()) {
         if (resultSet.next()) {
             totalRooms = resultSet.getInt("total");
@@ -218,7 +218,7 @@ public class DashboardModel {
     }
 
     try (Connection connection = DatabaseConnection.getConnection();
-         PreparedStatement statement = connection.prepareStatement("SELECT COUNT(*) AS total FROM roomdb WHERE roomType = 'Executive' AND roomStatus = 'Occupied'");
+         PreparedStatement statement = connection.prepareStatement("SELECT COUNT(*) AS total FROM roomdb WHERE roomType = 'Presidential' AND roomStatus = 'Occupied'");
          ResultSet resultSet = statement.executeQuery()) {
         if (resultSet.next()) {
             occupiedRooms = resultSet.getInt("total");

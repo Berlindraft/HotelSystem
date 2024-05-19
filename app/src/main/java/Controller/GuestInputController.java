@@ -2,7 +2,7 @@ package Controller;
 
 import Model.BookingModel;
 import Model.GuestInputModel;
-import View.Guest;
+import View.GuestInput;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 public class GuestInputController {
     private GuestInputModel model;
     private BookingModel Bmodel;
-    private Guest view; 
+    private GuestInput view; 
 
     public GuestInputController() { 
         this.model = new GuestInputModel(); 

@@ -350,23 +350,23 @@ public class RoomType extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void premierbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_premierbuttonActionPerformed
-        handleRoomTypeButtonClick("Deluxe");
+        handleRoomTypeButtonClick("Premier");
         System.out.println("premier rooms selected");
     }//GEN-LAST:event_premierbuttonActionPerformed
 
     private void executivebuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_executivebuttonActionPerformed
-        handleRoomTypeButtonClick("Suite");
+        handleRoomTypeButtonClick("Executive");
         System.out.println("suite rooms selected");
     }//GEN-LAST:event_executivebuttonActionPerformed
 
     private void presidentialbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_presidentialbuttonActionPerformed
-        handleRoomTypeButtonClick("Executive");
+        handleRoomTypeButtonClick("Presidential");
         System.out.println("presidential rooms selected");
     }//GEN-LAST:event_presidentialbuttonActionPerformed
 
     private void deluxebuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deluxebuttonActionPerformed
         // TODO add your handling code here:
-        handleRoomTypeButtonClick("Standard");
+        handleRoomTypeButtonClick("Deluxe");
         System.out.println("standard rooms selected");
     }//GEN-LAST:event_deluxebuttonActionPerformed
 

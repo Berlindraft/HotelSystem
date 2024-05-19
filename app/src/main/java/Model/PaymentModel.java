@@ -35,25 +35,25 @@ public class PaymentModel {
     }
        
        
-        public int getLastInsertedBookingId() {
-            int lastBookingId = -1;
+        public int getLastInsertedPaymentId() {
+            int paymentId = -1;
             try (Connection con = DatabaseConnection.getConnection()) {
-                String query = "SELECT MAX(bookingId) AS lastId FROM newbookingdb";
+                String query = "SELECT MAX(paymentId) AS lastId FROM paymentdb";
                 try (PreparedStatement stmt = con.prepareStatement(query)) {
                     ResultSet rs = stmt.executeQuery();
                     if (rs.next()) {
-                        lastBookingId = rs.getInt("lastId");
+                        paymentId = rs.getInt("lastId");
                     }
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(GuestInputModel.class.getName()).log(Level.SEVERE, null, ex);
             }
-            return lastBookingId;
+            return paymentId;
         }
         
         
  public void cardInformation(String paymentMethod, String cardNumber, String cardExpiration, String cardName, String cardCvv, String paymentDate) {
-    int paymentId = getLastInsertedBookingId(); 
+    int paymentId = getLastInsertedPaymentId(); 
 
     if (paymentId != -1) {
         try (Connection con = DatabaseConnection.getConnection()) {
@@ -90,7 +90,7 @@ public class PaymentModel {
 
     
         public void gcashInformation(String paymentMethod, String gcashnumber, String gcashname, String paymentDate) {
-        int paymentid = getLastInsertedBookingId(); // Retrieve the last inserted guestId
+        int paymentid = getLastInsertedPaymentId(); // Retrieve the last inserted guestId
 
         if (paymentid != -1) {
             try (Connection con = DatabaseConnection.getConnection()) {
@@ -120,7 +120,7 @@ public class PaymentModel {
     }
         
         public void cashReceived(String paymentMethod,int cashreceived, String paymentDate) {
-        int paymentid = getLastInsertedBookingId(); 
+        int paymentid = getLastInsertedPaymentId(); 
 
         if (paymentid != -1) {
             try (Connection con = DatabaseConnection.getConnection()) {

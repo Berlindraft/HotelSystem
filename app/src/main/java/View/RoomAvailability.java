@@ -12,12 +12,12 @@ import javax.swing.JOptionPane;
  * @author Zyron
  */
 public class RoomAvailability extends javax.swing.JPanel {
-private Guest guest;
+private GuestInput guest;
 private RoomAvailabilityModel model;
 
     public RoomAvailability() {
         initComponents();
-        guest = new Guest();
+        guest = new GuestInput();
         this.model = new RoomAvailabilityModel();
         updateBookingId();
     }

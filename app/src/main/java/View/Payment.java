@@ -21,8 +21,8 @@ private static PaymentModel model;
         initComponents();
         this.confirmation = new Confirmation();
         this.model = new PaymentModel();
-        int lastBookingId = model.getLastInsertedBookingId(); // Retrieve the last inserted booking ID
-        displayPaymentTotal(lastBookingId);
+        int paymentId = model.getLastInsertedPaymentId(); // Retrieve the last inserted booking ID
+        displayPaymentTotal(paymentId);
     }
 
     /**
@@ -142,16 +142,21 @@ private static PaymentModel model;
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(39, 39, 39)
                         .addComponent(jLabel1)))
-                .addGap(53, 53, 53)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel4))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton4)
-                        .addGap(24, 24, 24))
-                    .addComponent(jLabel5))
-                .addContainerGap(62, Short.MAX_VALUE))
+                        .addGap(53, 53, 53)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel4))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButton4)
+                                .addGap(24, 24, 24)))
+                        .addContainerGap(62, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel5)
+                        .addGap(87, 87, 87))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(78, 78, 78)
                 .addComponent(jCalendar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -289,8 +294,8 @@ private static PaymentModel model;
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField7ActionPerformed
     
-private void displayPaymentTotal(int bookingId) {
-    double paymentTotal = model.getPaymentAmount(bookingId);
+public void displayPaymentTotal(int paymentId) {
+    double paymentTotal = model.getPaymentAmount(paymentId);
     jLabel5.setText("Payment Total: $" + paymentTotal);
 }
     

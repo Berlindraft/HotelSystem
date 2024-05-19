@@ -11,7 +11,7 @@ import javax.swing.SwingUtilities;
  *
  * @author Zyron
  */
-public class Guest extends javax.swing.JPanel {
+public class GuestInput extends javax.swing.JPanel {
     private GuestInputController controller;
     private GuestInputModel model;
     private Payment payment;
@@ -28,7 +28,7 @@ public class Guest extends javax.swing.JPanel {
     /**
      * Creates new form Guest
      */
-    public Guest() {
+    public GuestInput() {
         initComponents();
         this.controller = new GuestInputController();
         this.model = new GuestInputModel();
@@ -400,6 +400,9 @@ jCheckBox3.addActionListener(e -> updateTotalCost());
     management.getjPanel11().add(payment);
     management.getjPanel11().revalidate();
     management.getjPanel11().repaint();  
+    
+        int paymentId = model.getLastInsertedPaymentId(); // Retrieve the last inserted booking ID
+        payment.displayPaymentTotal(paymentId);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
