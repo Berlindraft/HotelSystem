@@ -46,10 +46,10 @@ private void updateTransaction() {
     java.sql.Date paymentDateSql = paymentDateUtil != null ? new java.sql.Date(paymentDateUtil.getTime()) : null;
 
     Number paymentAmountNumber = (Number) jTable1.getValueAt(selectedRow, 2);
-    double paymentAmount = paymentAmountNumber != null ? paymentAmountNumber.doubleValue() : 0; // Convert Number to double
+    double paymentAmount = paymentAmountNumber != null ? paymentAmountNumber.doubleValue() : 0; 
 
     String paymentMethod = (String) jTable1.getValueAt(selectedRow, 3);
-    if (paymentMethod == null) paymentMethod = ""; // Default to empty string if null
+    if (paymentMethod == null) paymentMethod = ""; 
 
     try {
         if (model.updateTransaction(guestId, paymentDateSql, paymentAmount, paymentMethod)) {
@@ -91,7 +91,6 @@ private void updateTransactionTable() {
             double paymentAmount = rs.getDouble("paymentAmount");
             String paymentMethod = rs.getString("paymentMethod");
 
-            // Check if paymentDate is null and handle it appropriately
             String displayDate = paymentDate != null ? paymentDate.toString() : "No Date Set";
 
             tableModel.addRow(new Object[]{guestId, displayDate, paymentAmount, paymentMethod});
