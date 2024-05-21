@@ -30,8 +30,6 @@ public class Login1 extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        minimizeBtn = new javax.swing.JButton();
-        closeBtn = new javax.swing.JButton();
         userName = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -40,6 +38,8 @@ public class Login1 extends javax.swing.JFrame {
         minimizeBtn1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         minimizeBtn2 = new javax.swing.JButton();
+        minimizeBtn3 = new javax.swing.JButton();
+        closeBtn1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1000, 500));
@@ -64,33 +64,6 @@ public class Login1 extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setOpaque(false);
         jPanel4.setPreferredSize(new java.awt.Dimension(500, 500));
-
-        minimizeBtn.setBackground(new java.awt.Color(179, 139, 78));
-        minimizeBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        minimizeBtn.setForeground(new java.awt.Color(255, 255, 255));
-        minimizeBtn.setText("-");
-        minimizeBtn.setInheritsPopupMenu(true);
-        minimizeBtn.setMargin(new java.awt.Insets(5, 14, 5, 14));
-        minimizeBtn.setMaximumSize(new java.awt.Dimension(64, 42));
-        minimizeBtn.setMinimumSize(new java.awt.Dimension(64, 42));
-        minimizeBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                minimizeBtnActionPerformed(evt);
-            }
-        });
-
-        closeBtn.setBackground(new java.awt.Color(179, 139, 78));
-        closeBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        closeBtn.setForeground(new java.awt.Color(255, 255, 255));
-        closeBtn.setText("x");
-        closeBtn.setToolTipText("");
-        closeBtn.setFocusCycleRoot(true);
-        closeBtn.setMargin(new java.awt.Insets(5, 14, 5, 14));
-        closeBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                closeBtnActionPerformed(evt);
-            }
-        });
 
         userName.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         userName.setToolTipText("");
@@ -146,29 +119,53 @@ public class Login1 extends javax.swing.JFrame {
             }
         });
 
+        minimizeBtn3.setBackground(new java.awt.Color(179, 139, 78));
+        minimizeBtn3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        minimizeBtn3.setForeground(new java.awt.Color(255, 255, 255));
+        minimizeBtn3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/minimize.png"))); // NOI18N
+        minimizeBtn3.setInheritsPopupMenu(true);
+        minimizeBtn3.setMargin(new java.awt.Insets(5, 14, 5, 14));
+        minimizeBtn3.setMaximumSize(new java.awt.Dimension(64, 42));
+        minimizeBtn3.setMinimumSize(new java.awt.Dimension(64, 42));
+        minimizeBtn3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                minimizeBtn3ActionPerformed(evt);
+            }
+        });
+
+        closeBtn1.setBackground(new java.awt.Color(179, 139, 78));
+        closeBtn1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        closeBtn1.setForeground(new java.awt.Color(255, 255, 255));
+        closeBtn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/close.png"))); // NOI18N
+        closeBtn1.setToolTipText("");
+        closeBtn1.setFocusCycleRoot(true);
+        closeBtn1.setMargin(new java.awt.Insets(5, 14, 5, 14));
+        closeBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeBtn1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(minimizeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(closeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(userPass, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)
-                            .addComponent(checkbox1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(userName, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(userPass, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)
+                    .addComponent(checkbox1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(userName, javax.swing.GroupLayout.Alignment.LEADING))
+                .addContainerGap(27, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(minimizeBtn3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(closeBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel3)
@@ -182,11 +179,11 @@ public class Login1 extends javax.swing.JFrame {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(minimizeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(closeBtn))
-                .addGap(112, 112, 112)
+                    .addComponent(closeBtn1)
+                    .addComponent(minimizeBtn3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(120, 120, 120)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(userName, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -232,14 +229,6 @@ public class Login1 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void minimizeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minimizeBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_minimizeBtnActionPerformed
-
-    private void closeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_closeBtnActionPerformed
-
     private void userNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_userNameActionPerformed
@@ -251,6 +240,14 @@ public class Login1 extends javax.swing.JFrame {
     private void minimizeBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minimizeBtn2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_minimizeBtn2ActionPerformed
+
+    private void minimizeBtn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minimizeBtn3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_minimizeBtn3ActionPerformed
+
+    private void closeBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBtn1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_closeBtn1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -289,7 +286,7 @@ public class Login1 extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Checkbox checkbox1;
-    private javax.swing.JButton closeBtn;
+    private javax.swing.JButton closeBtn1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -297,9 +294,9 @@ public class Login1 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JButton minimizeBtn;
     private javax.swing.JButton minimizeBtn1;
     private javax.swing.JButton minimizeBtn2;
+    private javax.swing.JButton minimizeBtn3;
     private javax.swing.JTextField userName;
     private javax.swing.JPasswordField userPass;
     // End of variables declaration//GEN-END:variables
