@@ -389,7 +389,11 @@
                           <Component id="minimizeBtn16" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="minimizeBtn17" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="206" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="minimizeBtn18" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="minimizeBtn19" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jTextField2" min="-2" pref="326" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="minimizeBtn20" min="-2" max="-2" attributes="0"/>
@@ -403,7 +407,6 @@
                       <Component id="jScrollPane2" min="-2" pref="715" max="-2" attributes="0"/>
                       <EmptySpace pref="14" max="32767" attributes="0"/>
                   </Group>
-              </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">

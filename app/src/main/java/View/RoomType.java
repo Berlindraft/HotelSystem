@@ -332,10 +332,10 @@ public class RoomType extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void AvailablebuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AvailablebuttonActionPerformed
-        handleRoomTypeButtonClick("Standard");
         handleRoomTypeButtonClick("Deluxe");
-        handleRoomTypeButtonClick("Suite");
+        handleRoomTypeButtonClick("Premier");
         handleRoomTypeButtonClick("Executive");
+        handleRoomTypeButtonClick("Presidential");
         System.out.println("standard button press");
     }//GEN-LAST:event_AvailablebuttonActionPerformed
 
