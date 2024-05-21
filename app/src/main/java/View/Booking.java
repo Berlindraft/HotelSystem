@@ -24,10 +24,7 @@ public class Booking extends javax.swing.JPanel {
 
     public Booking() {
         initComponents();
-
     }
-
-    
 
     /**
      * This method is called from within the constructor to initialize the form.

@@ -4,19 +4,50 @@
  */
 package View;
 
+import Model.DatabaseConnection;
+import Model.RoomTableModel;
+import Model.TransactionTableModel;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author marvi
  */
 public class TransactionDetails extends javax.swing.JFrame {
-
+    
+    private TransactionTableModel model;
     /**
      * Creates new form GuestList
      */
     public TransactionDetails() {
         initComponents();
+        this.model = new TransactionTableModel();
+        fetchTransactionData();
     }
+    
+    private void fetchTransactionData() {
+        try {
+            ResultSet rs = model.fetchTransactionDetails();
+            DefaultTableModel tableModel = (DefaultTableModel) jTable2.getModel();
+            tableModel.setRowCount(0);
 
+            while (rs.next()) {
+                String guestName = rs.getString("firstName") + " " + rs.getString("lastName");
+                String roomNumber = rs.getString("roomNumber");
+                String paymentDate = rs.getString("paymentDate");
+                String paymentMethod = rs.getString("paymentMethod");
+                String paymentAmount = rs.getString("paymentAmount");
+                tableModel.addRow(new Object[]{guestName, roomNumber, paymentDate, paymentMethod, paymentAmount});
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error fetching room details: " + e.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,23 +66,18 @@ public class TransactionDetails extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         minimizeBtn14 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
         closeBtn = new javax.swing.JButton();
-        minimizeBtn = new javax.swing.JButton();
-        minimizeBtn1 = new javax.swing.JButton();
-        minimizeBtn2 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         minimizeBtn15 = new javax.swing.JButton();
         minimizeBtn16 = new javax.swing.JButton();
         minimizeBtn17 = new javax.swing.JButton();
-        minimizeBtn18 = new javax.swing.JButton();
-        minimizeBtn19 = new javax.swing.JButton();
         minimizeBtn20 = new javax.swing.JButton();
         jTextField2 = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel4.setBackground(new java.awt.Color(101, 28, 50));
 
@@ -198,7 +224,7 @@ public class TransactionDetails extends javax.swing.JFrame {
                 .addComponent(minimizeBtn11, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(minimizeBtn13, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(minimizeBtn14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -206,10 +232,6 @@ public class TransactionDetails extends javax.swing.JFrame {
         );
 
         jPanel2.setBackground(new java.awt.Color(101, 28, 50));
-
-        jTextField1.setText("Search");
-        jTextField1.setToolTipText("");
-        jTextField1.setMargin(new java.awt.Insets(5, 6, 5, 6));
 
         closeBtn.setBackground(new java.awt.Color(179, 139, 78));
         closeBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -224,62 +246,12 @@ public class TransactionDetails extends javax.swing.JFrame {
             }
         });
 
-        minimizeBtn.setBackground(new java.awt.Color(101, 28, 50));
-        minimizeBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        minimizeBtn.setForeground(new java.awt.Color(101, 28, 50));
-        minimizeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/notification.png"))); // NOI18N
-        minimizeBtn.setInheritsPopupMenu(true);
-        minimizeBtn.setMargin(new java.awt.Insets(5, 14, 5, 14));
-        minimizeBtn.setMaximumSize(new java.awt.Dimension(64, 42));
-        minimizeBtn.setMinimumSize(new java.awt.Dimension(64, 42));
-        minimizeBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                minimizeBtnActionPerformed(evt);
-            }
-        });
-
-        minimizeBtn1.setBackground(new java.awt.Color(179, 139, 78));
-        minimizeBtn1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        minimizeBtn1.setForeground(new java.awt.Color(255, 255, 255));
-        minimizeBtn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/minimize.png"))); // NOI18N
-        minimizeBtn1.setInheritsPopupMenu(true);
-        minimizeBtn1.setMargin(new java.awt.Insets(5, 14, 5, 14));
-        minimizeBtn1.setMaximumSize(new java.awt.Dimension(64, 42));
-        minimizeBtn1.setMinimumSize(new java.awt.Dimension(64, 42));
-        minimizeBtn1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                minimizeBtn1ActionPerformed(evt);
-            }
-        });
-
-        minimizeBtn2.setBackground(new java.awt.Color(101, 28, 50));
-        minimizeBtn2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        minimizeBtn2.setForeground(new java.awt.Color(255, 255, 255));
-        minimizeBtn2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/search.png"))); // NOI18N
-        minimizeBtn2.setInheritsPopupMenu(true);
-        minimizeBtn2.setMargin(new java.awt.Insets(5, 14, 5, 14));
-        minimizeBtn2.setMaximumSize(new java.awt.Dimension(64, 42));
-        minimizeBtn2.setMinimumSize(new java.awt.Dimension(64, 42));
-        minimizeBtn2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                minimizeBtn2ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(202, 202, 202)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(minimizeBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(minimizeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(minimizeBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(closeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
         );
@@ -287,13 +259,7 @@ public class TransactionDetails extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(17, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(closeBtn)
-                        .addComponent(minimizeBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(minimizeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(minimizeBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(closeBtn)
                 .addGap(15, 15, 15))
         );
 
@@ -341,34 +307,6 @@ public class TransactionDetails extends javax.swing.JFrame {
             }
         });
 
-        minimizeBtn18.setBackground(new java.awt.Color(101, 28, 50));
-        minimizeBtn18.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        minimizeBtn18.setForeground(new java.awt.Color(255, 255, 255));
-        minimizeBtn18.setText("IMPORT");
-        minimizeBtn18.setInheritsPopupMenu(true);
-        minimizeBtn18.setMargin(new java.awt.Insets(5, 14, 5, 14));
-        minimizeBtn18.setMaximumSize(new java.awt.Dimension(64, 42));
-        minimizeBtn18.setMinimumSize(new java.awt.Dimension(64, 42));
-        minimizeBtn18.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                minimizeBtn18ActionPerformed(evt);
-            }
-        });
-
-        minimizeBtn19.setBackground(new java.awt.Color(101, 28, 50));
-        minimizeBtn19.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        minimizeBtn19.setForeground(new java.awt.Color(255, 255, 255));
-        minimizeBtn19.setText("EXPORT");
-        minimizeBtn19.setInheritsPopupMenu(true);
-        minimizeBtn19.setMargin(new java.awt.Insets(5, 14, 5, 14));
-        minimizeBtn19.setMaximumSize(new java.awt.Dimension(64, 42));
-        minimizeBtn19.setMinimumSize(new java.awt.Dimension(64, 42));
-        minimizeBtn19.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                minimizeBtn19ActionPerformed(evt);
-            }
-        });
-
         minimizeBtn20.setBackground(new java.awt.Color(101, 28, 50));
         minimizeBtn20.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         minimizeBtn20.setForeground(new java.awt.Color(255, 255, 255));
@@ -387,25 +325,36 @@ public class TransactionDetails extends javax.swing.JFrame {
         jTextField2.setToolTipText("");
         jTextField2.setMargin(new java.awt.Insets(5, 6, 5, 6));
 
-        jTable1.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTable2.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1", "Nami Padin", "93DJ2231ADD35672D", "93DJ2231ADD35672D", "05-06-24", "Php 10,350", "Visa Credit"},
-                {"2", "Lany Amy", "93DJ2231ADD35672D", "93DJ2231ADD35672D", "05-06-24", "Php 10,350", "Visa Credit"},
-                {"3", "Huang Lucia", "93DJ2231ADD35672D", "93DJ2231ADD35672D", "05-06-24", "Php 10,350", "Visa Credit"},
-                {"4", "Dai David", "93DJ2231ADD35672D", "93DJ2231ADD35672D", "05-06-24", "Php 10,350", "Visa Credit"},
-                {"5", "Yang Hana", "93DJ2231ADD35672D", "93DJ2231ADD35672D", "05-06-24", "Php 10,350", "Visa Credit"},
-                {"6", "Ge Gray", "93DJ2231ADD35672D", "93DJ2231ADD35672D", "05-06-24", "Php 10,350", "Visa Credit"},
-                {"7", "Wang Mandy", "93DJ2231ADD35672D", "93DJ2231ADD35672D", "05-06-24", "Php 10,350", "Visa Credit"},
-                {"8", "Carl Canillo", "93DJ2231ADD35672D", "93DJ2231ADD35672D", "05-06-24", "Php 10,350", "Visa Credit"}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Guest Name", "Payment ID", "Booking ID ", "Payment Date", "Payment  Amount", "Payment  Method"
+                "Guest Name", "Booking ID", "Payment Date", "Payment Method", "Payment Amount"
             }
-        ));
-        jTable1.setRowHeight(40);
-        jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable2.setRowHeight(40);
+        jTable2.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(jTable2);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -414,24 +363,21 @@ public class TransactionDetails extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(minimizeBtn15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(minimizeBtn15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(minimizeBtn16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(minimizeBtn17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(minimizeBtn18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(minimizeBtn19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(minimizeBtn20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(minimizeBtn16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(minimizeBtn17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(206, 206, 206)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(minimizeBtn20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(17, 17, 17)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 715, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(14, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -442,14 +388,14 @@ public class TransactionDetails extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(minimizeBtn16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(minimizeBtn17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(minimizeBtn18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(minimizeBtn19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(minimizeBtn17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(minimizeBtn20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addGap(0, 92, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -501,19 +447,8 @@ public class TransactionDetails extends javax.swing.JFrame {
 
     private void closeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBtnActionPerformed
         // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_closeBtnActionPerformed
-
-    private void minimizeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minimizeBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_minimizeBtnActionPerformed
-
-    private void minimizeBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minimizeBtn1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_minimizeBtn1ActionPerformed
-
-    private void minimizeBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minimizeBtn2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_minimizeBtn2ActionPerformed
 
     private void minimizeBtn15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minimizeBtn15ActionPerformed
         // TODO add your handling code here:
@@ -526,14 +461,6 @@ public class TransactionDetails extends javax.swing.JFrame {
     private void minimizeBtn17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minimizeBtn17ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_minimizeBtn17ActionPerformed
-
-    private void minimizeBtn18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minimizeBtn18ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_minimizeBtn18ActionPerformed
-
-    private void minimizeBtn19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minimizeBtn19ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_minimizeBtn19ActionPerformed
 
     private void minimizeBtn20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minimizeBtn20ActionPerformed
         // TODO add your handling code here:
@@ -581,12 +508,9 @@ public class TransactionDetails extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JButton minimizeBtn;
-    private javax.swing.JButton minimizeBtn1;
     private javax.swing.JButton minimizeBtn10;
     private javax.swing.JButton minimizeBtn11;
     private javax.swing.JButton minimizeBtn12;
@@ -595,9 +519,6 @@ public class TransactionDetails extends javax.swing.JFrame {
     private javax.swing.JButton minimizeBtn15;
     private javax.swing.JButton minimizeBtn16;
     private javax.swing.JButton minimizeBtn17;
-    private javax.swing.JButton minimizeBtn18;
-    private javax.swing.JButton minimizeBtn19;
-    private javax.swing.JButton minimizeBtn2;
     private javax.swing.JButton minimizeBtn20;
     private javax.swing.JButton minimizeBtn8;
     // End of variables declaration//GEN-END:variables
