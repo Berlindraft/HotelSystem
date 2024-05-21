@@ -4,17 +4,47 @@
  */
 package View;
 
+import Model.TransactionTableModel;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author marvi
  */
 public class GuestList extends javax.swing.JFrame {
 
+    private TransactionTableModel model;
+    
+    private void fetchTransactionData() {
+        try {
+            ResultSet rs = model.fetchTransactionDetails();
+            DefaultTableModel tableModel = (DefaultTableModel) jTable2.getModel();
+            tableModel.setRowCount(0);
+
+            while (rs.next()) {
+                String guestName = rs.getString("firstName") + " " + rs.getString("lastName");
+                String mobileNumber = rs.getString("contactNumber");
+                String emailAddress = rs.getString("email");
+                String roomNo = rs.getString("roomNumber");
+                String in = rs.getString("checkinDate");
+                String out = rs.getString("checkoutDate");
+                tableModel.addRow(new Object[]{guestName, mobileNumber, emailAddress, roomNo, out, in});
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error fetching room details: " + e.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
     /**
      * Creates new form GuestList
      */
     public GuestList() {
         initComponents();
+        this.model = new TransactionTableModel();
+        fetchTransactionData();
     }
 
     /**
@@ -40,12 +70,10 @@ public class GuestList extends javax.swing.JFrame {
         minimizeBtn15 = new javax.swing.JButton();
         minimizeBtn16 = new javax.swing.JButton();
         minimizeBtn17 = new javax.swing.JButton();
-        minimizeBtn18 = new javax.swing.JButton();
-        minimizeBtn19 = new javax.swing.JButton();
         minimizeBtn20 = new javax.swing.JButton();
         jTextField2 = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -278,34 +306,6 @@ public class GuestList extends javax.swing.JFrame {
             }
         });
 
-        minimizeBtn18.setBackground(new java.awt.Color(101, 28, 50));
-        minimizeBtn18.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        minimizeBtn18.setForeground(new java.awt.Color(255, 255, 255));
-        minimizeBtn18.setText("IMPORT");
-        minimizeBtn18.setInheritsPopupMenu(true);
-        minimizeBtn18.setMargin(new java.awt.Insets(5, 14, 5, 14));
-        minimizeBtn18.setMaximumSize(new java.awt.Dimension(64, 42));
-        minimizeBtn18.setMinimumSize(new java.awt.Dimension(64, 42));
-        minimizeBtn18.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                minimizeBtn18ActionPerformed(evt);
-            }
-        });
-
-        minimizeBtn19.setBackground(new java.awt.Color(101, 28, 50));
-        minimizeBtn19.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        minimizeBtn19.setForeground(new java.awt.Color(255, 255, 255));
-        minimizeBtn19.setText("EXPORT");
-        minimizeBtn19.setInheritsPopupMenu(true);
-        minimizeBtn19.setMargin(new java.awt.Insets(5, 14, 5, 14));
-        minimizeBtn19.setMaximumSize(new java.awt.Dimension(64, 42));
-        minimizeBtn19.setMinimumSize(new java.awt.Dimension(64, 42));
-        minimizeBtn19.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                minimizeBtn19ActionPerformed(evt);
-            }
-        });
-
         minimizeBtn20.setBackground(new java.awt.Color(101, 28, 50));
         minimizeBtn20.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         minimizeBtn20.setForeground(new java.awt.Color(255, 255, 255));
@@ -324,25 +324,27 @@ public class GuestList extends javax.swing.JFrame {
         jTextField2.setToolTipText("");
         jTextField2.setMargin(new java.awt.Insets(5, 6, 5, 6));
 
-        jTable1.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1", "Nami Padin", "Famale", "09123123123", "NamiPadin@gmail.com", "Executive", "101", "05-06-24", "05-06-24"},
-                {"2", "Lany Amy", "Famale", "09123123123", "Lany Amy@gmail.com", "Deluxe", "102", null, null},
-                {"3", "Huang Lucia", "Famale", "09123123123", "Huang Lucian@gmail.com", "Deluxe", "103", null, null},
-                {"4", "Dai David", "Male", "09123123123", "Dai David@gmail.com", "Executive", "201", null, null},
-                {"5", "Yang Hana", "Famale", "09123123123", "Yang Hana@gmail.com", "Premier", "301", null, null},
-                {"6", "Ge Gray", "Male", "09123123123", "Ge Gray@gmail.com", "Premier", "302", null, null},
-                {"7", "Wang Mandy", "Famale", "09123123123", "Wang Mandy@gmail.com", "Premier", "303", null, null},
-                {"8", "Carl Canillo", "Famale", "09123123123", "Carl Canillo@gmail.com", "Premier", "304", null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Guest Name", "Gender", "Mobile Number", "Email", "Room Type", "Room No:", "IN", "OUT"
+                "Guest Name", "Mobile Number", "Email Address", "Room No", "OUT", "IN"
             }
-        ));
-        jTable1.setRowHeight(40);
-        jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jTable2.setRowHeight(40);
+        jScrollPane2.setViewportView(jTable2);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -351,7 +353,6 @@ public class GuestList extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(minimizeBtn15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -359,15 +360,12 @@ public class GuestList extends javax.swing.JFrame {
                                 .addComponent(minimizeBtn16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(minimizeBtn17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(minimizeBtn18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(minimizeBtn19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addGap(206, 206, 206)
                                 .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(minimizeBtn20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -379,14 +377,12 @@ public class GuestList extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(minimizeBtn16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(minimizeBtn17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(minimizeBtn18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(minimizeBtn19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(minimizeBtn17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(minimizeBtn20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(156, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -438,6 +434,7 @@ public class GuestList extends javax.swing.JFrame {
 
     private void closeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBtnActionPerformed
         // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_closeBtnActionPerformed
 
     private void minimizeBtn15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minimizeBtn15ActionPerformed
@@ -451,14 +448,6 @@ public class GuestList extends javax.swing.JFrame {
     private void minimizeBtn17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minimizeBtn17ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_minimizeBtn17ActionPerformed
-
-    private void minimizeBtn18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minimizeBtn18ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_minimizeBtn18ActionPerformed
-
-    private void minimizeBtn19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minimizeBtn19ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_minimizeBtn19ActionPerformed
 
     private void minimizeBtn20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minimizeBtn20ActionPerformed
         // TODO add your handling code here:
@@ -505,8 +494,8 @@ public class GuestList extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JButton minimizeBtn10;
     private javax.swing.JButton minimizeBtn11;
@@ -516,8 +505,6 @@ public class GuestList extends javax.swing.JFrame {
     private javax.swing.JButton minimizeBtn15;
     private javax.swing.JButton minimizeBtn16;
     private javax.swing.JButton minimizeBtn17;
-    private javax.swing.JButton minimizeBtn18;
-    private javax.swing.JButton minimizeBtn19;
     private javax.swing.JButton minimizeBtn20;
     private javax.swing.JButton minimizeBtn8;
     // End of variables declaration//GEN-END:variables
