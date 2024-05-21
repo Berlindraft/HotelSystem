@@ -6,6 +6,8 @@ package View;
 import Controller.AdminSignupController;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import java.io.File;
+import java.awt.Font;
  /*
  * @author Zyron
  */
@@ -16,6 +18,17 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
             initComponents();
+            
+            try {
+                
+                File fontStyleLight = new File("src/main/resources/fonts/Poppins-Light.ttf");
+                Font fontLight = Font.createFont(Font.TRUETYPE_FONT, fontStyleLight).deriveFont(12f);
+                userName.setFont(fontLight);                
+                userPass.setFont(fontLight);
+                
+            } catch(Exception e) { 
+                e.printStackTrace();
+            }
     }
 
     /**
@@ -40,8 +53,6 @@ public class Login extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         btnSignup = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jPanel6 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(600, 600));
@@ -194,21 +205,11 @@ public class Login extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.WEST);
 
-        jPanel2.setBackground(new java.awt.Color(0, 51, 51));
+        jPanel2.setBackground(new java.awt.Color(101, 28, 50));
         jPanel2.setMinimumSize(new java.awt.Dimension(0, 300));
         jPanel2.setPreferredSize(new java.awt.Dimension(400, 0));
         jPanel2.setLayout(new java.awt.BorderLayout());
-
-        jPanel6.setOpaque(false);
-        jPanel6.setPreferredSize(new java.awt.Dimension(300, 516));
-        jPanel6.setLayout(new java.awt.BorderLayout());
-
-        jLabel5.setText("jLabel5");
-        jPanel6.add(jLabel5, java.awt.BorderLayout.CENTER);
-
-        jPanel2.add(jPanel6, java.awt.BorderLayout.CENTER);
-
-        getContentPane().add(jPanel2, java.awt.BorderLayout.EAST);
+        getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
 
         pack();
         setLocationRelativeTo(null);
@@ -305,13 +306,11 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JCheckBox showPass;
     private javax.swing.JTextField userName;
     private javax.swing.JPasswordField userPass;
