@@ -14,7 +14,9 @@ import javax.swing.table.DefaultTableModel;
  * @author Zyron
  */
 public class TransactionTable extends javax.swing.JPanel {
-private TransactionTableModel model;
+    
+    private TransactionTableModel model;
+    
     /**
      * Creates new form TransactionTable
      */

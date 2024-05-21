@@ -4,29 +4,36 @@
  */
 package View;
 
-import Controller.BookingController;
-import Model.BookingModel;
 import Model.DashboardModel;
-import com.toedter.calendar.JCalendar;
 import java.sql.SQLException;
 import java.util.Map;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
 /**
  *
- * @author Zyron
+ * @author noemi
  */
 public class Management extends javax.swing.JFrame {
 
+    /**
+     * Creates new form Management2
+     */
     public Management() {
         initComponents();
+        
         Dashboard dashboard = new Dashboard();
         dashboard.loadData();
-        jPanel11.add(dashboard);
-        jPanel11.revalidate();
-        jPanel11.repaint();
+        dashboardPanel.add(dashboard);
+        dashboardPanel.revalidate();
+        dashboardPanel.repaint();
         this.dispose();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+    }
+    
+    public JPanel getDashboardPanel()
+    {
+        return dashboardPanel;
     }
 
     /**
@@ -38,377 +45,349 @@ public class Management extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        closeBtn = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jPanel6 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        jPanel7 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        jPanel12 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
-        jPanel8 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        jPanel9 = new javax.swing.JPanel();
-        jPanel11 = new javax.swing.JPanel();
-        jPanel10 = new javax.swing.JPanel();
-
-        jLabel1.setText("jLabel1");
-
-        jLabel2.setText("jLabel2");
+        bookingBtn = new javax.swing.JButton();
+        dashboardBtn = new javax.swing.JButton();
+        roomsBtn = new javax.swing.JButton();
+        guestsBtn = new javax.swing.JButton();
+        transactionsBtn = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        logoutBtn = new javax.swing.JButton();
+        dashboardPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
-        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel1.setPreferredSize(new java.awt.Dimension(150, 0));
-        jPanel1.setLayout(new java.awt.BorderLayout());
+        jPanel2.setBackground(new java.awt.Color(101, 28, 50));
 
-        jPanel2.setOpaque(false);
-        jPanel2.setPreferredSize(new java.awt.Dimension(150, 80));
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("DAYUHAN");
+        closeBtn.setBackground(new java.awt.Color(179, 139, 78));
+        closeBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        closeBtn.setForeground(new java.awt.Color(255, 255, 255));
+        closeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/close.png"))); // NOI18N
+        closeBtn.setToolTipText("");
+        closeBtn.setFocusCycleRoot(true);
+        closeBtn.setMargin(new java.awt.Insets(5, 14, 5, 14));
+        closeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 22, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(closeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(17, Short.MAX_VALUE)
+                .addComponent(closeBtn)
+                .addGap(15, 15, 15))
         );
 
-        jPanel1.add(jPanel2, java.awt.BorderLayout.NORTH);
+        jPanel3.setBackground(new java.awt.Color(101, 28, 50));
 
-        jPanel3.setOpaque(false);
-        jPanel3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 5, 2));
-
-        jPanel4.setPreferredSize(new java.awt.Dimension(150, 50));
-        jPanel4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel4MouseClicked(evt);
+        bookingBtn.setBackground(new java.awt.Color(101, 28, 50));
+        bookingBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        bookingBtn.setForeground(new java.awt.Color(255, 255, 255));
+        bookingBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/booking.png"))); // NOI18N
+        bookingBtn.setText("Bookings");
+        bookingBtn.setToolTipText("");
+        bookingBtn.setBorder(null);
+        bookingBtn.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        bookingBtn.setIconTextGap(10);
+        bookingBtn.setInheritsPopupMenu(true);
+        bookingBtn.setMargin(new java.awt.Insets(5, 5, 5, 5));
+        bookingBtn.setMaximumSize(new java.awt.Dimension(64, 42));
+        bookingBtn.setMinimumSize(new java.awt.Dimension(64, 42));
+        bookingBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bookingBtnActionPerformed(evt);
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setText("DASHBOARD");
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        jPanel3.add(jPanel4);
-
-        jPanel5.setBackground(new java.awt.Color(255, 153, 51));
-        jPanel5.setPreferredSize(new java.awt.Dimension(150, 50));
-        jPanel5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel5MouseClicked(evt);
+        dashboardBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        dashboardBtn.setForeground(new java.awt.Color(101, 28, 50));
+        dashboardBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/active-dashboard.png"))); // NOI18N
+        dashboardBtn.setText("Dashboard");
+        dashboardBtn.setBorder(null);
+        dashboardBtn.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        dashboardBtn.setIconTextGap(10);
+        dashboardBtn.setInheritsPopupMenu(true);
+        dashboardBtn.setMargin(new java.awt.Insets(5, 5, 5, 5));
+        dashboardBtn.setMaximumSize(new java.awt.Dimension(64, 42));
+        dashboardBtn.setMinimumSize(new java.awt.Dimension(64, 42));
+        dashboardBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dashboardBtnActionPerformed(evt);
             }
         });
 
-        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setText("BOOKINGS");
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jLabel5)
-                .addContainerGap(50, Short.MAX_VALUE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        jPanel3.add(jPanel5);
-
-        jPanel6.setBackground(new java.awt.Color(255, 153, 51));
-        jPanel6.setPreferredSize(new java.awt.Dimension(150, 50));
-        jPanel6.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel6MouseClicked(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jPanel6MouseExited(evt);
+        roomsBtn.setBackground(new java.awt.Color(101, 28, 50));
+        roomsBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        roomsBtn.setForeground(new java.awt.Color(255, 255, 255));
+        roomsBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rooms.png"))); // NOI18N
+        roomsBtn.setText("Rooms");
+        roomsBtn.setToolTipText("");
+        roomsBtn.setBorder(null);
+        roomsBtn.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        roomsBtn.setIconTextGap(10);
+        roomsBtn.setInheritsPopupMenu(true);
+        roomsBtn.setMargin(new java.awt.Insets(5, 5, 5, 5));
+        roomsBtn.setMaximumSize(new java.awt.Dimension(64, 42));
+        roomsBtn.setMinimumSize(new java.awt.Dimension(64, 42));
+        roomsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                roomsBtnActionPerformed(evt);
             }
         });
 
-        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel6.setText("GUEST");
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(72, Short.MAX_VALUE))
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        jPanel3.add(jPanel6);
-
-        jPanel7.setBackground(new java.awt.Color(255, 153, 51));
-        jPanel7.setPreferredSize(new java.awt.Dimension(150, 50));
-        jPanel7.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel7MouseClicked(evt);
+        guestsBtn.setBackground(new java.awt.Color(101, 28, 50));
+        guestsBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        guestsBtn.setForeground(new java.awt.Color(255, 255, 255));
+        guestsBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guest.png"))); // NOI18N
+        guestsBtn.setText("Guests");
+        guestsBtn.setBorder(null);
+        guestsBtn.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        guestsBtn.setIconTextGap(10);
+        guestsBtn.setInheritsPopupMenu(true);
+        guestsBtn.setMargin(new java.awt.Insets(5, 5, 5, 5));
+        guestsBtn.setMaximumSize(new java.awt.Dimension(64, 42));
+        guestsBtn.setMinimumSize(new java.awt.Dimension(64, 42));
+        guestsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guestsBtnActionPerformed(evt);
             }
         });
 
-        jLabel7.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel7.setText("ROOMS");
-
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jLabel7)
-                .addContainerGap(71, Short.MAX_VALUE))
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        jPanel3.add(jPanel7);
-
-        jPanel12.setBackground(new java.awt.Color(255, 153, 51));
-        jPanel12.setPreferredSize(new java.awt.Dimension(150, 50));
-        jPanel12.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel12MouseClicked(evt);
+        transactionsBtn.setBackground(new java.awt.Color(101, 28, 50));
+        transactionsBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        transactionsBtn.setForeground(new java.awt.Color(255, 255, 255));
+        transactionsBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/transaction.png"))); // NOI18N
+        transactionsBtn.setText("Transactions");
+        transactionsBtn.setToolTipText("");
+        transactionsBtn.setBorder(null);
+        transactionsBtn.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        transactionsBtn.setIconTextGap(10);
+        transactionsBtn.setInheritsPopupMenu(true);
+        transactionsBtn.setMargin(new java.awt.Insets(5, 5, 5, 5));
+        transactionsBtn.setMaximumSize(new java.awt.Dimension(64, 42));
+        transactionsBtn.setMinimumSize(new java.awt.Dimension(64, 42));
+        transactionsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                transactionsBtnActionPerformed(evt);
             }
         });
 
-        jLabel9.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel9.setText("TRANSACTIONS");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Admin");
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
-        jPanel12.setLayout(jPanel12Layout);
-        jPanel12Layout.setHorizontalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel12Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jLabel9)
-                .addContainerGap(16, Short.MAX_VALUE))
+        logoutBtn.setBackground(new java.awt.Color(101, 28, 50));
+        logoutBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        logoutBtn.setForeground(new java.awt.Color(255, 255, 255));
+        logoutBtn.setText("Log out");
+        logoutBtn.setInheritsPopupMenu(true);
+        logoutBtn.setMargin(new java.awt.Insets(5, 14, 5, 14));
+        logoutBtn.setMaximumSize(new java.awt.Dimension(64, 42));
+        logoutBtn.setMinimumSize(new java.awt.Dimension(64, 42));
+        logoutBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutBtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(15, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(bookingBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(roomsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(guestsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(transactionsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+                    .addComponent(logoutBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+            .addComponent(dashboardBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        jPanel12Layout.setVerticalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel12Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(54, 54, 54)
+                .addComponent(dashboardBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(bookingBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(guestsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(roomsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(transactionsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(logoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
+        );
+
+        dashboardPanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout dashboardPanelLayout = new javax.swing.GroupLayout(dashboardPanel);
+        dashboardPanel.setLayout(dashboardPanelLayout);
+        dashboardPanelLayout.setHorizontalGroup(
+            dashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 800, Short.MAX_VALUE)
+        );
+        dashboardPanelLayout.setVerticalGroup(
+            dashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 534, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(dashboardPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(dashboardPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-
-        jPanel3.add(jPanel12);
-
-        jPanel8.setBackground(new java.awt.Color(255, 153, 51));
-        jPanel8.setPreferredSize(new java.awt.Dimension(150, 50));
-
-        jLabel8.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel8.setText("LOGOUT");
-
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
-        );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        jPanel3.add(jPanel8);
-
-        jPanel1.add(jPanel3, java.awt.BorderLayout.CENTER);
-
-        getContentPane().add(jPanel1, java.awt.BorderLayout.LINE_START);
-
-        jPanel9.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel9.setLayout(new java.awt.BorderLayout());
-
-        jPanel11.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel11.setPreferredSize(new java.awt.Dimension(550, 420));
-        jPanel11.setLayout(new java.awt.CardLayout());
-        jPanel9.add(jPanel11, java.awt.BorderLayout.CENTER);
-
-        jPanel10.setBackground(new java.awt.Color(0, 0, 0));
-
-        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
-        jPanel10.setLayout(jPanel10Layout);
-        jPanel10Layout.setHorizontalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 550, Short.MAX_VALUE)
-        );
-        jPanel10Layout.setVerticalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 80, Short.MAX_VALUE)
-        );
-
-        jPanel9.add(jPanel10, java.awt.BorderLayout.PAGE_START);
-
-        getContentPane().add(jPanel9, java.awt.BorderLayout.CENTER);
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jPanel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseClicked
-    jPanel11.removeAll();
-    Dashboard dashboard = new Dashboard();
-    DashboardModel dashboardModel = new DashboardModel();
-    try {
-        // Fetch total check-ins using DashboardModel instance
-        int totalCheckIns = dashboardModel.getTotalCheckInsToday();
-        dashboard.setTotalCheckIns(totalCheckIns);
-        
-        // Fetch total check-outs using DashboardModel instance
-        int totalCheckOuts = dashboardModel.getTotalCheckOutsToday();
-        dashboard.setTotalCheckOuts(totalCheckOuts);
-        
-        // Fetch total check-outs using DashboardModel instance
-        int totalOccupied = dashboardModel.getTotalOccupiedRooms();
-        dashboard.setTotalOccupied(totalOccupied);
-        
-        // Fetch total check-outs using DashboardModel instance
-        int totalAvailable = dashboardModel.getTotalAvailableRooms();
-        dashboard.setTotalAvailable(totalAvailable);
-        
-        // Fetch week total using DashboardModel instance
-        int weekTotal = dashboardModel.getCheckinTotal();
-        dashboard.setTotalCheckinWeek(weekTotal);
-        
-        // Fetch room status using DashboardModel instance
-        Map<String, Integer> OccupiedStatus = dashboardModel.getOccupiedRoomCounts();
-        dashboard.displayOccupiedRoomStatusCounts(OccupiedStatus);
-        
-        // Fetch room status using DashboardModel instance
-        Map<String, Integer> AvailableStatus = dashboardModel.getAvailableRoomCounts();
-        dashboard.displayAvailableRoomStatusCounts(AvailableStatus);
-        
-        // Fetch week total using DashboardModel instance
-        String DeluxeRooms = dashboardModel.getRoom1Status();
-        dashboard.displayRoom1Status(DeluxeRooms);
-        String PremierRooms = dashboardModel.getRoom2Status();
-        dashboard.displayRoom2Status(PremierRooms);
-        String SuiteRooms = dashboardModel.getRoom3Status();
-        dashboard.displayRoom3Status(SuiteRooms);
-        String PresidentialRooms = dashboardModel.getRoom4Status();
-        dashboard.displayRoom4Status(PresidentialRooms);
-         
-        
-    } catch (SQLException e) {
-        e.printStackTrace();
-        // Handle SQLException
-        dashboard.displayErrorMessage("Error fetching data");
-    }
-  
-        
-    jPanel11.add(dashboard);
-    jPanel11.revalidate();
-    jPanel11.repaint();
-    }//GEN-LAST:event_jPanel4MouseClicked
-
-    private void jPanel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseClicked
-    jPanel11.removeAll();
-    Booking book = new Booking();
-    jPanel11.add(book);
-    jPanel11.revalidate();
-    jPanel11.repaint();
-    }//GEN-LAST:event_jPanel5MouseClicked
-
-    public JPanel getjPanel11() {
-        return jPanel11;
-    }
-
-
-    private void jPanel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseClicked
-        jPanel11.removeAll();
-        GuestTable guestTable = new GuestTable();
-        jPanel11.add(guestTable);
-        jPanel11.revalidate();
-        jPanel11.repaint();
-    }//GEN-LAST:event_jPanel6MouseClicked
-
-    private void jPanel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseClicked
-        jPanel11.removeAll();
-        RoomTable roomTable = new RoomTable();
-        jPanel11.add(roomTable);
-        jPanel11.revalidate();
-        jPanel11.repaint();
-    }//GEN-LAST:event_jPanel7MouseClicked
-
-    private void jPanel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel12MouseClicked
-        jPanel11.removeAll();
-        TransactionTable transactionTable = new TransactionTable();
-        jPanel11.add(transactionTable);
-        jPanel11.revalidate();
-        jPanel11.repaint();
-    }//GEN-LAST:event_jPanel12MouseClicked
-
-    private void jPanel6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseExited
+    private void closeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPanel6MouseExited
+    }//GEN-LAST:event_closeBtnActionPerformed
+
+    private void bookingBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookingBtnActionPerformed
+        // TODO add your handling code here:
+        dashboardPanel.removeAll();
+        Booking book = new Booking();
+        dashboardPanel.add(book);
+        dashboardPanel.revalidate();
+        dashboardPanel.repaint();
+    }//GEN-LAST:event_bookingBtnActionPerformed
+
+    private void dashboardBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dashboardBtnActionPerformed
+        // TODO add your handling code here:
+        
+        dashboardPanel.removeAll();
+        Dashboard dashboard = new Dashboard();
+        DashboardModel dashboardModel = new DashboardModel();
+
+        try {
+            // Fetch total check-ins using DashboardModel instance
+            int totalCheckIns = dashboardModel.getTotalCheckInsToday();
+            dashboard.setTotalCheckIns(totalCheckIns);
+
+            // Fetch total check-outs using DashboardModel instance
+            int totalCheckOuts = dashboardModel.getTotalCheckOutsToday();
+            dashboard.setTotalCheckOuts(totalCheckOuts);
+
+            // Fetch total check-outs using DashboardModel instance
+            int totalOccupied = dashboardModel.getTotalOccupiedRooms();
+            dashboard.setTotalOccupied(totalOccupied);
+
+            // Fetch total check-outs using DashboardModel instance
+            int totalAvailable = dashboardModel.getTotalAvailableRooms();
+            dashboard.setTotalAvailable(totalAvailable);
+
+            // Fetch week total using DashboardModel instance
+            int weekTotal = dashboardModel.getCheckinTotal();
+            dashboard.setTotalCheckinWeek(weekTotal);
+
+            // Fetch room status using DashboardModel instance
+            Map<String, Integer> OccupiedStatus = dashboardModel.getOccupiedRoomCounts();
+            dashboard.displayOccupiedRoomStatusCounts(OccupiedStatus);
+
+            // Fetch room status using DashboardModel instance
+            Map<String, Integer> AvailableStatus = dashboardModel.getAvailableRoomCounts();
+            dashboard.displayAvailableRoomStatusCounts(AvailableStatus);
+
+            // Fetch week total using DashboardModel instance
+            String DeluxeRooms = dashboardModel.getRoom1Status();
+            dashboard.displayRoom1Status(DeluxeRooms);
+            String PremierRooms = dashboardModel.getRoom2Status();
+            dashboard.displayRoom2Status(PremierRooms);
+            String SuiteRooms = dashboardModel.getRoom3Status();
+            dashboard.displayRoom3Status(SuiteRooms);
+            String PresidentialRooms = dashboardModel.getRoom4Status();
+            dashboard.displayRoom4Status(PresidentialRooms);
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle SQLException
+            dashboard.displayErrorMessage("Error fetching data");
+        }
+
+
+        dashboardPanel.add(dashboard);
+        dashboardPanel.revalidate();
+        dashboardPanel.repaint();
+    }//GEN-LAST:event_dashboardBtnActionPerformed
+
+    private void roomsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roomsBtnActionPerformed
+        // TODO add your handling code here:
+        dashboardPanel.removeAll();
+        RoomTable roomTable = new RoomTable();
+        dashboardPanel.add(roomTable);
+        dashboardPanel.revalidate();
+        dashboardPanel.repaint();
+        
+    }//GEN-LAST:event_roomsBtnActionPerformed
+
+    private void guestsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guestsBtnActionPerformed
+        // TODO add your handling code here:
+        dashboardPanel.removeAll();
+        GuestTable guestTable = new GuestTable();
+        dashboardPanel.add(guestTable);
+        dashboardPanel.revalidate();
+        dashboardPanel.repaint();
+    }//GEN-LAST:event_guestsBtnActionPerformed
+
+    private void transactionsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transactionsBtnActionPerformed
+        // TODO add your handling code here:
+        dashboardPanel.removeAll();
+        TransactionTable transactionTable = new TransactionTable();
+        dashboardPanel.add(transactionTable);
+        dashboardPanel.revalidate();
+        dashboardPanel.repaint();
+    }//GEN-LAST:event_transactionsBtnActionPerformed
+
+    private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
+        // TODO add your handling code here:
+        
+        Login login = new Login();
+        login.setVisible(true);
+        login.pack();
+        login.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_logoutBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -436,7 +415,6 @@ public class Management extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Management.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -447,26 +425,16 @@ public class Management extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bookingBtn;
+    private javax.swing.JButton closeBtn;
+    private javax.swing.JButton dashboardBtn;
+    private javax.swing.JPanel dashboardPanel;
+    private javax.swing.JButton guestsBtn;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
+    private javax.swing.JButton logoutBtn;
+    private javax.swing.JButton roomsBtn;
+    private javax.swing.JButton transactionsBtn;
     // End of variables declaration//GEN-END:variables
 }

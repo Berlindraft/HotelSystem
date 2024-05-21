@@ -395,11 +395,11 @@ jCheckBox3.addActionListener(e -> updateTotalCost());
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     Management management = (Management) SwingUtilities.getWindowAncestor(this);
-    management.getjPanel11().removeAll();
+    management.getDashboardPanel().removeAll();
     payment.setVisible(true);
-    management.getjPanel11().add(payment);
-    management.getjPanel11().revalidate();
-    management.getjPanel11().repaint();  
+    management.getDashboardPanel().add(payment);
+    management.getDashboardPanel().revalidate();
+    management.getDashboardPanel().repaint();  
     
         int paymentId = model.getLastInsertedPaymentId(); // Retrieve the last inserted booking ID
         payment.displayPaymentTotal(paymentId);
