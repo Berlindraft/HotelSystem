@@ -35,11 +35,7 @@ public class GuestList extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         minimizeBtn14 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
         closeBtn = new javax.swing.JButton();
-        minimizeBtn = new javax.swing.JButton();
-        minimizeBtn1 = new javax.swing.JButton();
-        minimizeBtn2 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         minimizeBtn15 = new javax.swing.JButton();
         minimizeBtn16 = new javax.swing.JButton();
@@ -52,6 +48,7 @@ public class GuestList extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel4.setBackground(new java.awt.Color(101, 28, 50));
 
@@ -207,10 +204,6 @@ public class GuestList extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(101, 28, 50));
 
-        jTextField1.setText("Search");
-        jTextField1.setToolTipText("");
-        jTextField1.setMargin(new java.awt.Insets(5, 6, 5, 6));
-
         closeBtn.setBackground(new java.awt.Color(179, 139, 78));
         closeBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         closeBtn.setForeground(new java.awt.Color(255, 255, 255));
@@ -224,62 +217,12 @@ public class GuestList extends javax.swing.JFrame {
             }
         });
 
-        minimizeBtn.setBackground(new java.awt.Color(101, 28, 50));
-        minimizeBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        minimizeBtn.setForeground(new java.awt.Color(101, 28, 50));
-        minimizeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/notification.png"))); // NOI18N
-        minimizeBtn.setInheritsPopupMenu(true);
-        minimizeBtn.setMargin(new java.awt.Insets(5, 14, 5, 14));
-        minimizeBtn.setMaximumSize(new java.awt.Dimension(64, 42));
-        minimizeBtn.setMinimumSize(new java.awt.Dimension(64, 42));
-        minimizeBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                minimizeBtnActionPerformed(evt);
-            }
-        });
-
-        minimizeBtn1.setBackground(new java.awt.Color(179, 139, 78));
-        minimizeBtn1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        minimizeBtn1.setForeground(new java.awt.Color(255, 255, 255));
-        minimizeBtn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/minimize.png"))); // NOI18N
-        minimizeBtn1.setInheritsPopupMenu(true);
-        minimizeBtn1.setMargin(new java.awt.Insets(5, 14, 5, 14));
-        minimizeBtn1.setMaximumSize(new java.awt.Dimension(64, 42));
-        minimizeBtn1.setMinimumSize(new java.awt.Dimension(64, 42));
-        minimizeBtn1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                minimizeBtn1ActionPerformed(evt);
-            }
-        });
-
-        minimizeBtn2.setBackground(new java.awt.Color(101, 28, 50));
-        minimizeBtn2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        minimizeBtn2.setForeground(new java.awt.Color(255, 255, 255));
-        minimizeBtn2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/search.png"))); // NOI18N
-        minimizeBtn2.setInheritsPopupMenu(true);
-        minimizeBtn2.setMargin(new java.awt.Insets(5, 14, 5, 14));
-        minimizeBtn2.setMaximumSize(new java.awt.Dimension(64, 42));
-        minimizeBtn2.setMinimumSize(new java.awt.Dimension(64, 42));
-        minimizeBtn2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                minimizeBtn2ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(202, 202, 202)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(minimizeBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(minimizeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(minimizeBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(closeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
         );
@@ -287,13 +230,7 @@ public class GuestList extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(17, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(closeBtn)
-                        .addComponent(minimizeBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(minimizeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(minimizeBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(closeBtn)
                 .addGap(15, 15, 15))
         );
 
@@ -468,9 +405,7 @@ public class GuestList extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, 0)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -504,18 +439,6 @@ public class GuestList extends javax.swing.JFrame {
     private void closeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_closeBtnActionPerformed
-
-    private void minimizeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minimizeBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_minimizeBtnActionPerformed
-
-    private void minimizeBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minimizeBtn1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_minimizeBtn1ActionPerformed
-
-    private void minimizeBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minimizeBtn2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_minimizeBtn2ActionPerformed
 
     private void minimizeBtn15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minimizeBtn15ActionPerformed
         // TODO add your handling code here:
@@ -578,18 +501,13 @@ public class GuestList extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton closeBtn;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JButton minimizeBtn;
-    private javax.swing.JButton minimizeBtn1;
     private javax.swing.JButton minimizeBtn10;
     private javax.swing.JButton minimizeBtn11;
     private javax.swing.JButton minimizeBtn12;
@@ -600,14 +518,7 @@ public class GuestList extends javax.swing.JFrame {
     private javax.swing.JButton minimizeBtn17;
     private javax.swing.JButton minimizeBtn18;
     private javax.swing.JButton minimizeBtn19;
-    private javax.swing.JButton minimizeBtn2;
     private javax.swing.JButton minimizeBtn20;
-    private javax.swing.JButton minimizeBtn3;
-    private javax.swing.JButton minimizeBtn4;
-    private javax.swing.JButton minimizeBtn5;
-    private javax.swing.JButton minimizeBtn6;
-    private javax.swing.JButton minimizeBtn7;
     private javax.swing.JButton minimizeBtn8;
-    private javax.swing.JButton minimizeBtn9;
     // End of variables declaration//GEN-END:variables
 }
