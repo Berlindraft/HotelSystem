@@ -5,9 +5,11 @@
 package View;
 
 import Model.DashboardModel;
+import java.awt.Color;
 import java.sql.SQLException;
 import java.util.Map;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -15,14 +17,15 @@ import javax.swing.JPanel;
  * @author noemi
  */
 public class Management extends javax.swing.JFrame {
-
+    private final Color activeColor = new Color(179, 139, 78);  // Gold color for active
+    private final Color inactiveColor = new Color(101, 28, 50);
     /**
      * Creates new form Management2
      */
     public Management() {
         initComponents();
         
-        Dashboard dashboard = new Dashboard();
+        Dashboard2 dashboard = new Dashboard2();
         dashboard.loadData();
         dashboardPanel.add(dashboard);
         dashboardPanel.revalidate();
@@ -35,7 +38,20 @@ public class Management extends javax.swing.JFrame {
     {
         return dashboardPanel;
     }
+private void setActiveButton(javax.swing.JButton activeButton) {
+    // List of all buttons
+    javax.swing.JButton[] buttons = {dashboardBtn, bookingBtn, guestsBtn, roomsBtn, transactionsBtn};
 
+    // Set all to inactive, then set the active one
+    for (javax.swing.JButton btn : buttons) {
+        btn.setBackground(inactiveColor);
+        btn.setForeground(Color.WHITE);  // Optional: change text color if needed
+    }
+
+    // Set active button color
+    activeButton.setBackground(activeColor);
+    activeButton.setForeground(Color.BLACK);  // Optional: change text color if needed
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -79,10 +95,10 @@ public class Management extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(closeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
+                .addComponent(closeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,9 +129,10 @@ public class Management extends javax.swing.JFrame {
             }
         });
 
+        dashboardBtn.setBackground(new java.awt.Color(101, 28, 50));
         dashboardBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        dashboardBtn.setForeground(new java.awt.Color(101, 28, 50));
-        dashboardBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/active-dashboard.png"))); // NOI18N
+        dashboardBtn.setForeground(new java.awt.Color(255, 255, 255));
+        dashboardBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dashboard.png"))); // NOI18N
         dashboardBtn.setText("Dashboard");
         dashboardBtn.setBorder(null);
         dashboardBtn.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -211,17 +228,19 @@ public class Management extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(bookingBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(roomsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(guestsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(transactionsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
-                    .addComponent(logoutBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
             .addComponent(dashboardBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(bookingBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap(15, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(logoutBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)))
+                    .addComponent(guestsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(roomsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(transactionsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -244,17 +263,7 @@ public class Management extends javax.swing.JFrame {
         );
 
         dashboardPanel.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout dashboardPanelLayout = new javax.swing.GroupLayout(dashboardPanel);
-        dashboardPanel.setLayout(dashboardPanelLayout);
-        dashboardPanelLayout.setHorizontalGroup(
-            dashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
-        );
-        dashboardPanelLayout.setVerticalGroup(
-            dashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 534, Short.MAX_VALUE)
-        );
+        dashboardPanel.setLayout(new java.awt.BorderLayout());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -280,7 +289,12 @@ public class Management extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void closeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBtnActionPerformed
-        // TODO add your handling code here:
+    int confirm = JOptionPane.showConfirmDialog(this,
+        "Are you sure you want to close?", "Exit Confirmation",
+        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+    if (confirm == JOptionPane.YES_OPTION) {
+        this.dispose(); // or System.exit(0);
+    }
     }//GEN-LAST:event_closeBtnActionPerformed
 
     private void bookingBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookingBtnActionPerformed
@@ -290,6 +304,7 @@ public class Management extends javax.swing.JFrame {
         dashboardPanel.add(book);
         dashboardPanel.revalidate();
         dashboardPanel.repaint();
+        setActiveButton(bookingBtn);
     }//GEN-LAST:event_bookingBtnActionPerformed
 
     private void dashboardBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dashboardBtnActionPerformed
@@ -349,6 +364,7 @@ public class Management extends javax.swing.JFrame {
         dashboardPanel.add(dashboard);
         dashboardPanel.revalidate();
         dashboardPanel.repaint();
+        setActiveButton(dashboardBtn);
     }//GEN-LAST:event_dashboardBtnActionPerformed
 
     private void roomsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roomsBtnActionPerformed
@@ -358,7 +374,7 @@ public class Management extends javax.swing.JFrame {
         dashboardPanel.add(roomTable);
         dashboardPanel.revalidate();
         dashboardPanel.repaint();
-        
+        setActiveButton(roomsBtn);
     }//GEN-LAST:event_roomsBtnActionPerformed
 
     private void guestsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guestsBtnActionPerformed
@@ -368,6 +384,7 @@ public class Management extends javax.swing.JFrame {
         dashboardPanel.add(guestTable);
         dashboardPanel.revalidate();
         dashboardPanel.repaint();
+        setActiveButton(guestsBtn);
     }//GEN-LAST:event_guestsBtnActionPerformed
 
     private void transactionsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transactionsBtnActionPerformed
@@ -377,6 +394,7 @@ public class Management extends javax.swing.JFrame {
         dashboardPanel.add(transactionTable);
         dashboardPanel.revalidate();
         dashboardPanel.repaint();
+        setActiveButton(transactionsBtn);
     }//GEN-LAST:event_transactionsBtnActionPerformed
 
     private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed

@@ -350,21 +350,21 @@ public class RoomType3 extends javax.swing.JPanel {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
     Management management = (Management) SwingUtilities.getWindowAncestor(this);
-    management.getjPanel11().removeAll();
+    management.getDashboardPanel().removeAll();
     roomtype4.setVisible(true);
-    management.getjPanel11().add(roomtype4);
-    management.getjPanel11().revalidate();
-    management.getjPanel11().repaint();
+    management.getDashboardPanel().add(roomtype4);
+    management.getDashboardPanel().revalidate();
+    management.getDashboardPanel().repaint();
     System.out.println("next page");
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
     Management management = (Management) SwingUtilities.getWindowAncestor(this);
-    management.getjPanel11().removeAll();
+    management.getDashboardPanel().removeAll();
     RoomType4 roomType4 = new RoomType4();
-    management.getjPanel11().add(roomType4);
-    management.getjPanel11().revalidate();
-    management.getjPanel11().repaint();
+    management.getDashboardPanel().add(roomType4);
+    management.getDashboardPanel().revalidate();
+    management.getDashboardPanel().repaint();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void handleRoomTypeButtonClick(String roomType) {

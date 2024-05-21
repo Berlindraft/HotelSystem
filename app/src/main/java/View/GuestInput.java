@@ -465,11 +465,11 @@ jCheckBox3.addActionListener(e -> updateTotalCost());
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
     Management management = (Management) SwingUtilities.getWindowAncestor(this);
-    management.getjPanel11().removeAll();
+    management.getDashboardPanel().removeAll();
     RoomAvailability roomAvailability = new RoomAvailability();
-    management.getjPanel11().add(roomAvailability);
-    management.getjPanel11().revalidate();
-    management.getjPanel11().repaint();
+    management.getDashboardPanel().add(roomAvailability);
+    management.getDashboardPanel().revalidate();
+    management.getDashboardPanel().repaint();
     }//GEN-LAST:event_jButton4ActionPerformed
 
 private void updateTotalCost() {
