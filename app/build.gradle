@@ -33,7 +33,11 @@ dependencies {
     implementation 'mysql:mysql-connector-java:8.0.27'
     implementation 'com.toedter:jcalendar:1.4'
     implementation fileTree(dir: 'lib', include: '*.jar')
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.formdev:flatlaf:3.4.1'
+    implementation 'com.sun.mail:javax.mail:1.6.0'
+    
+
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
