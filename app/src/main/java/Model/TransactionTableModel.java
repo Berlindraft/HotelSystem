@@ -13,7 +13,7 @@ import java.sql.*;
 public class TransactionTableModel {
 
     public ResultSet fetchTransactionDetails() {
-        String query = "SELECT g.firstName, g.lastName, g.contactNumber, g.email, p.paymentAmount, p.paymentMethod, p.paymentDate, b.roomNumber, b.checkinDate, b.checkoutDate FROM newbookingdb b INNER JOIN guestdb g ON b.guestId = g.guestId INNER JOIN paymentdb p ON b.guestId = p.paymentId;";
+        String query = "SELECT g.guestId, g.firstName, g.lastName, g.contactNumber, g.email, p.paymentAmount, p.paymentMethod, p.paymentDate, b.roomNumber, b.checkinDate, b.checkoutDate FROM newbookingdb b INNER JOIN guestdb g ON b.guestId = g.guestId INNER JOIN paymentdb p ON b.guestId = p.paymentId;";
         try {
             Connection con = DatabaseConnection.getConnection();
             PreparedStatement stmt = con.prepareStatement(query);

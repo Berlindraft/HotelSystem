@@ -65,10 +65,11 @@ private static EmailSender emailSender;
 
         jLabel10.setText("jLabel10");
 
-        setLayout(new java.awt.BorderLayout());
-
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
+        jButton1.setBackground(new java.awt.Color(101, 28, 50));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("CONFIRM BOOKING");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,7 +132,10 @@ private static EmailSender emailSender;
         jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel19.setText("BOOKING INFORMATION");
 
-        jButton2.setText("Back");
+        jButton2.setBackground(new java.awt.Color(101, 28, 50));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("BACK");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -153,7 +157,7 @@ private static EmailSender emailSender;
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(55, 55, 55)
+                .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9)
                     .addComponent(jLabel8)
@@ -188,7 +192,7 @@ private static EmailSender emailSender;
                                 .addComponent(jLabel12)
                                 .addComponent(jLabel15)
                                 .addComponent(jLabel16)))))
-                .addContainerGap(133, Short.MAX_VALUE))
+                .addContainerGap(145, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -249,7 +253,7 @@ private static EmailSender emailSender;
                         .addGap(18, 18, 18))))
         );
 
-        add(jPanel1, java.awt.BorderLayout.PAGE_START);
+        setLayout(new java.awt.BorderLayout());
     }// </editor-fold>//GEN-END:initComponents
 
     private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
