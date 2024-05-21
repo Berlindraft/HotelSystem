@@ -491,12 +491,11 @@ public class Booking extends javax.swing.JPanel {
 
             // Refresh the UI
             Management management = (Management) SwingUtilities.getWindowAncestor(jButton5);
-            management.getjPanel11().removeAll();
-
+            management.getDashboardPanel().removeAll();
             RoomType roomType = new RoomType();
-            management.getjPanel11().add(roomType);
-            management.getjPanel11().revalidate();
-            management.getjPanel11().repaint();
+            management.getDashboardPanel().add(roomType);
+            management.getDashboardPanel().revalidate();
+            management.getDashboardPanel().repaint();
         }
     } catch (ParseException e) {
         e.printStackTrace(); 

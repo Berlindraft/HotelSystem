@@ -1947,11 +1947,11 @@ private RoomAvailabilityModel model;
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
     Management management = (Management) SwingUtilities.getWindowAncestor(this);
 
-    management.getjPanel11().removeAll();
+    management.getDashboardPanel().removeAll();
     RoomType roomType = new RoomType();
-    management.getjPanel11().add(roomType);
-    management.getjPanel11().revalidate();
-    management.getjPanel11().repaint();
+    management.getDashboardPanel().add(roomType);
+    management.getDashboardPanel().revalidate();
+    management.getDashboardPanel().repaint();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -1960,11 +1960,11 @@ private RoomAvailabilityModel model;
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
     Management management = (Management) SwingUtilities.getWindowAncestor(this);
-    management.getjPanel11().removeAll();
+    management.getDashboardPanel().removeAll();
     guest.setVisible(true);
-    management.getjPanel11().add(guest);
-    management.getjPanel11().revalidate();
-    management.getjPanel11().repaint();  
+    management.getDashboardPanel().add(guest);
+    management.getDashboardPanel().revalidate();
+    management.getDashboardPanel().repaint();  
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

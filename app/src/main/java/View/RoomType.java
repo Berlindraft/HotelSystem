@@ -324,11 +324,11 @@ public class RoomType extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
     Management management = (Management) SwingUtilities.getWindowAncestor(this);
-    management.getjPanel11().removeAll();
+    management.getDashboardPanel().removeAll();
     Booking booking = new Booking();
-    management.getjPanel11().add(booking);
-    management.getjPanel11().revalidate();
-    management.getjPanel11().repaint();
+    management.getDashboardPanel().add(booking);
+    management.getDashboardPanel().revalidate();
+    management.getDashboardPanel().repaint();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void AvailablebuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AvailablebuttonActionPerformed
@@ -341,11 +341,11 @@ public class RoomType extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
     Management management = (Management) SwingUtilities.getWindowAncestor(this);
-    management.getjPanel11().removeAll();
+    management.getDashboardPanel().removeAll();
     mainColorView.setVisible(true);
-    management.getjPanel11().add(mainColorView);
-    management.getjPanel11().revalidate();
-    management.getjPanel11().repaint();
+    management.getDashboardPanel().add(mainColorView);
+    management.getDashboardPanel().revalidate();
+    management.getDashboardPanel().repaint();
     System.out.println("next page");
     }//GEN-LAST:event_jButton2ActionPerformed
 
