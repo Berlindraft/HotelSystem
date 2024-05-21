@@ -282,11 +282,11 @@ private static EmailSender emailSender;
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
     Management management = (Management) SwingUtilities.getWindowAncestor(this);
-    management.getjPanel11().removeAll();
+    management.getDashboardPanel().removeAll();
     Payment payment = new Payment();
-    management.getjPanel11().add(payment);
-    management.getjPanel11().revalidate();
-    management.getjPanel11().repaint();
+    management.getDashboardPanel().add(payment);
+    management.getDashboardPanel().revalidate();
+    management.getDashboardPanel().repaint();
     System.out.println("previous panel");
     }//GEN-LAST:event_jButton2ActionPerformed
 

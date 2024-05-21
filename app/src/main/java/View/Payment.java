@@ -308,11 +308,11 @@ private static PaymentModel model;
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
     Management management = (Management) SwingUtilities.getWindowAncestor(this);
-    management.getjPanel11().removeAll();
+    management.getDashboardPanel().removeAll();
     GuestInput guestInput = new GuestInput();
-    management.getjPanel11().add(guestInput);
-    management.getjPanel11().revalidate();
-    management.getjPanel11().repaint();
+    management.getDashboardPanel().add(guestInput);
+    management.getDashboardPanel().revalidate();
+    management.getDashboardPanel().repaint();
     }//GEN-LAST:event_jButton5ActionPerformed
     
 public void displayPaymentTotal(int paymentId) {
