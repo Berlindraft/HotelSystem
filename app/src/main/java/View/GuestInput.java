@@ -523,13 +523,13 @@ private void updateTotalCost() {
     
     public double getPricePerDayByRoomType(String roomType) {
     switch (roomType) {
-        case "Standard":
-            return STANDARD_PRICE_PER_DAY;
         case "Deluxe":
+            return STANDARD_PRICE_PER_DAY;
+        case "Premier":
             return DELUXE_PRICE_PER_DAY;
-        case "Suite":
-            return SUITE_PRICE_PER_DAY;
         case "Executive":
+            return SUITE_PRICE_PER_DAY;
+        case "Presidential":
             return EXECUTIVE_PRICE_PER_DAY;
         default:
             return 0.0; 

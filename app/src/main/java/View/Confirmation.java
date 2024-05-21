@@ -5,12 +5,14 @@
 package View;
 
 import Model.ConfirmationModel;
+import Utils.EmailSender;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import javax.mail.MessagingException;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,16 +21,13 @@ import javax.swing.JOptionPane;
  */
 public class Confirmation extends javax.swing.JPanel {
 private static ConfirmationModel model;
+private static EmailSender emailSender;
     public Confirmation() {
         initComponents();
         this.model = new ConfirmationModel();
-
+        this.emailSender = new EmailSender("hoteldayuhan@gmail.com", "rajg fifw hngh fnvf");
     }
     
-
-        
-        
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -237,7 +236,7 @@ private static ConfirmationModel model;
                         .addGap(21, 21, 21))))
         );
 
-        add(jPanel1, java.awt.BorderLayout.CENTER);
+        add(jPanel1, java.awt.BorderLayout.PAGE_START);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
@@ -249,15 +248,131 @@ private static ConfirmationModel model;
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    if (!jCheckBox1.isSelected() || !jCheckBox2.isSelected()) {
-        JOptionPane.showMessageDialog(this, "Please agree to all terms before confirming the booking.", "Terms Agreement Required", JOptionPane.ERROR_MESSAGE);
-        return;
+        if (!jCheckBox1.isSelected() || !jCheckBox2.isSelected()) {
+            JOptionPane.showMessageDialog(this, "Please agree to all terms before confirming the booking.", "Terms Agreement Required", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        updateAllInformation(); 
+        String htmlContent = generateHtmlContent(); 
+
+        try {
+            int guestid = model.getLastInsertedGuestId();
+            String email = model.getGuestEmail(guestid);
+            emailSender.sendEmail(email, "Booking Confirmation", htmlContent);  
+            JOptionPane.showMessageDialog(this, "Booking confirmed and email sent successfully!", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
+        } catch (MessagingException e) {
+            JOptionPane.showMessageDialog(this, "Failed to send confirmation email.", "Email Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+private String generateHtmlContent() {
+    try {
+        int bookingId = model.getLastInsertedBookingId();
+        int guestId = model.getLastInsertedGuestId();
+
+        int roomNumber = model.getRoomNumber();
+        String roomType = model.getRoomType(roomNumber);
+        String roomName = model.getRoomNameByType(roomType);
+        String roomDescription = model.getRoomDescriptionByType(roomType);
+
+        String firstname = model.getGuestFirstName(guestId);
+        String lastname = model.getGuestLastName(guestId);
+        String fullname = firstname + " " + lastname; // Ensure names are properly spaced
+        String email = model.getGuestEmail(guestId);
+
+        int paymentId = model.getLastPaymentId();
+        double paymentamount = model.getPaymentAmount(paymentId);
+
+        String[] checkInOutDates = model.retrieveCheckInOutDates(bookingId);
+        String checkInDate = checkInOutDates[0];
+        String checkOutDate = checkInOutDates[1];
+
+        jLabel6.setText("Check-in Date: " + checkInDate);
+        jLabel7.setText("Check-out Date: " + checkOutDate);
+
+        long numberOfDays = calculateNumberOfDays(checkInDate, checkOutDate);
+        jLabel8.setText("No. of days stay: " + numberOfDays);
+        List<String> addOns = model.getAddOnOptions(bookingId);
+        String addOnText = String.join(", ", addOns);
+        if (addOnText.isEmpty()) {
+            addOnText = "No additional options selected.";
+        }
+
+        return String.format("""
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+            <meta charset="UTF-8">
+            <title>Booking Confirmation</title>
+            </head>
+            <body style="font-family: Arial, sans-serif; color: #333;">
+            <div style="max-width: 600px; margin: auto; border: 1px solid #ccc; padding: 20px; border-radius: 5px; background: #f9f9f9;">
+                <h1 style="color: #0264d6; text-align: center;">Booking Confirmation</h1>
+                <p style="font-size: 16px; text-align: center;">Thank you for booking with us, <strong>%s</strong>! Here are the details of your booking:</p>
+
+                <table style="width: 100%%; border-collapse: collapse; margin-top: 20px;">
+                    <tr style="background-color: #0264d6; color: white;">
+                        <th style="padding: 10px; border: 1px solid #ddd;">Booking</th>
+                        <th style="padding: 10px; border: 1px solid #ddd;">Details</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid #ddd;">Booking ID</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">%d</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid #ddd;">Guest ID</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">%d</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid #ddd;">Room Type</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">%s</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid #ddd;">Room Name</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">%s</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid #ddd;">Check-in Date</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">%s</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid #ddd;">Check-out Date</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">%s</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid #ddd;">Payment Amount</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">$%.2f</td>
+                    </tr>
+                </table>
+
+                <p style="text-align: center; font-size: 16px; margin-top: 20px;">If you have any questions or need further assistance, please do not hesitate to contact us.</p>
+
+                <div style="text-align: center; margin-top: 20px;">
+                    <a href="https://www.yourwebsite.com" style="padding: 10px 20px; color: white; background-color: #0264d6; text-decoration: none; border-radius: 5px;">xraymundzyron@gmail.com</a>
+                </div>
+            </div>
+            </body>
+            </html>
+            """, fullname, bookingId, guestId, roomType, roomName, checkInDate, checkOutDate, paymentamount);
+    } catch (Exception e) {
+        e.printStackTrace();
+        return "Error generating booking confirmation.";
+    }
+}
+
+
+    private void updateAllInformation() {
+        updateBookingGuestId();
+        updateRoomDescription();
+        updateGuestInformation();
+        updatePaymentInformation();
+        updateBookingInformation();
+        displayAddOns();
     }
     
-    JOptionPane.showMessageDialog(this, "Booking confirmed successfully!", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
-
-    }//GEN-LAST:event_jButton1ActionPerformed
-public void setupCheckboxListeners() {
+    public void setupCheckboxListeners() {
     jCheckBox1.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent evt) {
             checkAndEnableConfirmButton();
@@ -278,10 +393,6 @@ public void checkAndEnableConfirmButton() {
     }
 }
 
-
-
-
-    
 public void displayRoomNumber() {
     int roomNumber = model.getRoomNumber();
     jLabel14.setText("Room Number: " + roomNumber);
@@ -359,6 +470,9 @@ public void displayAddOns() {
     }
     jLabel9.setText(addOnText); 
 }
+
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JCheckBox jCheckBox1;
