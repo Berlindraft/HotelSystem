@@ -2,6 +2,7 @@ package View;
 
 import Controller.GuestInputController;
 import Model.GuestInputModel;
+import java.awt.Color;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -53,12 +54,6 @@ jCheckBox3.addActionListener(e -> updateTotalCost());
         buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        prefix = new javax.swing.JTextField();
-        firstname = new javax.swing.JTextField();
-        lastname = new javax.swing.JTextField();
-        suffix = new javax.swing.JTextField();
-        phonenumber = new javax.swing.JTextField();
-        emailaddress = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -86,6 +81,18 @@ jCheckBox3.addActionListener(e -> updateTotalCost());
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        emailaddress = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
+        firstname = new javax.swing.JTextField();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        phonenumber = new javax.swing.JTextField();
+        jLabel22 = new javax.swing.JLabel();
+        suffix = new javax.swing.JTextField();
+        jLabel23 = new javax.swing.JLabel();
+        lastname = new javax.swing.JTextField();
+        jLabel24 = new javax.swing.JLabel();
+        prefix = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -111,33 +118,6 @@ jCheckBox3.addActionListener(e -> updateTotalCost());
                 .addComponent(jLabel2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        prefix.setText("Prefix");
-        prefix.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                prefixActionPerformed(evt);
-            }
-        });
-
-        firstname.setText("First Name");
-        firstname.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                firstnameActionPerformed(evt);
-            }
-        });
-
-        lastname.setText("Last Name");
-
-        suffix.setText("Suffix");
-        suffix.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                suffixActionPerformed(evt);
-            }
-        });
-
-        phonenumber.setText("Phone");
-
-        emailaddress.setText("Email Address");
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -310,10 +290,11 @@ jCheckBox3.addActionListener(e -> updateTotalCost());
         );
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(101, 28, 50));
         jLabel16.setText("YOUR STAY");
 
         jButton1.setBackground(new java.awt.Color(101, 28, 50));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("CONFIRM");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -323,7 +304,7 @@ jCheckBox3.addActionListener(e -> updateTotalCost());
         });
 
         jButton2.setBackground(new java.awt.Color(101, 28, 50));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("CONTINUE");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -333,12 +314,108 @@ jCheckBox3.addActionListener(e -> updateTotalCost());
         });
 
         jButton4.setBackground(new java.awt.Color(101, 28, 50));
-        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Back");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
+            }
+        });
+
+        emailaddress.setText("Email Address or Username");
+        emailaddress.setToolTipText("");
+        emailaddress.setMargin(new java.awt.Insets(6, 6, 6, 6));
+        emailaddress.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                emailaddressFocusGained(evt);
+            }
+        });
+        emailaddress.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                emailaddressActionPerformed(evt);
+            }
+        });
+
+        jLabel19.setText("EMAIL ADDRESS");
+
+        firstname.setText("FIRSTNAME");
+        firstname.setToolTipText("");
+        firstname.setMargin(new java.awt.Insets(6, 6, 6, 6));
+        firstname.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                firstnameFocusGained(evt);
+            }
+        });
+        firstname.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                firstnameActionPerformed(evt);
+            }
+        });
+
+        jLabel20.setText("FIRSTNAME");
+
+        jLabel21.setText("PHONE NUMBER");
+
+        phonenumber.setText("0900-0000-000");
+        phonenumber.setToolTipText("");
+        phonenumber.setMargin(new java.awt.Insets(6, 6, 6, 6));
+        phonenumber.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                phonenumberFocusGained(evt);
+            }
+        });
+        phonenumber.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                phonenumberActionPerformed(evt);
+            }
+        });
+
+        jLabel22.setText("SUFFIX");
+
+        suffix.setText("Suffix");
+        suffix.setToolTipText("");
+        suffix.setMargin(new java.awt.Insets(6, 6, 6, 6));
+        suffix.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                suffixFocusGained(evt);
+            }
+        });
+        suffix.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                suffixActionPerformed(evt);
+            }
+        });
+
+        jLabel23.setText("LASTNAME");
+
+        lastname.setText("LASTNAME");
+        lastname.setToolTipText("");
+        lastname.setMargin(new java.awt.Insets(6, 6, 6, 6));
+        lastname.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                lastnameFocusGained(evt);
+            }
+        });
+        lastname.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lastnameActionPerformed(evt);
+            }
+        });
+
+        jLabel24.setText("PREFIX");
+
+        prefix.setText("PREFIX");
+        prefix.setToolTipText("");
+        prefix.setMargin(new java.awt.Insets(6, 6, 6, 6));
+        prefix.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                prefixFocusGained(evt);
+            }
+        });
+        prefix.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                prefixActionPerformed(evt);
             }
         });
 
@@ -358,22 +435,36 @@ jCheckBox3.addActionListener(e -> updateTotalCost());
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, 0)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(prefix, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(firstname, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE))
-                                    .addComponent(suffix)
-                                    .addComponent(phonenumber)
-                                    .addComponent(emailaddress)
-                                    .addComponent(lastname, javax.swing.GroupLayout.Alignment.TRAILING)))
+                                        .addComponent(jLabel24)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(prefix))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel20)
+                                    .addComponent(firstname, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel23)
+                                    .addComponent(lastname, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(suffix, javax.swing.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE)
+                            .addComponent(phonenumber, javax.swing.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE)
+                            .addComponent(emailaddress, javax.swing.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1)))
-                        .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel22)
+                                    .addComponent(jLabel21)
+                                    .addComponent(jLabel19))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jButton1)
+                                .addGap(8, 8, 8)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel16)
                             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -387,28 +478,41 @@ jCheckBox3.addActionListener(e -> updateTotalCost());
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel16)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(firstname, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(prefix, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lastname, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(suffix, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(phonenumber, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(emailaddress, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel23)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lastname, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel24)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(prefix, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel20)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(firstname, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel22)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(suffix, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel21)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(phonenumber, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel19)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(emailaddress, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1))
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, 0)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton2)
                     .addComponent(jButton4))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -430,8 +534,8 @@ jCheckBox3.addActionListener(e -> updateTotalCost());
         String guestPrefix = prefix.getText();
         String guestFirstname = firstname.getText();
         String guestLastname = lastname.getText();
-        String guestSuffix = suffix.getText();
-        String guestPhone = phonenumber.getText();
+        String guestSuffix = firstname.getText();
+        String guestPhone = firstname.getText();
         String guestEmail = emailaddress.getText();
         
         controller.signUp(guestPrefix, guestFirstname, guestLastname, guestSuffix, guestPhone, guestEmail);
@@ -467,10 +571,6 @@ jCheckBox3.addActionListener(e -> updateTotalCost());
 
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void firstnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstnameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_firstnameActionPerformed
-
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
     Management management = (Management) SwingUtilities.getWindowAncestor(this);
     management.getDashboardPanel().removeAll();
@@ -480,13 +580,78 @@ jCheckBox3.addActionListener(e -> updateTotalCost());
     management.getDashboardPanel().repaint();
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void prefixActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prefixActionPerformed
+    private void emailaddressFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailaddressFocusGained
+        if(emailaddress != null && emailaddress.getText().equals("Email Address or Username"))
+        {
+            emailaddress.setText("");
+            emailaddress.setForeground(new Color(153, 153, 153));
+        }
+    }//GEN-LAST:event_emailaddressFocusGained
+
+    private void emailaddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailaddressActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_prefixActionPerformed
+
+    }//GEN-LAST:event_emailaddressActionPerformed
+
+    private void firstnameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_firstnameFocusGained
+        // TODO add your handling code here:
+        if (firstname != null && firstname.getText().equals("FIRSTNAME")) {
+            firstname.setText("");
+            firstname.setForeground(new Color(153, 153, 153));
+        }
+    }//GEN-LAST:event_firstnameFocusGained
+
+    private void firstnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstnameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_firstnameActionPerformed
+
+    private void phonenumberFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_phonenumberFocusGained
+        // TODO add your handling code here:
+        if (phonenumber != null && phonenumber.getText().equals("0900-0000-000")) {
+            phonenumber.setText("");
+            phonenumber.setForeground(new Color(153, 153, 153));
+        }
+    }//GEN-LAST:event_phonenumberFocusGained
+
+    private void phonenumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phonenumberActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_phonenumberActionPerformed
+
+    private void suffixFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_suffixFocusGained
+        // TODO add your handling code here:
+        if (lastname != null && lastname.getText().equals("LASTNAME")) {
+            lastname.setText("");
+            lastname.setForeground(new Color(153, 153, 153));
+        }
+    }//GEN-LAST:event_suffixFocusGained
 
     private void suffixActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suffixActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_suffixActionPerformed
+
+    private void lastnameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lastnameFocusGained
+        // TODO add your handling code here:
+        if (lastname != null && lastname.getText().equals("LASTNAME")) {
+            lastname.setText("");
+            lastname.setForeground(new Color(153, 153, 153));
+        }
+    }//GEN-LAST:event_lastnameFocusGained
+
+    private void lastnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastnameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lastnameActionPerformed
+
+    private void prefixFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_prefixFocusGained
+        // TODO add your handling code here:
+        if (prefix != null && prefix.getText().equals("PREFIX")) {
+            prefix.setText("");
+            prefix.setForeground(new Color(153, 153, 153));
+        }
+    }//GEN-LAST:event_prefixFocusGained
+
+    private void prefixActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prefixActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_prefixActionPerformed
 
 private void updateTotalCost() {
     double additionalFees = 0;
@@ -594,7 +759,13 @@ private void updateTotalCost() {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
