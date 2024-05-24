@@ -5,6 +5,7 @@
 package View;
 
 import Controller.AdminSignupController;
+import Utils.ImageScaler;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import java.awt.Color;
@@ -14,12 +15,15 @@ import java.awt.Color;
  * @author marvi
  */
 public class Login extends javax.swing.JFrame {
-
+ImageScaler imageScaler;
     /**
      * Creates new form Login1
      */
     public Login() {
         initComponents();
+//        imageScaler = new ImageScaler();
+//        imageScaler.scaleImage(jLabel4, "src\\main\\resources\\logo1.png");
+
     }
 
     /**
@@ -33,6 +37,7 @@ public class Login extends javax.swing.JFrame {
 
         jPanel3 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         userName = new javax.swing.JTextField();
@@ -57,9 +62,28 @@ public class Login extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(101, 28, 50));
         jPanel1.setToolTipText("");
         jPanel1.setPreferredSize(new java.awt.Dimension(500, 500));
-        jPanel1.setLayout(null);
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logo1.png"))); // NOI18N
+        jLabel5.setText(" ");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(1478, 1478, 1478)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 500, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(332, 332, 332))
+        );
+
         jPanel3.add(jPanel1);
-        jPanel1.setBounds(0, 0, 500, 500);
+        jPanel1.setBounds(0, -10, 500, 500);
         jPanel1.getAccessibleContext().setAccessibleName("");
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -146,7 +170,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        showPass.setText("Remember me");
+        showPass.setText("Show Password");
         showPass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 showPassActionPerformed(evt);
@@ -226,6 +250,7 @@ public class Login extends javax.swing.JFrame {
         getAccessibleContext().setAccessibleName("LoginFrame");
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void userNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userNameActionPerformed
@@ -330,6 +355,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

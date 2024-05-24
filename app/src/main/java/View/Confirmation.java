@@ -14,7 +14,6 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 import javax.mail.MessagingException;
 import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
 
 /**
  *
@@ -61,15 +60,13 @@ private static EmailSender emailSender;
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
 
         jLabel10.setText("jLabel10");
 
+        setLayout(new java.awt.BorderLayout());
+
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jButton1.setBackground(new java.awt.Color(101, 28, 50));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("CONFIRM BOOKING");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -132,16 +129,6 @@ private static EmailSender emailSender;
         jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel19.setText("BOOKING INFORMATION");
 
-        jButton2.setBackground(new java.awt.Color(101, 28, 50));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("BACK");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -152,12 +139,10 @@ private static EmailSender emailSender;
                     .addComponent(jCheckBox1)
                     .addComponent(jCheckBox2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
+                .addGap(55, 55, 55)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9)
                     .addComponent(jLabel8)
@@ -192,7 +177,7 @@ private static EmailSender emailSender;
                                 .addComponent(jLabel12)
                                 .addComponent(jLabel15)
                                 .addComponent(jLabel16)))))
-                .addContainerGap(145, Short.MAX_VALUE))
+                .addContainerGap(133, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -242,18 +227,16 @@ private static EmailSender emailSender;
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jCheckBox1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jCheckBox2)
-                        .addGap(21, 21, 21))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
-                        .addGap(18, 18, 18))))
+                        .addGap(21, 21, 21))))
         );
 
-        setLayout(new java.awt.BorderLayout());
+        add(jPanel1, java.awt.BorderLayout.PAGE_START);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
@@ -283,16 +266,6 @@ private static EmailSender emailSender;
             e.printStackTrace();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    Management management = (Management) SwingUtilities.getWindowAncestor(this);
-    management.getDashboardPanel().removeAll();
-    Payment payment = new Payment();
-    management.getDashboardPanel().add(payment);
-    management.getDashboardPanel().revalidate();
-    management.getDashboardPanel().repaint();
-    System.out.println("previous panel");
-    }//GEN-LAST:event_jButton2ActionPerformed
 
 private String generateHtmlContent() {
     try {
@@ -349,7 +322,7 @@ private String generateHtmlContent() {
                         <td style="padding: 10px; border: 1px solid #ddd;">%d</td>
                     </tr>
                     <tr>
-                        <td style="padding: 10px; border: 1px solid #ddd;">Guest ID</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">Room Number</td>
                         <td style="padding: 10px; border: 1px solid #ddd;">%d</td>
                     </tr>
                     <tr>
@@ -377,12 +350,12 @@ private String generateHtmlContent() {
                 <p style="text-align: center; font-size: 16px; margin-top: 20px;">If you have any questions or need further assistance, please do not hesitate to contact us.</p>
 
                 <div style="text-align: center; margin-top: 20px;">
-                    <a style="padding: 10px 20px; color: white; background-color: #0264d6; text-decoration: none; border-radius: 5px;">xraymundzyron@gmail.com</a>
+                    <a href="https://www.yourwebsite.com" style="padding: 10px 20px; color: white; background-color: #0264d6; text-decoration: none; border-radius: 5px;">xraymundzyron@gmail.com</a>
                 </div>
             </div>
             </body>
             </html>
-            """, fullname, bookingId, guestId, roomType, roomName, checkInDate, checkOutDate, paymentamount);
+            """, fullname, bookingId, roomNumber, roomType, roomName, checkInDate, checkOutDate, paymentamount);
     } catch (Exception e) {
         e.printStackTrace();
         return "Error generating booking confirmation.";
@@ -502,7 +475,6 @@ public void displayAddOns() {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JLabel jLabel1;

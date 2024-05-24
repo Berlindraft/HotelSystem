@@ -28,11 +28,11 @@ public boolean updateTransaction(int guestId, java.sql.Date paymentDate, Double 
     String sql = "UPDATE paymentdb SET paymentDate = ?, paymentAmount = ?, paymentMethod = ? WHERE guestId = ?";
     try (Connection conn = DatabaseConnection.getConnection();
          PreparedStatement stmt = conn.prepareStatement(sql)) {
-        stmt.setDate(1, paymentDate); // This handles null automatically if paymentDate is null
+        stmt.setDate(1, paymentDate); 
         if (paymentAmount != null) {
             stmt.setDouble(2, paymentAmount);
         } else {
-            stmt.setNull(2, java.sql.Types.DOUBLE); // Properly handle null
+            stmt.setNull(2, java.sql.Types.DOUBLE); // Properly handle nullcmd
         }
         stmt.setString(3, paymentMethod);
         stmt.setInt(4, guestId);

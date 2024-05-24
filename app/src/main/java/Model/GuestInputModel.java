@@ -10,20 +10,17 @@ import java.util.logging.Logger;
 public class GuestInputModel {
     private BookingModel model;
 
-    public void signUp(String prefix, String firstname, String lastname, String suffix, String phonenumber, String emailaddress) {
+    public void signUp(String fullname, String phonenumber, String emailaddress) {
         int guestId = getLastInsertedGuestId(); 
 
         if (guestId != -1) {
             try (Connection con = DatabaseConnection.getConnection()) {
-                String queryUpdate = "UPDATE guestdb SET prefixName=?, firstName=?, lastName=?, suffixName=?, contactNumber=?, email=? WHERE guestId=?";
+                String queryUpdate = "UPDATE guestdb SET  fullName=?, contactNumber=?, email=? WHERE guestId=?";
                 try (PreparedStatement stmtUpdate = con.prepareStatement(queryUpdate)) {
-                    stmtUpdate.setString(1, prefix);
-                    stmtUpdate.setString(2, firstname);
-                    stmtUpdate.setString(3, lastname);
-                    stmtUpdate.setString(4, suffix);
-                    stmtUpdate.setString(5, phonenumber);
-                    stmtUpdate.setString(6, emailaddress);
-                    stmtUpdate.setInt(7, guestId);
+                    stmtUpdate.setString(1, fullname);
+                    stmtUpdate.setString(2, phonenumber);
+                    stmtUpdate.setString(3, emailaddress);
+                    stmtUpdate.setInt(4, guestId);
                     int rowsAffected = stmtUpdate.executeUpdate();
                     if (rowsAffected > 0) {
                         System.out.println("Guest data updated successfully");

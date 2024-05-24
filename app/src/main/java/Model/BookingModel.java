@@ -33,8 +33,8 @@ public class BookingModel {
 public int addGuest() {
     int guestId = 0; // Initialize guestId
     try (Connection connection = getConnection()) {
-        String sql = "INSERT INTO guestdb (firstName, lastName, prefixName, suffixName, contactNumber, email, address) "
-                   + "VALUES (NULL, NULL, NULL, NULL, NULL, NULL, NULL)";
+        String sql = "INSERT INTO guestdb (fullName, contactNumber, email, address) "
+                   + "VALUES (NULL, NULL, NULL, NULL)";
 
         try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             int rowsAffected = statement.executeUpdate();

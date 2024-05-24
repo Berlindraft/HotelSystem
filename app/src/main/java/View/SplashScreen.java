@@ -50,6 +50,7 @@ public class SplashScreen extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(101, 28, 50));
         jPanel1.setLayout(new java.awt.BorderLayout());
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logo1.png"))); // NOI18N
         jLabel1.setPreferredSize(new java.awt.Dimension(1000, 500));
         jPanel1.add(jLabel1, java.awt.BorderLayout.CENTER);
 
