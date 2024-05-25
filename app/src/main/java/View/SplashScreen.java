@@ -4,19 +4,32 @@
  */
 package View;
 
+import Utils.ImageScaler;
+import javax.swing.JFrame;
+import javax.swing.Timer;
+
 /**
  *
  * @author marvi
  */
-public class SplashScreen extends javax.swing.JPanel {
-
+public class SplashScreen extends javax.swing.JFrame {
+ImageScaler imageScaler;
     /**
      * Creates new form NewJPanel1
      */
     public SplashScreen() {
         initComponents();
-        
-        
+//        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        imageScaler = new ImageScaler();
+//        imageScaler.scaleImage(jLabel1, "src\\main\\resources\\logo1.png");
+//        
+//        Timer timer = new Timer(2000, e -> {
+//            new Login().setVisible(true);
+//            this.dispose();
+//        });
+//        timer.setRepeats(false); // Set to false to run only once
+//        timer.start();
+//        
     }
 
     /**
@@ -68,4 +81,6 @@ public class SplashScreen extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+
+
 }
