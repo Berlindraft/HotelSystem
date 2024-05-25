@@ -31,14 +31,8 @@ public class SplashScreen extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(101, 28, 50));
 
-<<<<<<< HEAD
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logo1.png"))); // NOI18N
-        jLabel1.setPreferredSize(new java.awt.Dimension(1000, 500));
-        jPanel1.add(jLabel1, java.awt.BorderLayout.CENTER);
-=======
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dayuhan logo.png"))); // NOI18N
->>>>>>> 3b6b65b638b955444d1a63ae6ae6152161ebe1e1
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
