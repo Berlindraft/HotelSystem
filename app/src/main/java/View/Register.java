@@ -338,11 +338,11 @@ public class Register extends javax.swing.JFrame {
 
     private void btnloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnloginActionPerformed
         // TODO add your handling code here:
-        Login login = new Login();
-        login.setVisible(true);
-        login.pack();
-        login.setLocationRelativeTo(null);
-        this.dispose();
+//        Login login = new Login();
+//        login.setVisible(true);
+//        login.pack();
+//        login.setLocationRelativeTo(null);
+//        this.dispose();
     }//GEN-LAST:event_btnloginActionPerformed
 
     private void btnSignupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignupActionPerformed

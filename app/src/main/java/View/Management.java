@@ -395,12 +395,12 @@ private void setActiveButton(javax.swing.JButton activeButton) {
 
     private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
         // TODO add your handling code here:
-        
-        Login login = new Login();
-        login.setVisible(true);
-        login.pack();
-        login.setLocationRelativeTo(null);
-        this.dispose();
+//        
+//        Login login = new Login();
+//        login.setVisible(true);
+//        login.pack();
+//        login.setLocationRelativeTo(null);
+//        this.dispose();
     }//GEN-LAST:event_logoutBtnActionPerformed
 
     /**

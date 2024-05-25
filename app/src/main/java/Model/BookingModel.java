@@ -10,26 +10,7 @@ import javax.swing.JOptionPane;
 //nakoy gi delete 5/17 check errors
 public class BookingModel {
     
-     public void updateAdultCount(int newAdultCount) {
-        try (Connection connection = DatabaseConnection.getConnection();
-             PreparedStatement statement = connection.prepareStatement("UPDATE guestcat SET adults = ?")) {
-            statement.setInt(1, newAdultCount);
-            statement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-     public void updateChildrenCount(int newChildrenCount) {
-        try (Connection connection = DatabaseConnection.getConnection();
-             PreparedStatement statement = connection.prepareStatement("UPDATE guestcat SET children = ?")) {
-            statement.setInt(1, newChildrenCount);
-            statement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-     
-     
+  
 public int addGuest() {
     int guestId = 0; // Initialize guestId
     try (Connection connection = getConnection()) {
@@ -100,14 +81,14 @@ public int addRoom() {
 }
 
 
-public void addBooking(int guestId, int paymentId, Date checkinDate, Date checkoutDate, int adults, int children ) {
+public void addBooking(int guestId, int paymentId, Date checkinDate, Date checkoutDate, int adults, int children, int discounted ) {
     int roomNumber = addRoom();
     String AddOption1 = null;
     String AddOption2 = null;
     String AddOption3 = null;
     try (Connection connection = getConnection()) { 
-        String sql = "INSERT INTO newbookingdb (guestId, paymentId, roomNumber, checkinDate, checkoutDate, adults, children, addOption1, addOption2, addOption3) "
-                   + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO newbookingdb (guestId, paymentId, roomNumber, checkinDate, checkoutDate, adults, children, discounted, addOption1, addOption2, addOption3) "
+                   + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             java.sql.Date sqlCheckinDate = new java.sql.Date(checkinDate.getTime());
             java.sql.Date sqlCheckoutDate = new java.sql.Date(checkoutDate.getTime());
@@ -119,9 +100,10 @@ public void addBooking(int guestId, int paymentId, Date checkinDate, Date checko
             statement.setDate(5, sqlCheckoutDate);            
             statement.setInt(6, adults);
             statement.setInt(7, children);
-            statement.setString(8, AddOption1);
-            statement.setString(9, AddOption2);
-            statement.setString(10, AddOption3);
+            statement.setInt(8, discounted);
+            statement.setString(9, AddOption1);
+            statement.setString(10, AddOption2);
+            statement.setString(11, AddOption3);
 
             int rowsAffected = statement.executeUpdate();
 

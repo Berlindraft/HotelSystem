@@ -4,6 +4,7 @@
  */
 package Controller;
 import Model.RoomAvailabilityModel;
+import Utils.RoomTypeSelectionListener;
 import View.RoomAvailability;
 import java.awt.Color;
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
  *
  * @author Zyron
  */
-public class RoomAvailabilityController {
+public class RoomAvailabilityController implements RoomTypeSelectionListener{
     private RoomAvailabilityModel model;
     private RoomAvailability mainColorView;
     
@@ -21,7 +22,11 @@ public class RoomAvailabilityController {
         this.mainColorView = view;
     }
 
-
+    @Override
+    public void onRoomTypeSelected(String roomType) {
+        System.out.println("Room type selected: " + roomType);
+        updateColors(roomType); // Add this line to update colors when a room type is selected
+    }
     
     
 public void updateColors(String roomType) {
