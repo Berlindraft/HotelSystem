@@ -15,6 +15,8 @@ public class SplashScreen extends javax.swing.JPanel {
      */
     public SplashScreen() {
         initComponents();
+        
+        
     }
 
     /**
