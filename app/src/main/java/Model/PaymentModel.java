@@ -90,7 +90,7 @@ public class PaymentModel {
 
     
         public void gcashInformation(String paymentMethod, String gcashnumber, String gcashname, String paymentDate) {
-        int paymentid = getLastInsertedPaymentId(); // Retrieve the last inserted guestId
+        int paymentid = getLastInsertedPaymentId(); 
 
         if (paymentid != -1) {
             try (Connection con = DatabaseConnection.getConnection()) {

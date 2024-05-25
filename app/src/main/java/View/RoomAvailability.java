@@ -1,10 +1,14 @@
 package View;
 
+import Controller.RoomAvailabilityController;
 import Model.BookingModel;
 import Model.RoomAvailabilityModel;
 import javax.swing.SwingUtilities;
 import java.awt.Color;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,12 +18,16 @@ import javax.swing.JOptionPane;
 public class RoomAvailability extends javax.swing.JPanel {
 private GuestInput guest;
 private RoomAvailabilityModel model;
+private RoomAvailabilityController controller;
+private RoomAvailability mainColorView;
 
     public RoomAvailability() {
-        initComponents();
-        guest = new GuestInput();
-        this.model = new RoomAvailabilityModel();
-        updateBookingId();
+    initComponents();
+    guest = new GuestInput();
+    this.model = new RoomAvailabilityModel();
+    this.controller = new RoomAvailabilityController(model, mainColorView);
+    this.mainColorView = this; // If RoomAvailability acts as its view, or initialize as needed
+    updateBookingId();
     }
 
     /**
@@ -2067,8 +2075,13 @@ private RoomAvailabilityModel model;
     Management management = (Management) SwingUtilities.getWindowAncestor(this);
 
     management.getDashboardPanel().removeAll();
-    RoomType4 roomType = new RoomType4();
-    management.getDashboardPanel().add(roomType);
+    RoomAvailabilityModel model = new RoomAvailabilityModel();
+    RoomAvailability view = new RoomAvailability();
+    RoomAvailabilityController controller = new RoomAvailabilityController(model, view);
+    //RoomType3 roomType3 = new RoomType3(controller, view);
+    
+    RoomType4 roomType4 = new RoomType4(controller, view);
+    management.getDashboardPanel().add(roomType4);
     management.getDashboardPanel().revalidate();
     management.getDashboardPanel().repaint();
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -2087,26 +2100,81 @@ private RoomAvailabilityModel model;
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String roomNumberText = jTextField1.getText().trim(); 
-        try {
-            int roomNumber = Integer.parseInt(roomNumberText); 
-            int lastBookingId = model.getLastInsertedBookingId(); 
+    String roomNumberText = jTextField1.getText().trim();
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    java.util.Date todayUtilDate = new java.util.Date(); 
+    Date todaySqlDate = new Date(todayUtilDate.getTime()); 
 
-            String currentStatus = model.retrieveRoomStatus(roomNumber);
-            if ("Available".equalsIgnoreCase(currentStatus)) {
-                model.updateRoomNumberAndStatus(lastBookingId, roomNumber);
-                JOptionPane.showMessageDialog(this, "Room number updated successfully");
-                
-               repaint();
-            } else {
-                JOptionPane.showMessageDialog(this, "Room is not available.");
-            }
-        } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(this, "Invalid room number format. Please enter a valid integer.");
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Error updating room: " + ex.getMessage());
+    try {
+        int roomNumber = Integer.parseInt(roomNumberText);
+        int lastBookingId = model.getLastInsertedBookingId();
+        Date intendedCheckIn = getCheckInDate(lastBookingId); 
+
+        String currentStatus = model.retrieveRoomStatus(roomNumber);
+
+        switch (currentStatus.toLowerCase()) {
+            case "available":
+                if (intendedCheckIn != null && intendedCheckIn.after(todaySqlDate)) {
+                    model.updateRoomNumberAndStatus(roomNumber, lastBookingId, "Reserved");
+                    JOptionPane.showMessageDialog(this, "Room " + roomNumber + " is now reserved for future occupation.");
+                } else {
+                    model.updateRoomNumberAndStatus(roomNumber, lastBookingId, "Occupied");
+                    JOptionPane.showMessageDialog(this, "Room " + roomNumber + " is now occupied.");
+                }
+                break;
+            case "reserved":
+                if (todaySqlDate.equals(intendedCheckIn) || (intendedCheckIn != null && todaySqlDate.after(intendedCheckIn))) {
+                    if (!checkDateConflicts(roomNumber, lastBookingId)) {
+                        model.updateRoomNumberAndStatus(roomNumber, lastBookingId, "Occupied");
+                        JOptionPane.showMessageDialog(this, "Reserved room " + roomNumber + " is now occupied.");
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Booking conflicts with an existing reservation.");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "Room is reserved for a future date and cannot be occupied yet.");
+                }
+                break;
+            case "occupied":
+                JOptionPane.showMessageDialog(this, "Room " + roomNumber + " is already occupied.");
+                break;
+            default:
+                JOptionPane.showMessageDialog(this, "Room status is unclear or undefined.");
+                break;
         }
+        repaint();
+    } catch (NumberFormatException ex) {
+        JOptionPane.showMessageDialog(this, "Invalid room number format. Please enter a valid integer.");
+    } catch (Exception ex) {
+        JOptionPane.showMessageDialog(this, "Error updating room: " + ex.getMessage());
+    }
+    
     }//GEN-LAST:event_jButton1ActionPerformed
+    
+    private boolean checkDateConflicts(int roomNumber, int bookingId) {
+        List<Date[]> dates = model.getBookingDatesForRoom(roomNumber);
+        Date newCheckIn = getCheckInDate(bookingId);
+        Date newCheckOut = getCheckOutDate(bookingId);
+
+        for (Date[] booked : dates) {
+            Date bookedCheckIn = booked[0];   // First element is check-in date
+            Date bookedCheckOut = booked[1];  // Second element is check-out date
+
+            if (newCheckIn.before(bookedCheckOut) && newCheckOut.after(bookedCheckIn)) {
+                return true; 
+            }
+        }
+        return false; 
+    }
+
+    
+    public Date getCheckInDate(int bookingId) {
+        return model.getDateForBooking(bookingId, "checkinDate");
+    }
+
+    public Date getCheckOutDate(int bookingId) {
+        return model.getDateForBooking(bookingId, "checkoutDate");
+    }
+    
     public void updateBookingId() {
         int BookingId = model.getLastInsertedBookingId();
         jLabel8.setText("Booking ID: " + BookingId);

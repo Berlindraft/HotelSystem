@@ -3,12 +3,12 @@
  */
 package Main;
 
-import View.SplashScreen;
+import View.Management;
 
 public class App {
 
     public static void main(String[] args) {
-        new SplashScreen().setVisible(true);
+        new Management().setVisible(true);
 
     }
 }

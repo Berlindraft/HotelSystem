@@ -19,11 +19,13 @@ public class RoomType4 extends javax.swing.JPanel {
     /**
      * Creates new form RoomType4
      */
-    public RoomType4() {
+    public RoomType4(RoomAvailabilityController controller, RoomAvailability mainColorView) {
         initComponents();
-        RoomAvailabilityModel model = new RoomAvailabilityModel();
-        mainColorView = new RoomAvailability();
-        controller = new RoomAvailabilityController(model, mainColorView);
+        this.controller = controller;
+        this.mainColorView = mainColorView;
+//        RoomAvailabilityModel model = new RoomAvailabilityModel();
+//        mainColorView = new RoomAvailability();
+//        controller = new RoomAvailabilityController(model, mainColorView);
         
     }
 
@@ -345,32 +347,34 @@ public class RoomType4 extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         handleRoomTypeButtonClick("Executive");
-        System.out.println("suite rooms selected");
+        System.out.println("Executive Rooms Search done");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         handleRoomTypeButtonClick("Presidential");
-        System.out.println("presidential rooms selected");
+        System.out.println("Presidential Rooms Search done");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
     Management management = (Management) SwingUtilities.getWindowAncestor(this);
     management.getDashboardPanel().removeAll();
-    RoomType3 roomtype3 = new RoomType3();
-    management.getDashboardPanel().add(roomtype3);
+    RoomAvailabilityModel model = new RoomAvailabilityModel();
+    RoomAvailability view = new RoomAvailability();
+    RoomAvailabilityController controller = new RoomAvailabilityController(model, view);
+    RoomType3 roomType3 = new RoomType3(controller, view);    
+    management.getDashboardPanel().add(roomType3);
     management.getDashboardPanel().revalidate();
     management.getDashboardPanel().repaint();
-    System.out.println("next page");
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
     Management management = (Management) SwingUtilities.getWindowAncestor(this);
     management.getDashboardPanel().removeAll();
+    
     mainColorView.setVisible(true);
     management.getDashboardPanel().add(mainColorView);
     management.getDashboardPanel().revalidate();
     management.getDashboardPanel().repaint();
-    System.out.println("next page");
     }//GEN-LAST:event_jButton5ActionPerformed
 
 private void handleRoomTypeButtonClick(String roomType) {

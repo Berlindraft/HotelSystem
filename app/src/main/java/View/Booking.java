@@ -3,7 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package View;
+import Controller.RoomAvailabilityController;
 import Model.BookingModel;
+import Model.RoomAvailabilityModel;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -535,6 +537,7 @@ public class Booking extends javax.swing.JPanel {
                 "Do you want to add the booking with the following details:\n"
                 + "Adults: " + adults + "\n"
                 + "Children: " + children + "\n"
+                + "Senior/Student: " + discount + "\n"
                 + "Check-in Date: " + checkinDateString + "\n"
                 + "Check-out Date: " + checkoutDateString + "\n"
                 + "to the database?",
@@ -551,7 +554,10 @@ public class Booking extends javax.swing.JPanel {
             // Refresh the UI
             Management management = (Management) SwingUtilities.getWindowAncestor(jButton5);
             management.getDashboardPanel().removeAll();
-            RoomType3 roomType3 = new RoomType3();
+            RoomAvailabilityModel model = new RoomAvailabilityModel();
+            RoomAvailability view = new RoomAvailability();
+            RoomAvailabilityController controller = new RoomAvailabilityController(model, view);
+            RoomType3 roomType3 = new RoomType3(controller, view);
             management.getDashboardPanel().add(roomType3);
             management.getDashboardPanel().revalidate();
             management.getDashboardPanel().repaint();
