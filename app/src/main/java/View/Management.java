@@ -4,21 +4,27 @@
  */
 package View;
 
+import Controller.RoomAvailabilityController;
 import Model.DashboardModel;
+import Model.RoomAvailabilityModel;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.util.Map;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 /**
  *
  * @author noemi
  */
 public class Management extends javax.swing.JFrame {
-    private final Color activeColor = new Color(179, 139, 78);  // Gold color for active
+    private final Color activeColor = new Color(179, 139, 78); 
     private final Color inactiveColor = new Color(101, 28, 50);
+    private RoomAvailability roomA;
+    private RoomAvailabilityController controller;
+    private RoomAvailabilityModel model;
     /**
      * Creates new form Management2
      */
@@ -30,6 +36,9 @@ public class Management extends javax.swing.JFrame {
         dashboardPanel.add(dashboard);
         dashboardPanel.revalidate();
         dashboardPanel.repaint();
+        this.roomA = new RoomAvailability();
+        this.model = new RoomAvailabilityModel();
+        this.controller = new RoomAvailabilityController(model, roomA);
         this.dispose();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
@@ -71,6 +80,7 @@ private void setActiveButton(javax.swing.JButton activeButton) {
         transactionsBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         logoutBtn = new javax.swing.JButton();
+        floorbtn = new javax.swing.JButton();
         dashboardPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -222,38 +232,50 @@ private void setActiveButton(javax.swing.JButton activeButton) {
             }
         });
 
+        floorbtn.setBackground(new java.awt.Color(101, 28, 50));
+        floorbtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        floorbtn.setForeground(new java.awt.Color(255, 255, 255));
+        floorbtn.setText("Floor");
+        floorbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                floorbtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(dashboardBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(bookingBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(guestsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(roomsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(transactionsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(logoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(24, 24, 24)))
-                .addContainerGap())
+                        .addGap(30, 30, 30))))
+            .addComponent(guestsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(floorbtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(78, 78, 78)
+                .addGap(47, 47, 47)
                 .addComponent(dashboardBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bookingBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(floorbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(guestsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(12, 12, 12)
                 .addComponent(roomsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(transactionsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(logoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -403,6 +425,26 @@ private void setActiveButton(javax.swing.JButton activeButton) {
 //        this.dispose();
     }//GEN-LAST:event_logoutBtnActionPerformed
 
+    private void floorbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_floorbtnActionPerformed
+    handleRoomTypeButtonClick("Deluxe");
+    handleRoomTypeButtonClick("Premier");
+    handleRoomTypeButtonClick("Executive");
+    handleRoomTypeButtonClick("Presidential");
+    
+        dashboardPanel.removeAll();
+        roomA.setVisible(true);
+        dashboardPanel.add(roomA);
+        dashboardPanel.revalidate();
+        dashboardPanel.repaint();
+        setActiveButton(floorbtn);
+    
+
+    }//GEN-LAST:event_floorbtnActionPerformed
+    
+    private void handleRoomTypeButtonClick(String roomType) {
+        controller.updateColors(roomType);
+        System.out.println(roomType + " scanning");
+    }
     /**
      * @param args the command line arguments
      */
@@ -443,6 +485,7 @@ private void setActiveButton(javax.swing.JButton activeButton) {
     private javax.swing.JButton closeBtn;
     private javax.swing.JButton dashboardBtn;
     private javax.swing.JPanel dashboardPanel;
+    private javax.swing.JButton floorbtn;
     private javax.swing.JButton guestsBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;
