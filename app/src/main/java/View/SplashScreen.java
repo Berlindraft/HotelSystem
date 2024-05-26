@@ -20,7 +20,7 @@ public class SplashScreen extends javax.swing.JFrame {
         initComponents();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         imageScaler = new ImageScaler();
-        imageScaler.scaleImage(jLabel1, "src\\main\\resources\\logo1.png");
+//        imageScaler.scaleImage(jLabel1, "src\\main\\resources\\logo1.png");
 
         Timer timer = new Timer(2000, e -> {
             new Login().setVisible(true);
@@ -40,20 +40,28 @@ public class SplashScreen extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(101, 28, 50));
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1500, 1000));
         setResizable(false);
         getContentPane().setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 0));
 
         jPanel1.setBackground(new java.awt.Color(101, 28, 50));
         jPanel1.setLayout(new java.awt.BorderLayout());
-
-        jLabel1.setPreferredSize(new java.awt.Dimension(1000, 500));
-        jPanel1.add(jLabel1, java.awt.BorderLayout.CENTER);
-
         getContentPane().add(jPanel1);
+        getContentPane().add(jPanel2);
+        getContentPane().add(jPanel3);
+        getContentPane().add(jPanel4);
+
+        jPanel6.setBackground(new java.awt.Color(101, 28, 50));
+        jPanel6.setPreferredSize(new java.awt.Dimension(1500, 1000));
+        getContentPane().add(jPanel6);
 
         pack();
         setLocationRelativeTo(null);
@@ -99,7 +107,10 @@ public class SplashScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel6;
     // End of variables declaration//GEN-END:variables
 }
