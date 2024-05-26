@@ -25,23 +25,17 @@ public class RoomType3 extends javax.swing.JPanel  {
     /**
      * Creates new form RoomType3
      */
-    public RoomType3() {
+    public RoomType3(RoomAvailabilityController controller, RoomAvailability mainColorView) {
         initComponents();
+        this.controller = controller;
+        this.mainColorView = mainColorView;
         this.roomtype4 = RoomType4;
         this.booking = new Booking();
-        
-        RoomAvailabilityModel model = new RoomAvailabilityModel();
-        mainColorView = new RoomAvailability();
-        controller = new RoomAvailabilityController(model, mainColorView);
-        jButton2.addActionListener(e -> notifyListeners("Deluxe"));
+
     }
 
-    private void notifyListeners(String roomType) {
-        for (RoomTypeSelectionListener listener : listeners) {
-            listener.onRoomTypeSelected(roomType);
-        }
-    }
 
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -352,14 +346,13 @@ public class RoomType3 extends javax.swing.JPanel  {
     }//GEN-LAST:event_minimizeBtn10ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-//        handleRoomTypeButtonClick("Deluxe");
-//        System.out.println("standard rooms selected");
-//        
+        handleRoomTypeButtonClick("Deluxe");
+        System.out.println("Deluxe Rooms Search done");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         handleRoomTypeButtonClick("Premier");
-        System.out.println("premier rooms selected");
+        System.out.println("Premier Rooms Search done");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -369,13 +362,12 @@ public class RoomType3 extends javax.swing.JPanel  {
     management.getDashboardPanel().add(booking);
     management.getDashboardPanel().revalidate();
     management.getDashboardPanel().repaint();
-    System.out.println("next page");
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
     Management management = (Management) SwingUtilities.getWindowAncestor(this);
     management.getDashboardPanel().removeAll();
-    roomtype4 = new RoomType4();
+    roomtype4 = new RoomType4(controller, mainColorView);
     management.getDashboardPanel().add(roomtype4);
     management.getDashboardPanel().revalidate();
     management.getDashboardPanel().repaint();
@@ -385,19 +377,11 @@ public class RoomType3 extends javax.swing.JPanel  {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void handleRoomTypeButtonClick(String roomType) {
+    public void handleRoomTypeButtonClick(String roomType) {
     controller.updateColors(roomType);
     System.out.println(roomType + " scanning");
 }
     
-    
-    
-    
-    
-    
-    
-    
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

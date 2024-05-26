@@ -372,7 +372,7 @@ public class RoomType extends javax.swing.JPanel {
 
 private void handleRoomTypeButtonClick(String roomType) {
     controller.updateColors(roomType);
-    System.out.println(roomType + " scanning");
+    System.out.println(roomType + " Scanned");
 }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

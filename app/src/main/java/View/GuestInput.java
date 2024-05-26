@@ -16,10 +16,10 @@ public class GuestInput extends javax.swing.JPanel {
     private GuestInputController controller;
     private GuestInputModel model;
     private PaymentInformation1 payment;
-    private static final double STANDARD_PRICE_PER_DAY = 10000.0;
-    private static final double DELUXE_PRICE_PER_DAY = 15000.0; 
-    private static final double SUITE_PRICE_PER_DAY = 30000.0; 
-    private static final double EXECUTIVE_PRICE_PER_DAY = 40000.0; 
+    private static final double STANDARD_PRICE_PER_DAY = 2000.0;
+    private static final double DELUXE_PRICE_PER_DAY = 4000.0; 
+    private static final double SUITE_PRICE_PER_DAY = 6000.0; 
+    private static final double EXECUTIVE_PRICE_PER_DAY = 10000.0; 
     public static final double OPTION_1 = 7000;
     public static final double OPTION_2 = 8500;
     public static final double OPTION_3 = 10000;
@@ -553,7 +553,7 @@ private void updateTotalCost() {
         combinedTotalCost = initialTotalCost + additionalFees;
         jLabel15.setText("" + combinedTotalCost);
         model.updatePaymentTotal(paymentId, combinedTotalCost);
-        System.out.println(combinedTotalCost + " updated in database to paymentId" + paymentId );
+        //System.out.println(combinedTotalCost + " updated in database to paymentId" + paymentId );
 }
 
     public void updateCheckInOutDates() {

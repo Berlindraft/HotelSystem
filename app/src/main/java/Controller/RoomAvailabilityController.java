@@ -4,6 +4,7 @@
  */
 package Controller;
 import Model.RoomAvailabilityModel;
+import Utils.RoomData;
 import Utils.RoomTypeSelectionListener;
 import View.RoomAvailability;
 import java.awt.Color;
@@ -13,7 +14,7 @@ import java.util.List;
  *
  * @author Zyron
  */
-public class RoomAvailabilityController implements RoomTypeSelectionListener{
+public class RoomAvailabilityController {
     private RoomAvailabilityModel model;
     private RoomAvailability mainColorView;
     
@@ -22,27 +23,22 @@ public class RoomAvailabilityController implements RoomTypeSelectionListener{
         this.mainColorView = view;
     }
 
-    @Override
-    public void onRoomTypeSelected(String roomType) {
-        System.out.println("Room type selected: " + roomType);
-        updateColors(roomType); // Add this line to update colors when a room type is selected
-    }
-    
-    
+
 public void updateColors(String roomType) {
-    System.out.println(roomType);
+    System.out.println("Room Type Selected: " + roomType);
     List<Integer> roomNumbers = model.getRoomNumbersFromType(roomType);
     for (int roomNumber : roomNumbers) {
-        String roomStatus = model.retrieveRoomStatus(roomNumber);
-        Color color = getColorForStatus(roomStatus);
+        RoomData roomData = model.retrieveRoomData(roomNumber);
+        Color color = getColorForStatus(roomData.status, roomData.count);
         mainColorView.setColor(roomNumber, color);
-        System.out.println(roomNumber);
+        System.out.println(roomNumber  + " - " +  roomData.status + " for " + roomData.count + " people");
     }
-    System.out.println("colors updated");
+    System.out.println("Room Availability updated");
 }
 
+
        
-private int getRoomNumberFromType(String roomType) {
+public int getRoomNumberFromType(String roomType) {
     RoomAvailabilityModel model = new RoomAvailabilityModel(); 
     List<Integer> roomNumbers = model.getRoomNumbersFromType(roomType);
     if (!roomNumbers.isEmpty()) {
@@ -52,8 +48,39 @@ private int getRoomNumberFromType(String roomType) {
     }
 }
 
-    public Color getColorForStatus(String status) {
-        return "Available".equals(status) ? Color.GREEN : Color.RED;
+    public Color getColorForStatus(String status, int roomCount) {
+        switch (status) {
+            case "Available":
+                if (roomCount == 1) {
+                    return new Color(144, 238, 144); 
+                } else if (roomCount == 2) {
+                    return new Color(0, 128, 0);    
+                } else if (roomCount == 4) {
+                    return new Color(0, 100, 0);   
+                }
+                break;
+            case "Occupied":
+                if (roomCount == 1) {
+                    return new Color(255, 102, 102);
+                } else if (roomCount == 2) {
+                    return new Color(255, 0, 0);  
+                } else if (roomCount == 4) {
+                    return new Color(204, 0, 0);     
+                }
+                break;
+            case "Reserved":
+                if (roomCount == 1) {
+                    return new Color(255, 255, 153); 
+                } else if (roomCount == 2) {
+                    return new Color(255, 255, 51);
+                } else if (roomCount == 4) {
+                    return new Color(204, 204, 0); 
+                }
+                break;
+            default:
+                return Color.GRAY; // Default for undefined status
+        }
+        return Color.GRAY; // Safe fallback if no conditions are met
     }
 
 }
