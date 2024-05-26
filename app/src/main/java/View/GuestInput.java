@@ -35,9 +35,10 @@ public class GuestInput extends javax.swing.JPanel {
         this.model = new GuestInputModel();
         this.payment = new PaymentInformation1();
         
-jCheckBox1.addActionListener(e -> updateTotalCost());
-jCheckBox2.addActionListener(e -> updateTotalCost());
-jCheckBox3.addActionListener(e -> updateTotalCost());
+        jCheckBox1.addActionListener(e -> updateTotalCost());
+        jCheckBox2.addActionListener(e -> updateTotalCost());
+        jCheckBox3.addActionListener(e -> updateTotalCost());
+        
         updateCheckInOutDates();
         updateTotalCost();
     }
