@@ -19,6 +19,7 @@ public class Dashboard2 extends javax.swing.JPanel {
      */
     public Dashboard2() {
         initComponents();
+        loadData();
     }
     public void loadData() {
         DashboardModel dashboardModel = new DashboardModel();

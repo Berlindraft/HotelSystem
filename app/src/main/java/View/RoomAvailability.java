@@ -1,7 +1,9 @@
 package View;
 
+import Controller.GuestInputController;
 import Controller.RoomAvailabilityController;
 import Model.BookingModel;
+import Model.GuestInputModel;
 import Model.RoomAvailabilityModel;
 import Utils.RoomData;
 import javax.swing.SwingUtilities;
@@ -27,6 +29,8 @@ private GuestInput guest;
 private RoomAvailabilityModel model;
 private RoomAvailabilityController controller;
 private RoomAvailability mainColorView;
+private GuestInputController guestController;
+private GuestInputModel guestModel;
 
     public RoomAvailability() {
 //    initializePanels();
@@ -36,6 +40,8 @@ private RoomAvailability mainColorView;
     this.model = new RoomAvailabilityModel();
     this.controller = new RoomAvailabilityController(model, mainColorView);
     this.mainColorView = this; // If RoomAvailability acts as its view, or initialize as needed
+    this.guestModel = new GuestInputModel();
+    this.guestController = new GuestInputController();
     updateBookingId();
     setupClickListeners();
     }
@@ -1670,6 +1676,13 @@ private RoomAvailability mainColorView;
     management.getDashboardPanel().add(guest);
     management.getDashboardPanel().revalidate();
     management.getDashboardPanel().repaint();  
+    
+    int guestId = guestModel.getLastInsertedGuestId();
+        String[] checkInOutDates = guestController.retrieveCheckInOutDates(guestId);
+        String checkInDate = checkInOutDates[0];
+        String checkOutDate = checkInOutDates[1];
+        guest.displayTotalCost(checkInDate, checkOutDate);
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void r101MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r101MouseClicked
