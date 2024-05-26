@@ -49,10 +49,6 @@ public class GuestInput extends javax.swing.JPanel {
         int paymentId = model.getLastInsertedPaymentId(); // Retrieve the last inserted booking ID
         displayPaymentTotal(paymentId);
         
-        
-        jCheckBox1.addActionListener(e -> updateTotalCost());
-        jCheckBox2.addActionListener(e -> updateTotalCost());
-        jCheckBox3.addActionListener(e -> updateTotalCost());
         updateCheckInOutDates();
         updateTotalCost();
     }

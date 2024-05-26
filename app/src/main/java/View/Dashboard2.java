@@ -208,7 +208,7 @@ public void displayRoom4Status(String roomStatus) {
         label5.setText("Today's Check-in");
 
         label8.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
-        label8.setText("23");
+        label8.setText("0");
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(101, 28, 50)));
@@ -216,31 +216,31 @@ public void displayRoom4Status(String roomStatus) {
 
         label2.setText("Today's Check-in");
         jPanel7.add(label2);
-        label2.setBounds(11, 11, 94, 20);
+        label2.setBounds(11, 11, 98, 20);
 
         label7.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
         label7.setText("23");
         jPanel7.add(label7);
-        label7.setBounds(29, 31, 57, 66);
+        label7.setBounds(29, 31, 58, 66);
 
         label11.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
-        label11.setText("23");
+        label11.setText("0");
 
         label12.setText("Today's Check out");
 
         label13.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
-        label13.setText("23");
+        label13.setText("0");
 
         label14.setName(""); // NOI18N
         label14.setText("Total in Hotel");
 
         label15.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
-        label15.setText("23");
+        label15.setText("0");
 
         label16.setText("Total Available Rooms");
 
         label17.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
-        label17.setText("23");
+        label17.setText("0");
 
         label18.setText("Occupied Rooms");
 
@@ -302,6 +302,8 @@ public void displayRoom4Status(String roomStatus) {
                         .addComponent(label15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
+        label8.getAccessibleContext().setAccessibleName("0");
+
         jPanel5.setBackground(new java.awt.Color(179, 139, 78));
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -337,12 +339,12 @@ public void displayRoom4Status(String roomStatus) {
 
         label3.setText("Today's Check-in");
         jPanel9.add(label3);
-        label3.setBounds(11, 11, 94, 20);
+        label3.setBounds(11, 11, 98, 20);
 
         label10.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
         label10.setText("23");
         jPanel9.add(label10);
-        label10.setBounds(29, 31, 57, 66);
+        label10.setBounds(29, 31, 58, 66);
 
         label21.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         label21.setName(""); // NOI18N
@@ -350,7 +352,7 @@ public void displayRoom4Status(String roomStatus) {
 
         label22.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         label22.setName(""); // NOI18N
-        label22.setText("90");
+        label22.setText("0");
 
         label23.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         label23.setName(""); // NOI18N
@@ -358,7 +360,7 @@ public void displayRoom4Status(String roomStatus) {
 
         label24.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         label24.setName(""); // NOI18N
-        label24.setText("4");
+        label24.setText("0");
 
         label25.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         label25.setName(""); // NOI18N
@@ -366,7 +368,7 @@ public void displayRoom4Status(String roomStatus) {
 
         label26.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         label26.setName(""); // NOI18N
-        label26.setText("60");
+        label26.setText("0");
 
         label27.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         label27.setName(""); // NOI18N
@@ -378,7 +380,7 @@ public void displayRoom4Status(String roomStatus) {
 
         label30.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         label30.setName(""); // NOI18N
-        label30.setText("30");
+        label30.setText("0");
 
         label31.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         label31.setName(""); // NOI18N
@@ -386,7 +388,7 @@ public void displayRoom4Status(String roomStatus) {
 
         label32.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         label32.setName(""); // NOI18N
-        label32.setText("19");
+        label32.setText("0");
 
         label33.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         label33.setName(""); // NOI18N
@@ -394,7 +396,7 @@ public void displayRoom4Status(String roomStatus) {
 
         label34.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         label34.setName(""); // NOI18N
-        label34.setText("30");
+        label34.setText("0");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -505,12 +507,12 @@ public void displayRoom4Status(String roomStatus) {
 
         label43.setText("Today's Check-in");
         jPanel20.add(label43);
-        label43.setBounds(11, 11, 94, 20);
+        label43.setBounds(11, 11, 98, 20);
 
         label44.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
         label44.setText("23");
         jPanel20.add(label44);
-        label44.setBounds(29, 31, 57, 66);
+        label44.setBounds(29, 31, 58, 66);
 
         jPanel22.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -520,12 +522,12 @@ public void displayRoom4Status(String roomStatus) {
 
         label46.setText("Today's Check-in");
         jPanel23.add(label46);
-        label46.setBounds(11, 11, 94, 20);
+        label46.setBounds(11, 11, 98, 20);
 
         label47.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
         label47.setText("23");
         jPanel23.add(label47);
-        label47.setBounds(29, 31, 57, 66);
+        label47.setBounds(29, 31, 58, 66);
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel14.setText("30/45");
@@ -573,12 +575,12 @@ public void displayRoom4Status(String roomStatus) {
 
         label48.setText("Today's Check-in");
         jPanel25.add(label48);
-        label48.setBounds(11, 11, 94, 20);
+        label48.setBounds(11, 11, 98, 20);
 
         label49.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
         label49.setText("23");
         jPanel25.add(label49);
-        label49.setBounds(29, 31, 57, 66);
+        label49.setBounds(29, 31, 58, 66);
 
         jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel17.setText("25/45");
@@ -626,12 +628,12 @@ public void displayRoom4Status(String roomStatus) {
 
         label50.setText("Today's Check-in");
         jPanel27.add(label50);
-        label50.setBounds(11, 11, 94, 20);
+        label50.setBounds(11, 11, 98, 20);
 
         label51.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
         label51.setText("23");
         jPanel27.add(label51);
-        label51.setBounds(29, 31, 57, 66);
+        label51.setBounds(29, 31, 58, 66);
 
         jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel20.setText("14/30");
@@ -651,7 +653,7 @@ public void displayRoom4Status(String roomStatus) {
                 .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel22)
-                    .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE))
+                    .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel20)
                 .addContainerGap())
@@ -679,12 +681,12 @@ public void displayRoom4Status(String roomStatus) {
 
         label52.setText("Today's Check-in");
         jPanel29.add(label52);
-        label52.setBounds(11, 11, 94, 20);
+        label52.setBounds(11, 11, 98, 20);
 
         label53.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
         label53.setText("23");
         jPanel29.add(label53);
-        label53.setBounds(29, 31, 57, 66);
+        label53.setBounds(29, 31, 58, 66);
 
         jLabel23.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel23.setText("1/2");
