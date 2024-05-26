@@ -1791,9 +1791,6 @@ public void initiateBookingProcess(int roomNumber) {
 }
 
 
-    
-
-    
     private void updateRoomStatus(int roomNumber, Date intendedCheckIn, int lastBookingId, String currentStatus) {
     switch (currentStatus.toLowerCase()) {
         case "available":
