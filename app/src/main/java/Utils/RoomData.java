@@ -16,5 +16,13 @@ public class RoomData {
         this.status = status;
         this.count = count;
     }
+    
+    public String getStatus() {
+        return status;
+    }
+
+    public int getCount() {
+        return count;
+    }
 }
 
