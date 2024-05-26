@@ -120,15 +120,15 @@ public String getRoomDescriptionByType(String roomType) {
     }
     return roomDescription;
 }
-public String getGuestFirstName(int guestId) {
+public String getGuestFullName(int guestId) {
     String firstname = "N/A";
     try (Connection con = DatabaseConnection.getConnection()) {
-        String query = "SELECT firstName FROM guestdb WHERE guestId = ?";
+        String query = "SELECT fullName FROM guestdb WHERE guestId = ?";
         try (PreparedStatement stmt = con.prepareStatement(query)) {
             stmt.setInt(1, guestId);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                firstname = rs.getString("firstName");
+                firstname = rs.getString("fullName");
             }
         }
     } catch (SQLException ex) {
@@ -136,22 +136,7 @@ public String getGuestFirstName(int guestId) {
     }
     return firstname;
 }
-public String getGuestLastName(int guestId) {
-    String lastname = "N/A";
-    try (Connection con = DatabaseConnection.getConnection()) {
-        String query = "SELECT lastName FROM guestdb WHERE guestId = ?";
-        try (PreparedStatement stmt = con.prepareStatement(query)) {
-            stmt.setInt(1, guestId);
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                lastname = rs.getString("lastName");
-            }
-        }
-    } catch (SQLException ex) {
-        Logger.getLogger(DatabaseConnection.class.getName()).log(Level.SEVERE, null, ex);
-    }
-    return lastname;
-}
+
 public String getGuestNumber(int guestId) {
     String guestnumber = "N/A";
     try (Connection con = DatabaseConnection.getConnection()) {
