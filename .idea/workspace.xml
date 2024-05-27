@@ -5,7 +5,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8fb02b75-67f2-45ff-bb24-badca4c924e0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/View/TransactionDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/View/TransactionDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/Main/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Main/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/View/Booking.form" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/View/Booking.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/View/Booking.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/View/Booking.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/View/Dashboard.form" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/View/Dashboard.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/View/Dashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/View/Dashboard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/View/Dashboard1.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/View/Dashboard1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/View/Dashboard2.form" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/View/Dashboard2.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/View/Dashboard2.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/View/Dashboard2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/View/GuestTable.form" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/View/GuestTable.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/View/GuestTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/View/GuestTable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/View/Login.form" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/View/Login.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/View/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/View/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/View/Management.form" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/View/Management.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/View/Management.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/View/Management.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/View/Register.form" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/View/Register.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/View/Register.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/View/Register.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/View/RoomTable.form" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/View/RoomTable.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/View/RoomTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/View/RoomTable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/View/SplashScreen.form" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/View/SplashScreen.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/View/SplashScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/View/SplashScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/View/TransactionDetails.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/View/TransactionDetails.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/View/TransactionTable.form" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/View/TransactionTable.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/View/TransactionTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/View/TransactionTable.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,6 +41,18 @@
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -34,21 +71,6 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager">
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="DAYUHANHOTEL" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="DAYUHANHOTEL" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
