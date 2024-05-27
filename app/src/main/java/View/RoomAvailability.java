@@ -1683,6 +1683,7 @@ private GuestInputModel guestModel;
         String checkOutDate = checkInOutDates[1];
         guest.displayTotalCost(checkInDate, checkOutDate);
 
+        
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void r101MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r101MouseClicked

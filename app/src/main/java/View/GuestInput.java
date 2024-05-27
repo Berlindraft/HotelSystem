@@ -47,7 +47,6 @@ public class GuestInput extends javax.swing.JPanel {
         this.payment = new PaymentInformation1();
         confirmation = new Confirmation1();
         int paymentId = model.getLastInsertedPaymentId(); // Retrieve the last inserted booking ID
-        displayPaymentTotal(paymentId);
         
         
         jCheckBox1.addActionListener(e -> updateTotalCost());
@@ -436,7 +435,7 @@ public class GuestInput extends javax.swing.JPanel {
         });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setText("Payment Total:  0 ");
+        jLabel1.setText("Payment");
 
         jButton5.setBackground(new java.awt.Color(101, 28, 50));
         jButton5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -721,10 +720,10 @@ public class GuestInput extends javax.swing.JPanel {
 
     JOptionPane.showMessageDialog(null, "Payment processed successfully!");
     }//GEN-LAST:event_jButton5ActionPerformed
-public void displayPaymentTotal(int paymentId) {
-    double paymentTotal = model.getPaymentAmount(paymentId);
-    jLabel1.setText("Payment Total: $" + paymentTotal);
-}
+//public void displayPaymentTotal(int paymentId) {
+//    double paymentTotal = model.getPaymentAmount(paymentId);
+//    jLabel1.setText("Payment Total: $" + paymentTotal);
+//}
 
 private void updateTotalCost() {
     double additionalFees = 0;

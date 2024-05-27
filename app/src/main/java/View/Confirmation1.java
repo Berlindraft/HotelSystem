@@ -440,13 +440,17 @@ public void updateBookingInformation() {
 }
 
 public long calculateNumberOfDays(String checkInDate, String checkOutDate) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate checkIn = LocalDate.parse(checkInDate, formatter);
-        LocalDate checkOut = LocalDate.parse(checkOutDate, formatter);
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    LocalDate checkIn = LocalDate.parse(checkInDate, formatter);
+    LocalDate checkOut = LocalDate.parse(checkOutDate, formatter);
 
-        // Calculate the number of days between the two dates
-        return ChronoUnit.DAYS.between(checkIn, checkOut);
-    }
+    // Calculate the number of days between the two dates
+    long days = ChronoUnit.DAYS.between(checkIn, checkOut);
+
+    // Ensure the minimum number of days is 1
+    return days > 0 ? days : 1;
+}
+
 
 public void displayAddOns() {
     int bookingId = model.getLastInsertedBookingId();
