@@ -33,6 +33,7 @@ public class Login extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -55,6 +56,12 @@ public class Login extends javax.swing.JFrame {
         jPanel2.setToolTipText("");
         jPanel2.setPreferredSize(new java.awt.Dimension(500, 500));
         jPanel2.setLayout(null);
+
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logo.png"))); // NOI18N
+        jPanel2.add(jLabel1);
+        jLabel1.setBounds(10, 10, 110, 120);
+
         jPanel1.add(jPanel2);
         jPanel2.setBounds(0, 0, 500, 600);
 
@@ -322,6 +329,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnSignup;
     private javax.swing.JButton closeBtn1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
