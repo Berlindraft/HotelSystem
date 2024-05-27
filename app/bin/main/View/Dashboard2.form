@@ -228,7 +228,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Dialog" size="48" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="23"/>
+                <Property name="text" type="java.lang.String" value="0"/>
               </Properties>
             </Component>
             <Container class="javax.swing.JPanel" name="jPanel7">
@@ -279,7 +279,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Dialog" size="48" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="23"/>
+                <Property name="text" type="java.lang.String" value="0"/>
               </Properties>
             </Component>
             <Component class="java.awt.Label" name="label12">
@@ -292,7 +292,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Dialog" size="48" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="23"/>
+                <Property name="text" type="java.lang.String" value="0"/>
               </Properties>
             </Component>
             <Component class="java.awt.Label" name="label14">
@@ -306,7 +306,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Dialog" size="48" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="23"/>
+                <Property name="text" type="java.lang.String" value="0"/>
               </Properties>
             </Component>
             <Component class="java.awt.Label" name="label16">
@@ -319,7 +319,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Dialog" size="48" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="23"/>
+                <Property name="text" type="java.lang.String" value="0"/>
               </Properties>
             </Component>
             <Component class="java.awt.Label" name="label18">
@@ -556,7 +556,7 @@
                   <Font name="Dialog" size="14" style="0"/>
                 </Property>
                 <Property name="name" type="java.lang.String" value="" noResource="true"/>
-                <Property name="text" type="java.lang.String" value="90"/>
+                <Property name="text" type="java.lang.String" value="0"/>
               </Properties>
             </Component>
             <Component class="java.awt.Label" name="label23">
@@ -574,7 +574,7 @@
                   <Font name="Dialog" size="14" style="0"/>
                 </Property>
                 <Property name="name" type="java.lang.String" value="" noResource="true"/>
-                <Property name="text" type="java.lang.String" value="4"/>
+                <Property name="text" type="java.lang.String" value="0"/>
               </Properties>
             </Component>
             <Component class="java.awt.Label" name="label25">
@@ -592,7 +592,7 @@
                   <Font name="Dialog" size="14" style="0"/>
                 </Property>
                 <Property name="name" type="java.lang.String" value="" noResource="true"/>
-                <Property name="text" type="java.lang.String" value="60"/>
+                <Property name="text" type="java.lang.String" value="0"/>
               </Properties>
             </Component>
             <Component class="java.awt.Label" name="label27">
@@ -619,7 +619,7 @@
                   <Font name="Dialog" size="14" style="0"/>
                 </Property>
                 <Property name="name" type="java.lang.String" value="" noResource="true"/>
-                <Property name="text" type="java.lang.String" value="30"/>
+                <Property name="text" type="java.lang.String" value="0"/>
               </Properties>
             </Component>
             <Component class="java.awt.Label" name="label31">
@@ -637,7 +637,7 @@
                   <Font name="Dialog" size="14" style="0"/>
                 </Property>
                 <Property name="name" type="java.lang.String" value="" noResource="true"/>
-                <Property name="text" type="java.lang.String" value="19"/>
+                <Property name="text" type="java.lang.String" value="0"/>
               </Properties>
             </Component>
             <Component class="java.awt.Label" name="label33">
@@ -655,7 +655,7 @@
                   <Font name="Dialog" size="14" style="0"/>
                 </Property>
                 <Property name="name" type="java.lang.String" value="" noResource="true"/>
-                <Property name="text" type="java.lang.String" value="30"/>
+                <Property name="text" type="java.lang.String" value="0"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -1035,7 +1035,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jPanel27" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel22" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel21" alignment="0" pref="123" max="32767" attributes="0"/>
+                              <Component id="jLabel21" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
