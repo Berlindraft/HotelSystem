@@ -57,8 +57,8 @@ public int addRoom() {
 }public int addPayment(int guestId) {
     int paymentId = 0; 
     try (Connection connection = DatabaseConnection.getConnection()) {
-        String sql = "INSERT INTO paymentdb (guestId, paymentDate, paymentAmount, paymentMethod, cardNumber, cardExpiration, cardName, cardCvv, gcashNumber, gcashName, cashReceived) "
-                   + "VALUES (?, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)";
+        String sql = "INSERT INTO paymentdb (guestId, paymentDate, paymentAmount, paymentMethod, gcashNumber, gcashName, cashReceived) "
+                   + "VALUES (?, NULL, NULL, NULL, NULL, NULL, NULL)";
 
         try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             statement.setInt(1, guestId); 
