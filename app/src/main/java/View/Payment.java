@@ -4,6 +4,7 @@
  */
 package View;
 
+import gamit.Confirmation;
 import Model.PaymentModel;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;

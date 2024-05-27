@@ -49,7 +49,7 @@ public class Management extends javax.swing.JFrame {
     }
 private void setActiveButton(javax.swing.JButton activeButton) {
     // List of all buttons
-    javax.swing.JButton[] buttons = {dashboardBtn, bookingBtn, guestsBtn, roomsBtn, transactionsBtn};
+    javax.swing.JButton[] buttons = {dashboardBtn, bookingBtn, floorbtn, guestsBtn, roomsBtn, transactionsBtn};
 
     // Set all to inactive, then set the active one
     for (javax.swing.JButton btn : buttons) {
