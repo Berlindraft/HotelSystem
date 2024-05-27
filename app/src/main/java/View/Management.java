@@ -31,7 +31,7 @@ public class Management extends javax.swing.JFrame {
     public Management() {
         initComponents();
         
-        Dashboard2 dashboard = new Dashboard2();
+        Dashboard dashboard = new Dashboard();
         dashboard.loadData();
         dashboardPanel.add(dashboard);
         dashboardPanel.revalidate();
@@ -331,7 +331,7 @@ private void setActiveButton(javax.swing.JButton activeButton) {
         // TODO add your handling code here:
         
         dashboardPanel.removeAll();
-        Dashboard2 dashboard = new Dashboard2();
+        Dashboard dashboard = new Dashboard();
         DashboardModel dashboardModel = new DashboardModel();
 
         try {

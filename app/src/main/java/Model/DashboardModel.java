@@ -21,7 +21,7 @@ public class DashboardModel {
         LocalDate today = LocalDate.now();
 
         try (Connection connection = DatabaseConnection.getConnection();
-             PreparedStatement statement = connection.prepareStatement("SELECT COUNT(*) AS total FROM bookingdb WHERE DATE(checkinDate) = ?")) {
+             PreparedStatement statement = connection.prepareStatement("SELECT COUNT(*) AS total FROM newbookingdb WHERE DATE(checkinDate) = ?")) {
             statement.setDate(1, java.sql.Date.valueOf(today));
 
             try (ResultSet resultSet = statement.executeQuery()) {
@@ -38,7 +38,7 @@ public class DashboardModel {
         LocalDate today = LocalDate.now();
 
         try (Connection connection = DatabaseConnection.getConnection();
-             PreparedStatement statement = connection.prepareStatement("SELECT COUNT(*) AS total FROM bookingdb WHERE DATE(checkoutDate) = ?")) {
+             PreparedStatement statement = connection.prepareStatement("SELECT COUNT(*) AS total FROM newbookingdb WHERE DATE(checkoutDate) = ?")) {
             statement.setDate(1, java.sql.Date.valueOf(today));
 
             try (ResultSet resultSet = statement.executeQuery()) {
@@ -84,7 +84,7 @@ public class DashboardModel {
         LocalDate oneWeekAgo = LocalDate.now().minusWeeks(1);
 
         try (Connection connection = DatabaseConnection.getConnection();
-             PreparedStatement statement = connection.prepareStatement("SELECT COUNT(*) AS total FROM bookingdb WHERE checkinDate >= ?")) {
+             PreparedStatement statement = connection.prepareStatement("SELECT COUNT(*) AS total FROM newbookingdb WHERE checkinDate >= ?")) {
             statement.setDate(1, java.sql.Date.valueOf(oneWeekAgo));
 
             try (ResultSet resultSet = statement.executeQuery()) {
