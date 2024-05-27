@@ -4,6 +4,7 @@
  */
 package View;
 
+import delete.Login;
 import Utils.ImageScaler;
 import javax.swing.JFrame;
 import javax.swing.Timer;
@@ -52,21 +53,15 @@ ImageScaler imageScaler;
         setUndecorated(true);
         setPreferredSize(new java.awt.Dimension(1500, 1000));
         setResizable(false);
-        getContentPane().setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 0));
 
         jPanel1.setBackground(new java.awt.Color(101, 28, 50));
         jPanel1.setLayout(new java.awt.BorderLayout());
-        getContentPane().add(jPanel1);
-        getContentPane().add(jPanel2);
-        getContentPane().add(jPanel3);
-        getContentPane().add(jPanel4);
 
         jPanel6.setBackground(new java.awt.Color(101, 28, 50));
         jPanel6.setPreferredSize(new java.awt.Dimension(1500, 1000));
-        getContentPane().add(jPanel6);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -77,6 +72,9 @@ ImageScaler imageScaler;
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
 
