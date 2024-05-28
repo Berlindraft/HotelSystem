@@ -4,7 +4,6 @@
  */
 package delete;
 
-import gamit.Confirmation;
 import Model.PaymentModel;
 import View.GuestInput;
 import java.text.SimpleDateFormat;
@@ -239,14 +238,14 @@ private static PaymentModel model;
     management.getDashboardPanel().repaint();
     System.out.println("next page");
         
-        confirmation.updateBookingGuestId();
-        confirmation.displayRoomNumber();
-        confirmation.updateRoomDescription();
-        confirmation.updateGuestInformation();
-        confirmation.updatePaymentInformation();
-        confirmation.updateBookingInformation();
-        confirmation.displayAddOns();
-        confirmation.setupCheckboxListeners();
+//        confirmation.updateBookingGuestId();
+//        confirmation.displayRoomNumber();
+//        confirmation.updateRoomDescription();
+//        confirmation.updateGuestInformation();
+//        confirmation.updatePaymentInformation();
+//        confirmation.updateBookingInformation();
+//        confirmation.displayAddOns();
+//        confirmation.setupCheckboxListeners();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

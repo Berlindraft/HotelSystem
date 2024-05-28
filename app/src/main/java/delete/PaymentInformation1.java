@@ -2,12 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package gamit;
+package delete;
 
-import gamit.Confirmation;
 import Model.PaymentModel;
 import View.GuestInput;
-import delete.Management;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -537,14 +535,14 @@ private static PaymentModel model;
     management.getDashboardPanel().repaint();
     System.out.println("next page");
         
-        confirmation.updateBookingGuestId();
-        confirmation.displayRoomNumber();
-        confirmation.updateRoomDescription();
-        confirmation.updateGuestInformation();
-        confirmation.updatePaymentInformation();
-        confirmation.updateBookingInformation();
-        confirmation.displayAddOns();
-        confirmation.setupCheckboxListeners();
+//        confirmation.updateBookingGuestId();
+//        confirmation.displayRoomNumber();
+//        confirmation.updateRoomDescription();
+//        confirmation.updateGuestInformation();
+//        confirmation.updatePaymentInformation();
+//        confirmation.updateBookingInformation();
+//        confirmation.displayAddOns();
+//        confirmation.setupCheckboxListeners();
     }//GEN-LAST:event_NXTBTNActionPerformed
 
     private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed

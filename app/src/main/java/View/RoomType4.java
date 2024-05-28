@@ -377,7 +377,7 @@ public class RoomType4 extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-    Management management = (Management) SwingUtilities.getWindowAncestor(this);
+    Management1 management = (Management1) SwingUtilities.getWindowAncestor(this);
     management.getDashboardPanel().removeAll();
     RoomAvailabilityModel model = new RoomAvailabilityModel();
     RoomAvailability view = new RoomAvailability();
@@ -389,7 +389,7 @@ public class RoomType4 extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-    Management management = (Management) SwingUtilities.getWindowAncestor(this);
+    Management1 management = (Management1) SwingUtilities.getWindowAncestor(this);
     management.getDashboardPanel().removeAll();
     
     mainColorView.setVisible(true);

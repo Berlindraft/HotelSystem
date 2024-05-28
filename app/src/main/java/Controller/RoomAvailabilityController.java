@@ -78,9 +78,9 @@ public int getRoomNumberFromType(String roomType) {
                 }
                 break;
             default:
-                return Color.GRAY; // Default for undefined status
+                return Color.GRAY; 
         }
-        return Color.GRAY; // Safe fallback if no conditions are met
+        return Color.GRAY; 
     }
 
 }
