@@ -101,7 +101,7 @@ private GuestInputModel guestModel;
         c114 = new javax.swing.JLabel();
         r112 = new javax.swing.JPanel();
         c112 = new javax.swing.JLabel();
-        r125 = new javax.swing.JPanel();
+        r105 = new javax.swing.JPanel();
         c105 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jPanel71 = new javax.swing.JPanel();
@@ -699,22 +699,22 @@ private GuestInputModel guestModel;
             .addComponent(c112, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
         );
 
-        r125.setBackground(new java.awt.Color(204, 204, 204));
-        r125.setPreferredSize(new java.awt.Dimension(100, 60));
+        r105.setBackground(new java.awt.Color(204, 204, 204));
+        r105.setPreferredSize(new java.awt.Dimension(100, 60));
 
         c105.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         c105.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hotel-door.png"))); // NOI18N
         c105.setText("<html>Room 105 <br> Deluxe </html> ");
         c105.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
-        javax.swing.GroupLayout r125Layout = new javax.swing.GroupLayout(r125);
-        r125.setLayout(r125Layout);
-        r125Layout.setHorizontalGroup(
-            r125Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout r105Layout = new javax.swing.GroupLayout(r105);
+        r105.setLayout(r105Layout);
+        r105Layout.setHorizontalGroup(
+            r105Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(c105)
         );
-        r125Layout.setVerticalGroup(
-            r125Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        r105Layout.setVerticalGroup(
+            r105Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(c105, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
         );
 
@@ -729,14 +729,14 @@ private GuestInputModel guestModel;
                     .addComponent(r114, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
                     .addComponent(r107, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
                     .addComponent(r108, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                    .addComponent(r125, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE))
+                    .addComponent(r105, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel14Layout.createSequentialGroup()
                 .addContainerGap(17, Short.MAX_VALUE)
-                .addComponent(r125, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(r105, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(r108, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -990,6 +990,7 @@ private GuestInputModel guestModel;
         r204.setBackground(new java.awt.Color(204, 204, 204));
         r204.setPreferredSize(new java.awt.Dimension(100, 60));
 
+        c204.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         c204.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hotel-door.png"))); // NOI18N
         c204.setText("<html>Room 204 <br> Deluxe </html> ");
         c204.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -2003,20 +2004,19 @@ private void setupClickListeners() {
     addMouseListenerToComponent(r115, c115);
     
     //for floor 2 rooms
-    addMouseListenerToComponent(r203, c201);
+    addMouseListenerToComponent(r203, c203);
     addMouseListenerToComponent(r202, c202);
     addMouseListenerToComponent(r203, c203);
     addMouseListenerToComponent(r204, c204);
     addMouseListenerToComponent(r205, c205);
-    addMouseListenerToComponent(r206, c206);
-    addMouseListenerToComponent(r210, c207);
+    addMouseListenerToComponent(r207, c207);
     addMouseListenerToComponent(r208, c208);
     addMouseListenerToComponent(r209, c209);
     addMouseListenerToComponent(r210, c210);
-    addMouseListenerToComponent(r204, c211);
+    addMouseListenerToComponent(r211, c211);
     addMouseListenerToComponent(r212, c212);
     addMouseListenerToComponent(r213, c213);
-    addMouseListenerToComponent(r205, c214);
+    addMouseListenerToComponent(r214, c214);
     addMouseListenerToComponent(r215, c215);
     
     //for floor 3 rooms 
@@ -2417,6 +2417,7 @@ public void setColor(int panelNumber, Color color) {
     private javax.swing.JPanel r102;
     private javax.swing.JPanel r103;
     private javax.swing.JPanel r104;
+    private javax.swing.JPanel r105;
     private javax.swing.JPanel r106;
     private javax.swing.JPanel r107;
     private javax.swing.JPanel r108;
@@ -2427,7 +2428,6 @@ public void setColor(int panelNumber, Color color) {
     private javax.swing.JPanel r113;
     private javax.swing.JPanel r114;
     private javax.swing.JPanel r115;
-    private javax.swing.JPanel r125;
     private javax.swing.JPanel r201;
     private javax.swing.JPanel r202;
     private javax.swing.JPanel r203;
