@@ -205,7 +205,7 @@ public class GuestInputModel {
     } catch (SQLException e) {
         e.printStackTrace();
     }
-    return 0;  // Default capacity if not found
+    return 0;  
 }
  
     public int getNumberOfSeniors(int bookingId) {
@@ -214,12 +214,12 @@ public class GuestInputModel {
         statement.setInt(1, bookingId);
         ResultSet resultSet = statement.executeQuery();
         if (resultSet.next()) {
-            return resultSet.getInt("discounted"); // Assuming 'discounted' column stores the number of seniors
+            return resultSet.getInt("discounted"); 
         }
     } catch (SQLException e) {
         e.printStackTrace();
     }
-    return 0;  // Default to 0 if not found or in case of error
+    return 0; 
 }
 
 
@@ -285,19 +285,17 @@ public class GuestInputModel {
         
         
 public void processPayment(int paymentId, String paymentDate, String paymentMethod, String gcashNumber, String gcashName, int cashReceived) {
-    // SQL query to update the payment data
     String query = "UPDATE paymentdb SET paymentDate = ?, paymentMethod = ?, gcashNumber = ?, gcashName = ?, cashReceived = ? WHERE paymentId = ?";
 
     try (Connection con = DatabaseConnection.getConnection();
          PreparedStatement pst = con.prepareStatement(query)) {
 
-        // Set parameters for the query
         pst.setString(1, paymentDate);
         pst.setString(2, paymentMethod);
         pst.setString(3, gcashNumber);
         pst.setString(4, gcashName);
         pst.setInt(5, cashReceived);
-        pst.setInt(6, paymentId);  // Set the paymentId for the WHERE clause
+        pst.setInt(6, paymentId);  
 
         int result = pst.executeUpdate();
         if (result > 0) {

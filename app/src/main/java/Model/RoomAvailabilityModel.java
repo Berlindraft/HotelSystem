@@ -70,6 +70,7 @@ public List<Integer> getRoomNumbersFromType(String roomType) {
         }
         return new RoomData("Unknown", 0); 
     }
+    
 //gamiton
 public List<Date[]> getBookingDatesForRoom(int roomNumber) {
     List<Date[]> bookedDates = new ArrayList<>();
@@ -141,7 +142,6 @@ public Date getDateForBooking(int bookingId, String dateType) {
 public void updateRoomNumberAndStatus(int roomNumber, int bookingId,  String status) {
     if (bookingId != -1) {
         try (Connection con = DatabaseConnection.getConnection()) {
-            // First, update the room number in the booking database
             String queryUpdateRoomNumber = "UPDATE newbookingdb SET roomNumber=? WHERE bookingId=?";
             try (PreparedStatement stmtUpdateRoomNumber = con.prepareStatement(queryUpdateRoomNumber)) {
                 stmtUpdateRoomNumber.setInt(1, roomNumber);

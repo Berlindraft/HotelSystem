@@ -15,7 +15,6 @@ public class ImageScaler {
     public void scaleImage(JLabel jlabel, String filename) {
 
         if (jlabel == null) {
-            // handle the case where jlabel is null
             return;
         }
 

@@ -12,7 +12,7 @@ public class BookingModel {
     
   
 public int addGuest() {
-    int guestId = 0; // Initialize guestId
+    int guestId = 0; 
     try (Connection connection = getConnection()) {
         String sql = "INSERT INTO guestdb (fullName, contactNumber, email, address) "
                    + "VALUES (NULL, NULL, NULL, NULL)";
@@ -83,9 +83,7 @@ public int addRoom() {
 
 public void addBooking(int guestId, int paymentId, Date checkinDate, Date checkoutDate, int adults, int children, int discounted ) {
     int roomNumber = addRoom();
-//    String AddOption1 = null;
-//    String AddOption2 = null;
-//    String AddOption3 = null;
+    
     try (Connection connection = getConnection()) { 
         String sql = "INSERT INTO newbookingdb (guestId, paymentId, roomNumber, checkinDate, checkoutDate, adults, children, discounted, addOption1, addOption2, addOption3) "
                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, NULL, NULL, NULL)";
