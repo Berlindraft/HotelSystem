@@ -2229,7 +2229,7 @@ public void setColor(int panelNumber, Color color) {
             r115.setBackground(color);
             break;
         case 201:
-            r203.setBackground(color);
+            r201.setBackground(color);
             break;
         case 202:
             r202.setBackground(color);
@@ -2243,11 +2243,8 @@ public void setColor(int panelNumber, Color color) {
         case 205:
             r205.setBackground(color);
             break;
-        case 206:
-            r206.setBackground(color);
-            break;
         case 207:
-            r210.setBackground(color);
+            r207.setBackground(color);
             break;
         case 208:
             r208.setBackground(color);
@@ -2259,7 +2256,7 @@ public void setColor(int panelNumber, Color color) {
             r210.setBackground(color);
             break;
         case 211:
-            r204.setBackground(color);
+            r211.setBackground(color);
             break;
         case 212:
             r212.setBackground(color);
@@ -2268,7 +2265,7 @@ public void setColor(int panelNumber, Color color) {
             r213.setBackground(color);
             break;
         case 214:
-            r205.setBackground(color);
+            r214.setBackground(color);
             break;
         case 215:
             r215.setBackground(color);
