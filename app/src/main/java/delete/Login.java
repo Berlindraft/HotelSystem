@@ -6,7 +6,6 @@ package delete;
 
 import Controller.AdminSignupController;
 import Utils.ImageScaler;
-import View.Management;
 import View.Register;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;

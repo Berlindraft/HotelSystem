@@ -5,7 +5,7 @@ import Controller.RoomAvailabilityController;
 import javax.swing.SwingUtilities;
 import Model.RoomAvailabilityModel;
 import View.Booking;
-import View.Management;
+import delete.Management;
 import View.RoomAvailability;
 
 /**

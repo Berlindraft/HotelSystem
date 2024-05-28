@@ -3,11 +3,11 @@
  */
 package Main;
 
-import View.Login;
+import View.Management1;
 
 public class App {
 
     public static void main(String[] args) {
-        new Login().setVisible(true);
+        new Management1().setVisible(true);
     }
 }

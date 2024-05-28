@@ -7,7 +7,6 @@ package delete;
 import gamit.Confirmation;
 import Model.PaymentModel;
 import View.GuestInput;
-import View.Management;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;

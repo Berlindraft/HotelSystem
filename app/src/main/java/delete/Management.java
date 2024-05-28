@@ -2,11 +2,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package View;
+package delete;
 
 import Controller.RoomAvailabilityController;
 import Model.DashboardModel;
 import Model.RoomAvailabilityModel;
+import View.Booking;
+import View.Dashboard;
+import View.GuestTable;
+import View.RoomAvailability;
+import View.RoomTable;
+import View.TransactionTable;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.util.Map;

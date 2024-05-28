@@ -1,5 +1,6 @@
 package View;
 
+import delete.Management;
 import gamit.PaymentInformation1;
 import Controller.GuestInputController;
 import Model.GuestInputModel;
