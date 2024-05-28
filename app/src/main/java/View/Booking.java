@@ -3,11 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package View;
-import delete.Management;
 import Controller.RoomAvailabilityController;
 import Model.BookingModel;
 import Model.RoomAvailabilityModel;
-import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -730,7 +728,7 @@ public class Booking extends javax.swing.JPanel {
             Bmodel.addBooking(guestId, paymentId, sqlCheckinDate, sqlCheckoutDate, adults, children, discount);
 
             // Refresh the UI
-            Management management = (Management) SwingUtilities.getWindowAncestor(jButton5);
+            Management1 management = (Management1) SwingUtilities.getWindowAncestor(jButton5);
             management.getDashboardPanel().removeAll();
             RoomAvailabilityModel model = new RoomAvailabilityModel();
             RoomAvailability view = new RoomAvailability();

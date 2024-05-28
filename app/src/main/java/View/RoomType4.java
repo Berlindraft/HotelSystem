@@ -24,10 +24,7 @@ public class RoomType4 extends javax.swing.JPanel {
         initComponents();
         this.controller = controller;
         this.mainColorView = mainColorView;
-//        RoomAvailabilityModel model = new RoomAvailabilityModel();
-//        mainColorView = new RoomAvailability();
-//        controller = new RoomAvailabilityController(model, mainColorView);
-        
+
     }
 
     /**

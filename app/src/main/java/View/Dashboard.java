@@ -1,13 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package View;
 
 import Model.DashboardModel;
 import java.sql.SQLException;
 import java.util.Map;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**

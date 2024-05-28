@@ -22,9 +22,7 @@ import javax.swing.SwingUtilities;
 public class Confirmation1 extends javax.swing.JPanel {
 private static ConfirmationModel model;
 private static EmailSender emailSender;
-    /**
-     * Creates new form Confirmation1
-     */
+
     public Confirmation1() {
         initComponents();
         this.model = new ConfirmationModel();
@@ -553,11 +551,7 @@ public long calculateNumberOfDays(String checkInDate, String checkOutDate) {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     LocalDate checkIn = LocalDate.parse(checkInDate, formatter);
     LocalDate checkOut = LocalDate.parse(checkOutDate, formatter);
-
-    // Calculate the number of days between the two dates
     long days = ChronoUnit.DAYS.between(checkIn, checkOut);
-
-    // Ensure the minimum number of days is 1
     return days > 0 ? days : 1;
 }
 

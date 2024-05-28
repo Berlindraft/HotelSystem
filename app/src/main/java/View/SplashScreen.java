@@ -10,7 +10,7 @@ import javax.swing.Timer;
 
 /**
  *
- * @author marvi
+ * @author Zyron
  */
 public class SplashScreen extends javax.swing.JFrame {
 ImageScaler imageScaler;

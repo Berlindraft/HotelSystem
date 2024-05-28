@@ -11,13 +11,10 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author marvi
+ * @author Zyron
  */
 public class Register extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Register1
-     */
     public Register() {
         initComponents();
     }
@@ -350,12 +347,10 @@ public class Register extends javax.swing.JFrame {
     }//GEN-LAST:event_btnloginActionPerformed
 
     private void btnSignupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignupActionPerformed
-        // TODO add your handling code here:
         String userFirst = firstName.getText();
         String userLast = lastName.getText();
         String email = userEmail.getText();
         String phoneNumber = userPNumber.getText();
-        
         
         //MAO NI ANG DEPRECATED NGA CODE!!!
         //MAO NI ANG DEPRECATED NGA CODE!!!
@@ -384,12 +379,10 @@ public class Register extends javax.swing.JFrame {
     }//GEN-LAST:event_lastNameActionPerformed
 
     private void closeBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBtn1ActionPerformed
-        // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_closeBtn1ActionPerformed
 
     private void firstNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_firstNameFocusGained
-        // TODO add your handling code here:
         if(firstName != null && firstName.getText().equals("Firstname *"))
         {
             firstName.setText("");
@@ -398,7 +391,6 @@ public class Register extends javax.swing.JFrame {
     }//GEN-LAST:event_firstNameFocusGained
 
     private void lastNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lastNameFocusGained
-        // TODO add your handling code here:
         if(lastName != null && lastName.getText().equals("Lastname *"))
         {
             lastName.setText("");
@@ -407,7 +399,6 @@ public class Register extends javax.swing.JFrame {
     }//GEN-LAST:event_lastNameFocusGained
 
     private void userEmailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_userEmailFocusGained
-        // TODO add your handling code here:
         if(userEmail != null && userEmail.getText().equals("Email Address *"))
         {
             userEmail.setText("");
@@ -416,7 +407,6 @@ public class Register extends javax.swing.JFrame {
     }//GEN-LAST:event_userEmailFocusGained
 
     private void userPNumberFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_userPNumberFocusGained
-        // TODO add your handling code here:
         if(userPNumber != null && userPNumber.getText().equals("0900-0000-000 *"))
         {
             userPNumber.setText("");
@@ -425,7 +415,6 @@ public class Register extends javax.swing.JFrame {
     }//GEN-LAST:event_userPNumberFocusGained
 
     private void userPassFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_userPassFocusGained
-        // TODO add your handling code here:
         if(userPass != null && userPass.getText().equals("password"))
         {
             userPass.setText("");
@@ -434,7 +423,6 @@ public class Register extends javax.swing.JFrame {
     }//GEN-LAST:event_userPassFocusGained
 
     private void userPass2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_userPass2FocusGained
-        // TODO add your handling code here:
         if(userPass2 != null && userPass2.getText().equals("password"))
         {
             userPass2.setText("");
@@ -443,7 +431,6 @@ public class Register extends javax.swing.JFrame {
     }//GEN-LAST:event_userPass2FocusGained
 
     private void showPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showPassActionPerformed
-        // TODO add your handling code here:
         if (showPass.isSelected()) {
             userPass.setEchoChar((char) 0); 
             userPass2.setEchoChar((char) 0); 

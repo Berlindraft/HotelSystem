@@ -410,7 +410,6 @@ private void setActiveButton(javax.swing.JButton activeButton) {
     }//GEN-LAST:event_dashboardBtnActionPerformed
 
     private void roomsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roomsBtnActionPerformed
-        // TODO add your handling code here:
         dashboardPanel.removeAll();
         RoomTable roomTable = new RoomTable();
         dashboardPanel.add(roomTable);
@@ -420,7 +419,6 @@ private void setActiveButton(javax.swing.JButton activeButton) {
     }//GEN-LAST:event_roomsBtnActionPerformed
 
     private void guestsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guestsBtnActionPerformed
-        // TODO add your handling code here:
         dashboardPanel.removeAll();
         GuestTable guestTable = new GuestTable();
         dashboardPanel.add(guestTable);
@@ -430,7 +428,6 @@ private void setActiveButton(javax.swing.JButton activeButton) {
     }//GEN-LAST:event_guestsBtnActionPerformed
 
     private void transactionsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transactionsBtnActionPerformed
-        // TODO add your handling code here:
         dashboardPanel.removeAll();
         TransactionTable transactionTable = new TransactionTable();
         dashboardPanel.add(transactionTable);
@@ -440,8 +437,6 @@ private void setActiveButton(javax.swing.JButton activeButton) {
     }//GEN-LAST:event_transactionsBtnActionPerformed
 
     private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
-        // TODO add your handling code here:
-        
         Login login = new Login();
         login.setVisible(true);
         login.pack();
@@ -464,39 +459,16 @@ private void setActiveButton(javax.swing.JButton activeButton) {
     
 
     }//GEN-LAST:event_floorbtnActionPerformed
+    
+    
     private void handleRoomTypeButtonClick(String roomType) {
         controller.updateColors(roomType);
         System.out.println(roomType + " scanning");
     }
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Management1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Management1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Management1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Management1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
+    
+    
 
-        /* Create and display the form */
+    public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Management1().setVisible(true);

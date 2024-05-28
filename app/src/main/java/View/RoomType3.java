@@ -6,7 +6,6 @@ package View;
 
 import delete.Management;
 import Controller.RoomAvailabilityController;
-import Model.RoomAvailabilityModel;
 import Utils.RoomTypeSelectionListener;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,9 +22,8 @@ public class RoomType3 extends javax.swing.JPanel  {
     private Booking booking;
     private RoomType4 RoomType4;
     private List<RoomTypeSelectionListener> listeners = new ArrayList<>();
-    /**
-     * Creates new form RoomType3
-     */
+
+    
     public RoomType3(RoomAvailabilityController controller, RoomAvailability mainColorView) {
         initComponents();
         this.controller = controller;

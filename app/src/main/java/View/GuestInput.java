@@ -5,7 +5,6 @@ import gamit.PaymentInformation1;
 import Controller.GuestInputController;
 import Model.GuestInputModel;
 import Model.PaymentModel;
-import java.awt.Color;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -38,16 +37,14 @@ public class GuestInput extends javax.swing.JPanel {
     private double initialTotalCost = 0;
     private double addTotalCost = 0;
     private double combinedTotalCost = 0;
-    /**
-     * Creates new form Guest
-     */
+    
     public GuestInput() {
         initComponents();
         this.controller = new GuestInputController();
         this.model = new GuestInputModel();
         this.payment = new PaymentInformation1();
         confirmation = new Confirmation1();
-        int paymentId = model.getLastInsertedPaymentId(); // Retrieve the last inserted booking ID
+        int paymentId = model.getLastInsertedPaymentId(); 
         
         jCheckBox1.addActionListener(e -> updateTotalCost());
         jCheckBox2.addActionListener(e -> updateTotalCost());
@@ -590,8 +587,7 @@ public class GuestInput extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    Management management = (Management) SwingUtilities.getWindowAncestor(this);
+    Management1 management = (Management1) SwingUtilities.getWindowAncestor(this);
     management.getDashboardPanel().removeAll();
     confirmation.setVisible(true);
     management.getDashboardPanel().add(confirmation);
@@ -609,7 +605,6 @@ public class GuestInput extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
         String guestFullname = fullname.getText();
         String guestPhone = phonenumber.getText();
         String guestEmail = emailaddress.getText();
@@ -624,7 +619,6 @@ public class GuestInput extends javax.swing.JPanel {
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-  
     String status = "Yes";
     String statusNull = null;
     
@@ -645,7 +639,7 @@ public class GuestInput extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-    Management management = (Management) SwingUtilities.getWindowAncestor(this);
+    Management1 management = (Management1) SwingUtilities.getWindowAncestor(this);
     management.getDashboardPanel().removeAll();
     RoomAvailability roomAvailability = new RoomAvailability();
     management.getDashboardPanel().add(roomAvailability);
@@ -693,10 +687,6 @@ public class GuestInput extends javax.swing.JPanel {
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
 
     }//GEN-LAST:event_jRadioButton2ActionPerformed
-//public void displayPaymentTotal(int paymentId) {
-//    double paymentTotal = model.getPaymentAmount(paymentId);
-//    jLabel1.setText("Payment Total: $" + paymentTotal);
-//}
 
 private void updateTotalCost() {
     double additionalFees = 0;
@@ -742,7 +732,7 @@ private void updateTotalCost() {
         LocalDate checkOut = LocalDate.parse(checkOutDate, formatter);
 
         long daysBetween = ChronoUnit.DAYS.between(checkIn, checkOut);
-        return (daysBetween > 0) ? daysBetween : 1; // Ensures at least one day is charged
+        return (daysBetween > 0) ? daysBetween : 1; 
     }
 
 
@@ -755,18 +745,20 @@ public void displayTotalCost(String checkInDate, String checkOutDate) {
 
     long numberOfDays = calculateNumberOfDays(checkInDate, checkOutDate);
     double basePricePerDay = getPricePerDay(roomType, roomCapacity);
-    double totalCost = numberOfDays * basePricePerDay;
 
-    // Calculate discount for seniors directly here
-    double discount = totalCost * 0.1 * numberOfSeniors;  // 10% per senior
-    double discountedTotalCost = totalCost - discount;
+    double discountPerSenior = 0.2 * 500; 
+    double totalDiscount = numberOfSeniors > 0 ? discountPerSenior : 0;
+    double adjustedPricePerDay = basePricePerDay - totalDiscount; 
 
-    // Determine if there's a discount to display
-    String costDisplay = "Total Cost: $" + discountedTotalCost + (numberOfSeniors > 0 ? " w/ discount" : "");
+    double totalCost = numberOfDays * adjustedPricePerDay;
+    String discountMessage = numberOfSeniors > 0 ? " w/ discount" : "";
+    String costDisplay = "Total Cost: $" + totalCost + discountMessage;
+    
     jLabel11.setText(costDisplay);
-    initialTotalCost = discountedTotalCost; // Store the total cost after discount for further processing
+    initialTotalCost = totalCost;  
     updateTotalCost();
 }
+
 
 
     
@@ -795,7 +787,7 @@ public double getPricePerDay(String roomType, int roomCapacity) {
         default:
             return 0.0; 
     }
-    return 0.0;  // Return a default value in case of no match
+    return 0.0; 
 }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author marvi
+ * @author Zyron
  */
 public class Login extends javax.swing.JFrame {
 
@@ -239,8 +239,6 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSignupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignupActionPerformed
-
-        // TODO add your handling code here:
         Register register = new Register();
         register.setVisible(true);
         register.pack();
@@ -269,12 +267,10 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_userNameActionPerformed
 
     private void closeBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBtn1ActionPerformed
-        // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_closeBtn1ActionPerformed
 
     private void userNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_userNameFocusGained
-        // TODO add your handling code here:
         if(userName != null && userName.getText().equals("Email Address *"))
         {
             userName.setText("");
@@ -283,7 +279,6 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_userNameFocusGained
 
     private void userPassFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_userPassFocusGained
-        // TODO add your handling code here:
         if(userPass != null && userPass.getText().equals("password"))
         {
             userPass.setText("");
@@ -292,7 +287,6 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_userPassFocusGained
 
     private void showPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showPassActionPerformed
-        // TODO add your handling code here:
         if (showPass.isSelected()) {
             userPass.setEchoChar((char) 0); 
         } else {

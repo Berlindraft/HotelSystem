@@ -3,7 +3,6 @@ package View;
 import delete.Management;
 import Controller.GuestInputController;
 import Controller.RoomAvailabilityController;
-import Model.BookingModel;
 import Model.GuestInputModel;
 import Model.RoomAvailabilityModel;
 import Utils.RoomData;
@@ -13,9 +12,6 @@ import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Date;
-import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -34,13 +30,11 @@ private GuestInputController guestController;
 private GuestInputModel guestModel;
 
     public RoomAvailability() {
-//    initializePanels();
-//    setupRoomPanels();
     initComponents();
     guest = new GuestInput();
     this.model = new RoomAvailabilityModel();
     this.controller = new RoomAvailabilityController(model, mainColorView);
-    this.mainColorView = this; // If RoomAvailability acts as its view, or initialize as needed
+    this.mainColorView = this; 
     this.guestModel = new GuestInputModel();
     this.guestController = new GuestInputController();
     updateBookingId();
@@ -2008,7 +2002,6 @@ private GuestInputModel guestModel;
     RoomAvailabilityModel model = new RoomAvailabilityModel();
     RoomAvailability view = new RoomAvailability();
     RoomAvailabilityController controller = new RoomAvailabilityController(model, view);
-    //RoomType3 roomType3 = new RoomType3(controller, view);
     
     RoomType4 roomType4 = new RoomType4(controller, view);
     management.getDashboardPanel().add(roomType4);
@@ -2176,7 +2169,7 @@ private void addMouseListenerToComponent(JPanel panel, JLabel label) {
 
 private int extractRoomNumber(String text) {
     try {
-        String numberOnly = text.replaceAll("\\D+", "");  // Remove non-digits
+        String numberOnly = text.replaceAll("\\D+", "");
         if (!numberOnly.isEmpty()) {
             return Integer.parseInt(numberOnly);
         } else {
@@ -2264,7 +2257,7 @@ private void handleReservedRoom(Date intendedCheckIn, int roomNumber, int lastBo
 public void updateRoomDisplay(int roomNumber) {
     RoomData roomDetails = model.retrieveRoomData(roomNumber);
     Color color = controller.getColorForStatus(roomDetails.getStatus(), roomDetails.getCount());
-    setColor(roomNumber, color);  // This method updates the color of the room display
+    setColor(roomNumber, color);  
 }
 
     
