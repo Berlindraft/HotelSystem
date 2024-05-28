@@ -1,7 +1,6 @@
 package View;
 
-import delete.Management;
-import delete.PaymentInformation1;
+
 import Controller.GuestInputController;
 import Model.GuestInputModel;
 import Model.PaymentModel;
@@ -19,21 +18,20 @@ import javax.swing.SwingUtilities;
 public class GuestInput extends javax.swing.JPanel {
     private GuestInputController controller;
     private GuestInputModel model;
-    private PaymentInformation1 payment;
     private static PaymentModel modelP;
     private static Confirmation1 confirmation;
 
-    private static final double DELUXE_SOLO_PRICE = 1000;
-    private static final double DELUXE_DUO_PRICE = 1500;
-    private static final double DELUXE_FAMILY_PRICE = 2000;
-    private static final double PREMIER_DUO_PRICE = 2000;
-    private static final double PREMIER_FAMILY_PRICE = 2000;
-    private static final double EXECUTIVE_PRICE = 6000;
-    private static final double PRESIDENTIAL_PRICE = 10000;
+    private static final double DELUXE_SOLO_PRICE = 5000;
+    private static final double DELUXE_DUO_PRICE = 7000;
+    private static final double DELUXE_FAMILY_PRICE = 10000;
+    private static final double PREMIER_DUO_PRICE = 12500;
+    private static final double PREMIER_FAMILY_PRICE = 15000;
+    private static final double EXECUTIVE_PRICE = 30000;
+    private static final double PRESIDENTIAL_PRICE = 40000;
     
-    public static final double OPTION_1 = 300;
-    public static final double OPTION_2 = 250;
-    public static final double OPTION_3 = 500;
+    public static final double OPTION_1 = 4000;
+    public static final double OPTION_2 = 5000;
+    public static final double OPTION_3 = 3000;
     private double initialTotalCost = 0;
     private double addTotalCost = 0;
     private double combinedTotalCost = 0;
@@ -42,7 +40,6 @@ public class GuestInput extends javax.swing.JPanel {
         initComponents();
         this.controller = new GuestInputController();
         this.model = new GuestInputModel();
-        this.payment = new PaymentInformation1();
         confirmation = new Confirmation1();
         int paymentId = model.getLastInsertedPaymentId(); 
         
@@ -152,11 +149,11 @@ public class GuestInput extends javax.swing.JPanel {
             }
         });
 
-        jLabel22.setText("$ 500");
+        jLabel22.setText("₱4000");
 
-        jLabel23.setText("$ 500");
+        jLabel23.setText("₱3000");
 
-        jLabel24.setText("$ 500");
+        jLabel24.setText("₱5000");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setText("CHECK IN");
@@ -704,9 +701,9 @@ private void updateTotalCost() {
             additionalFees += OPTION_3;
         }
 
-        jLabel17.setText("" + additionalFees);
+        jLabel17.setText("₱" + additionalFees);
         combinedTotalCost = initialTotalCost + additionalFees;
-        jLabel15.setText("" + combinedTotalCost);
+        jLabel15.setText("₱" + combinedTotalCost);
         model.updatePaymentTotal(paymentId, combinedTotalCost);
         //System.out.println(combinedTotalCost + " updated in database to paymentId" + paymentId );
 }
@@ -746,13 +743,13 @@ public void displayTotalCost(String checkInDate, String checkOutDate) {
     long numberOfDays = calculateNumberOfDays(checkInDate, checkOutDate);
     double basePricePerDay = getPricePerDay(roomType, roomCapacity);
 
-    double discountPerSenior = 0.2 * 500; 
+    double discountPerSenior = 0.2 * 3000; 
     double totalDiscount = numberOfSeniors > 0 ? discountPerSenior : 0;
     double adjustedPricePerDay = basePricePerDay - totalDiscount; 
 
     double totalCost = numberOfDays * adjustedPricePerDay;
     String discountMessage = numberOfSeniors > 0 ? " w/ discount" : "";
-    String costDisplay = "Total Cost: $" + totalCost + discountMessage;
+    String costDisplay = "Total Cost: ₱" + totalCost + discountMessage;
     
     jLabel11.setText(costDisplay);
     initialTotalCost = totalCost;  

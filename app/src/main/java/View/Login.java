@@ -4,7 +4,6 @@
  */
 package View;
 
-import delete.Management;
 import Controller.AdminSignupController;
 import java.awt.Color;
 import javax.swing.JFrame;

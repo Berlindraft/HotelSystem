@@ -263,17 +263,17 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel22">
           <Properties>
-            <Property name="text" type="java.lang.String" value="$ 500"/>
+            <Property name="text" type="java.lang.String" value="&#x20b1;4000"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel23">
           <Properties>
-            <Property name="text" type="java.lang.String" value="$ 500"/>
+            <Property name="text" type="java.lang.String" value="&#x20b1;3000"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel24">
           <Properties>
-            <Property name="text" type="java.lang.String" value="$ 500"/>
+            <Property name="text" type="java.lang.String" value="&#x20b1;5000"/>
           </Properties>
         </Component>
         <Container class="javax.swing.JPanel" name="jPanel7">

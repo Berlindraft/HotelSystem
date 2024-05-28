@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package View;
-import delete.Management;
 import Model.ConfirmationModel;
 import Utils.EmailSender;
 import java.awt.event.ActionEvent;
