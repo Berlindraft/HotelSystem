@@ -7,7 +7,7 @@ package gamit;
 import gamit.Confirmation;
 import Model.PaymentModel;
 import View.GuestInput;
-import View.Management;
+import delete.Management;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -24,7 +24,7 @@ private static PaymentModel model;
      */
     public PaymentInformation1() {
         initComponents();
-                this.confirmation = new Confirmation();
+        this.confirmation = new Confirmation();
         this.model = new PaymentModel();
         int paymentId = model.getLastInsertedPaymentId(); // Retrieve the last inserted booking ID
         displayPaymentTotal(paymentId);
