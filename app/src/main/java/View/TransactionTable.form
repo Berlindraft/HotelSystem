@@ -64,8 +64,6 @@
             </Property>
           </Properties>
 
-<<<<<<< Updated upstream
-=======
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
@@ -108,7 +106,6 @@
           <SubComponents>
             <Container class="javax.swing.JScrollPane" name="jScrollPane1">
 
->>>>>>> Stashed changes
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
                 <Component class="javax.swing.JTable" name="jTable1">
