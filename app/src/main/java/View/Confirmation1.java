@@ -503,7 +503,7 @@ private static EmailSender emailSender;
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    Management1 management = (Management1) SwingUtilities.getWindowAncestor(this);
+    Management management = (Management) SwingUtilities.getWindowAncestor(this);
     management.getDashboardPanel().removeAll();
     GuestInput guestInput = new GuestInput();
     management.getDashboardPanel().add(guestInput);

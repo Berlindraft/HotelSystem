@@ -587,7 +587,7 @@ public class GuestInput extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    Management1 management = (Management1) SwingUtilities.getWindowAncestor(this);
+    Management management = (Management) SwingUtilities.getWindowAncestor(this);
     management.getDashboardPanel().removeAll();
     confirmation.setVisible(true);
     management.getDashboardPanel().add(confirmation);
@@ -639,7 +639,7 @@ public class GuestInput extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-    Management1 management = (Management1) SwingUtilities.getWindowAncestor(this);
+    Management management = (Management) SwingUtilities.getWindowAncestor(this);
     management.getDashboardPanel().removeAll();
     RoomAvailability roomAvailability = new RoomAvailability();
     management.getDashboardPanel().add(roomAvailability);

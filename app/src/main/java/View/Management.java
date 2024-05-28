@@ -2,13 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package gamit;
+package View;
 
+import Controller.RoomAvailabilityController;
 import Model.DashboardModel;
+import Model.RoomAvailabilityModel;
 import View.Booking;
 import View.Dashboard;
 import View.GuestTable;
 import View.Login;
+import View.RoomAvailability;
 import View.RoomTable;
 import View.TransactionTable;
 import java.awt.Color;
@@ -23,21 +26,24 @@ import javax.swing.JPanel;
  * @author Zyron
  */
 public class Management extends javax.swing.JFrame {
-    private final Color activeColor = new Color(179, 139, 78);  // Gold color for active
+    private final Color activeColor = new Color(179, 139, 78); 
     private final Color inactiveColor = new Color(101, 28, 50);
+    private RoomAvailability roomA;
+    private RoomAvailabilityController controller;
+    private RoomAvailabilityModel model;
     /**
      * Creates new form Management2
      */
     public Management() {
         initComponents();
         
-//        Dashboard1 dashboard = new Dashboard1();
-//        dashboard.loadData();
-//        dashboardPanel.add(dashboard);
-//        dashboardPanel.revalidate();
-//        dashboardPanel.repaint();
-//        this.dispose();
-//        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        Dashboard dashboard = new Dashboard();
+        dashboard.loadData();
+        dashboardPanel.add(dashboard);
+        dashboardPanel.revalidate();
+        dashboardPanel.repaint();
+        this.dispose();
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
     
     public JPanel getDashboardPanel()
@@ -45,18 +51,15 @@ public class Management extends javax.swing.JFrame {
         return dashboardPanel;
     }
 private void setActiveButton(javax.swing.JButton activeButton) {
-    // List of all buttons
-    javax.swing.JButton[] buttons = {dashboardBtn, bookingBtn, guestsBtn, roomsBtn, transactionsBtn};
+    javax.swing.JButton[] buttons = {floorbtn, dashboardBtn, bookingBtn, guestsBtn, roomsBtn, transactionsBtn};
 
-    // Set all to inactive, then set the active one
     for (javax.swing.JButton btn : buttons) {
         btn.setBackground(inactiveColor);
-        btn.setForeground(Color.WHITE);  // Optional: change text color if needed
+        btn.setForeground(Color.WHITE); 
     }
 
-    // Set active button color
     activeButton.setBackground(activeColor);
-    activeButton.setForeground(Color.BLACK);  // Optional: change text color if needed
+    activeButton.setForeground(Color.BLACK);  
 }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -69,6 +72,9 @@ private void setActiveButton(javax.swing.JButton activeButton) {
 
         jPanel2 = new javax.swing.JPanel();
         closeBtn = new javax.swing.JButton();
+        closeBtn1 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         bookingBtn = new javax.swing.JButton();
         dashboardBtn = new javax.swing.JButton();
@@ -77,9 +83,11 @@ private void setActiveButton(javax.swing.JButton activeButton) {
         transactionsBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         logoutBtn = new javax.swing.JButton();
+        floorbtn = new javax.swing.JButton();
         dashboardPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel2.setBackground(new java.awt.Color(101, 28, 50));
 
@@ -95,21 +103,58 @@ private void setActiveButton(javax.swing.JButton activeButton) {
             }
         });
 
+        closeBtn1.setBackground(new java.awt.Color(179, 139, 78));
+        closeBtn1.setForeground(new java.awt.Color(255, 255, 255));
+        closeBtn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Minus_3.png"))); // NOI18N
+        closeBtn1.setToolTipText("");
+        closeBtn1.setFocusCycleRoot(true);
+        closeBtn1.setMargin(new java.awt.Insets(5, 14, 5, 14));
+        closeBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeBtn1ActionPerformed(evt);
+            }
+        });
+
+        jPanel1.setBackground(new java.awt.Color(101, 28, 50));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logo.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                .addComponent(closeBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(closeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(34, Short.MAX_VALUE)
-                .addComponent(closeBtn)
-                .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(closeBtn1)
+                    .addComponent(closeBtn))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(101, 28, 50));
@@ -142,7 +187,7 @@ private void setActiveButton(javax.swing.JButton activeButton) {
         dashboardBtn.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         dashboardBtn.setIconTextGap(10);
         dashboardBtn.setInheritsPopupMenu(true);
-        dashboardBtn.setMargin(new java.awt.Insets(5, 5, 5, 5));
+        dashboardBtn.setMargin(new java.awt.Insets(5, 20, 5, 5));
         dashboardBtn.setMaximumSize(new java.awt.Dimension(64, 42));
         dashboardBtn.setMinimumSize(new java.awt.Dimension(64, 42));
         dashboardBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -228,30 +273,50 @@ private void setActiveButton(javax.swing.JButton activeButton) {
             }
         });
 
+        floorbtn.setBackground(new java.awt.Color(101, 28, 50));
+        floorbtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        floorbtn.setForeground(new java.awt.Color(255, 255, 255));
+        floorbtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/room-icon.png"))); // NOI18N
+        floorbtn.setText("Floor");
+        floorbtn.setBorder(null);
+        floorbtn.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        floorbtn.setIconTextGap(10);
+        floorbtn.setInheritsPopupMenu(true);
+        floorbtn.setMargin(new java.awt.Insets(5, 5, 5, 5));
+        floorbtn.setMaximumSize(new java.awt.Dimension(64, 42));
+        floorbtn.setMinimumSize(new java.awt.Dimension(64, 42));
+        floorbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                floorbtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(dashboardBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(bookingBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(guestsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(roomsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(transactionsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+            .addComponent(transactionsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(20, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(logoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(24, 24, 24)))
-                .addContainerGap())
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                        .addGap(30, 30, 30))))
+            .addComponent(dashboardBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(floorbtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(78, 78, 78)
                 .addComponent(dashboardBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(12, 12, 12)
+                .addComponent(floorbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
                 .addComponent(bookingBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(guestsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -259,7 +324,7 @@ private void setActiveButton(javax.swing.JButton activeButton) {
                 .addComponent(roomsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(transactionsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(logoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -284,25 +349,15 @@ private void setActiveButton(javax.swing.JButton activeButton) {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(dashboardPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(dashboardPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, 0))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void closeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBtnActionPerformed
-    int confirm = JOptionPane.showConfirmDialog(this,
-        "Are you sure you want to close?", "Exit Confirmation",
-        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-    if (confirm == JOptionPane.YES_OPTION) {
-        System.exit(0);
-    }
-    }//GEN-LAST:event_closeBtnActionPerformed
-
     private void bookingBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookingBtnActionPerformed
-        // TODO add your handling code here:
         dashboardPanel.removeAll();
         Booking book = new Booking();
         dashboardPanel.add(book);
@@ -312,8 +367,6 @@ private void setActiveButton(javax.swing.JButton activeButton) {
     }//GEN-LAST:event_bookingBtnActionPerformed
 
     private void dashboardBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dashboardBtnActionPerformed
-        // TODO add your handling code here:
-        
         dashboardPanel.removeAll();
         Dashboard dashboard = new Dashboard();
         DashboardModel dashboardModel = new DashboardModel();
@@ -370,7 +423,6 @@ private void setActiveButton(javax.swing.JButton activeButton) {
     }//GEN-LAST:event_dashboardBtnActionPerformed
 
     private void roomsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roomsBtnActionPerformed
-        // TODO add your handling code here:
         dashboardPanel.removeAll();
         RoomTable roomTable = new RoomTable();
         dashboardPanel.add(roomTable);
@@ -380,7 +432,6 @@ private void setActiveButton(javax.swing.JButton activeButton) {
     }//GEN-LAST:event_roomsBtnActionPerformed
 
     private void guestsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guestsBtnActionPerformed
-        // TODO add your handling code here:
         dashboardPanel.removeAll();
         GuestTable guestTable = new GuestTable();
         dashboardPanel.add(guestTable);
@@ -390,7 +441,6 @@ private void setActiveButton(javax.swing.JButton activeButton) {
     }//GEN-LAST:event_guestsBtnActionPerformed
 
     private void transactionsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transactionsBtnActionPerformed
-        // TODO add your handling code here:
         dashboardPanel.removeAll();
         TransactionTable transactionTable = new TransactionTable();
         dashboardPanel.add(transactionTable);
@@ -400,8 +450,6 @@ private void setActiveButton(javax.swing.JButton activeButton) {
     }//GEN-LAST:event_transactionsBtnActionPerformed
 
     private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
-        // TODO add your handling code here:
-        
         Login login = new Login();
         login.setVisible(true);
         login.pack();
@@ -409,6 +457,39 @@ private void setActiveButton(javax.swing.JButton activeButton) {
         this.dispose();
     }//GEN-LAST:event_logoutBtnActionPerformed
 
+    private void closeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBtnActionPerformed
+        int confirm = JOptionPane.showConfirmDialog(this,
+            "Are you sure you want to close?", "Exit Confirmation",
+            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (confirm == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        }
+    }//GEN-LAST:event_closeBtnActionPerformed
+
+    private void closeBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBtn1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_closeBtn1ActionPerformed
+
+    private void floorbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_floorbtnActionPerformed
+    handleRoomTypeButtonClick("Deluxe");
+    handleRoomTypeButtonClick("Premier");
+    handleRoomTypeButtonClick("Executive");
+    handleRoomTypeButtonClick("Presidential");
+    
+        dashboardPanel.removeAll();
+        roomA.setVisible(true);
+        dashboardPanel.add(roomA);
+        dashboardPanel.revalidate();
+        dashboardPanel.repaint();
+        setActiveButton(floorbtn);
+    
+
+    }//GEN-LAST:event_floorbtnActionPerformed
+    
+    private void handleRoomTypeButtonClick(String roomType) {
+        controller.updateColors(roomType);
+        System.out.println(roomType + " scanning");
+    }
     /**
      * @param args the command line arguments
      */
@@ -448,10 +529,14 @@ private void setActiveButton(javax.swing.JButton activeButton) {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bookingBtn;
     private javax.swing.JButton closeBtn;
+    private javax.swing.JButton closeBtn1;
     private javax.swing.JButton dashboardBtn;
     private javax.swing.JPanel dashboardPanel;
+    private javax.swing.JButton floorbtn;
     private javax.swing.JButton guestsBtn;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JButton logoutBtn;

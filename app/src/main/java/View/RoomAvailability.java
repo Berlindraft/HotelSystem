@@ -1996,7 +1996,7 @@ private GuestInputModel guestModel;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-    Management1 management = (Management1) SwingUtilities.getWindowAncestor(this);
+    Management management = (Management) SwingUtilities.getWindowAncestor(this);
 
     management.getDashboardPanel().removeAll();
     RoomAvailabilityModel model = new RoomAvailabilityModel();
@@ -2010,7 +2010,7 @@ private GuestInputModel guestModel;
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-    Management1 management = (Management1) SwingUtilities.getWindowAncestor(this);
+    Management management = (Management) SwingUtilities.getWindowAncestor(this);
     management.getDashboardPanel().removeAll();
     guest.setVisible(true);
     management.getDashboardPanel().add(guest);

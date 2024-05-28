@@ -728,7 +728,7 @@ public class Booking extends javax.swing.JPanel {
             Bmodel.addBooking(guestId, paymentId, sqlCheckinDate, sqlCheckoutDate, adults, children, discount);
 
             // Refresh the UI
-            Management1 management = (Management1) SwingUtilities.getWindowAncestor(jButton5);
+            Management management = (Management) SwingUtilities.getWindowAncestor(jButton5);
             management.getDashboardPanel().removeAll();
             RoomAvailabilityModel model = new RoomAvailabilityModel();
             RoomAvailability view = new RoomAvailability();
