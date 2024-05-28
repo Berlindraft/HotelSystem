@@ -2124,21 +2124,13 @@ private void setupClickListeners() {
     addMouseListenerToComponent(r115, c115);
     
     //for floor 2 rooms
-<<<<<<< HEAD
     addMouseListenerToComponent(r201, c201);
-=======
-    addMouseListenerToComponent(r203, c203);
->>>>>>> 343f5804fa7e837c15b680d16b7393a2eaa016da
     addMouseListenerToComponent(r202, c202);
     addMouseListenerToComponent(r203, c203);
     addMouseListenerToComponent(r204, c204);
     addMouseListenerToComponent(r205, c205);
-<<<<<<< HEAD
     addMouseListenerToComponent(r217, c217);
-    addMouseListenerToComponent(r210, c207);
-=======
     addMouseListenerToComponent(r207, c207);
->>>>>>> 343f5804fa7e837c15b680d16b7393a2eaa016da
     addMouseListenerToComponent(r208, c208);
     addMouseListenerToComponent(r209, c209);
     addMouseListenerToComponent(r210, c210);
@@ -2372,12 +2364,9 @@ public void setColor(int panelNumber, Color color) {
         case 205:
             r205.setBackground(color);
             break;
-<<<<<<< HEAD
         case 206:
             r217.setBackground(color);
             break;
-=======
->>>>>>> 343f5804fa7e837c15b680d16b7393a2eaa016da
         case 207:
             r207.setBackground(color);
             break;
